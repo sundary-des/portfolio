@@ -27,7 +27,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Home page gets gradient */
+/* Home page ONLY gets the blue gradient */
 body.home {
   background: linear-gradient(to bottom, #eaf0fe 0%, #ffffff 40%);
 }
@@ -37,7 +37,6 @@ img { display: block; max-width: 100%; }
 
 .page-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
 .page-content { flex: 1; padding-top: 120px; }
-
 .container { max-width: 1187px; margin: 0 auto; padding: 0 40px; }
 
 /* ============================================================
@@ -45,18 +44,18 @@ img { display: block; max-width: 100%; }
    ============================================================ */
 .nav {
   position: fixed;
-  top: 32px;
+  top: 34px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 200;
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 12px 16px;
+  padding: 16px 16px;
   background: rgba(255,255,255,0.4);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid #f5f5f5;
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
+  border: 1px solid #F5F5F5;
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-nav);
   white-space: nowrap;
@@ -74,9 +73,22 @@ img { display: block; max-width: 100%; }
 }
 .nav-avatar:hover { opacity: 0.85; }
 
-.nav a { font-size: 15px; font-weight: 500; color: var(--dark); transition: color var(--transition); }
-.nav a:hover { color: var(--blue-accent); }
-.nav a.active { color: #292b2d; font-weight: 600; }
+/* nav-links wrapper */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* FIX: explicitly Medium weight by default, Bold only on hover/active */
+.nav-links a {
+  font-size: 15px;
+  font-weight: 500;      /* Medium — default */
+  color: var(--dark);
+  transition: color var(--transition), font-weight var(--transition);
+}
+.nav-links a:hover  { color: var(--dark); font-weight: 600; }  /* Bold on hover */
+.nav-links a.active { color: var(--dark); font-weight: 600; }  /* Bold when active */
 
 /* Hamburger — hidden on desktop */
 .nav-hamburger {
@@ -95,37 +107,46 @@ img { display: block; max-width: 100%; }
   height: 2px;
   background: var(--dark);
   border-radius: 2px;
-  transition: all 0.3s;
 }
 
-/* Mobile menu overlay */
+/* ============================================================
+   MOBILE MENU — frosted glass card, matches Figma
+   ============================================================ */
 .mobile-menu {
   display: none;
   position: fixed;
-  inset: 0;
-  background: white;
-  z-index: 199;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 300;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
+  border: 1px solid #F5F5F5;
+  border-radius: 24px;
+  box-shadow: var(--shadow-nav);
+  padding: 16px 24px 24px;
   flex-direction: column;
-  padding: 100px 32px 40px;
-  gap: 8px;
+  gap: 0;
 }
 .mobile-menu.open { display: flex; }
-.mobile-menu a {
-  font-size: 28px;
-  font-weight: 500;
-  color: var(--dark);
-  padding: 16px 0;
-  border-bottom: 1px solid var(--light-gray);
-  transition: color var(--transition);
+
+/* Top row: avatar + close button */
+.mobile-menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }
-.mobile-menu a:last-child { border-bottom: none; }
-.mobile-menu a:hover, .mobile-menu a.active { color: var(--blue-accent); }
+.mobile-menu-top img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 .mobile-menu-close {
-  position: absolute;
-  top: 32px;
-  right: 24px;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1.5px solid var(--light-gray);
   background: white;
@@ -133,8 +154,39 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
+  color: var(--dark);
+  line-height: 1;
 }
+
+/* Menu links */
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.mobile-menu-links a {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--dark);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--light-gray);
+  transition: color var(--transition);
+  text-align: left;
+}
+.mobile-menu-links a:last-child { border-bottom: none; }
+.mobile-menu-links a.active { font-weight: 600; }
+.mobile-menu-links a:hover { color: var(--blue-accent); }
+
+/* Backdrop behind mobile menu */
+.mobile-menu-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: 299;
+}
+.mobile-menu-backdrop.open { display: block; }
 
 /* ============================================================
    FOOTER
@@ -181,24 +233,21 @@ img { display: block; max-width: 100%; }
 .modal-submit:hover { opacity: 0.85; }
 
 /* ============================================================
-   MOBILE RESPONSIVE — max-width: 768px
+   MOBILE — max-width: 768px
    ============================================================ */
 @media (max-width: 768px) {
-
-  /* Layout */
   .container { padding: 0 20px; }
-  .page-content { padding-top: 88px; }
+  .page-content { padding-top: 96px; }
 
-  /* Nav: hide links, show hamburger */
+  /* Nav: shrink, show hamburger, hide links */
   .nav {
     top: 16px;
-    padding: 10px 14px;
-    gap: 12px;
-    left: 20px;
-    right: 20px;
+    left: 16px;
+    right: 16px;
     transform: none;
-    width: calc(100% - 40px);
+    width: calc(100% - 32px);
     justify-content: space-between;
+    padding: 12px 16px;
   }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
@@ -210,52 +259,50 @@ img { display: block; max-width: 100%; }
   .footer-links a { font-size: 14px; }
 
   /* Buttons */
-  .btn-dark { font-size: 16px; padding: 12px 20px; width: 100%; justify-content: center; }
+  .btn-dark { font-size: 16px; width: 100%; justify-content: center; }
 
   /* Section labels */
   .section-label { font-size: 14px; padding: 10px 18px; }
 
-  /* Modal */
-  .modal { padding: 28px 24px; }
-}
-
-/* nav-links wrapper — desktop shows inline, mobile hides */
-.nav-links { display: flex; align-items: center; gap: 24px; }
-
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-
-  /* ── Home page ── */
+  /* ── Home: hero ── */
   .hero { padding: 40px 0 0 !important; gap: 28px !important; }
-  .hero-title { font-size: 22px !important; line-height: 1.45 !important; }
+  .hero-title { font-size: 24px !important; line-height: 1.4 !important; }
   .hero-sub { font-size: 16px !important; }
-  .hero-photo { height: 200px !important; border-radius: 20px !important; }
-  .client-logos { gap: 20px !important; flex-wrap: wrap !important; justify-content: center !important; }
+  .hero-photo { height: 220px !important; border-radius: 20px !important; }
+  .client-logos { gap: 16px !important; flex-wrap: wrap !important; }
   .client-logos img { height: 28px !important; }
 
-  /* CS carousel on home */
+  /* ── Home: case study carousel ── */
   .carousel-slide { grid-template-columns: 1fr !important; }
   .cs-card-img img { height: 200px !important; }
+  .cs-section-title { font-size: 22px !important; }
+  .cs-section-sub { font-size: 16px !important; }
+  .cs-section { padding: 48px 0 0 !important; }
 
-  /* Services cards on home */
+  /* ── Home: services ── */
   .services-cards { grid-template-columns: 1fr !important; }
   .svc-card { min-height: unset !important; }
   .svc-card-title { font-size: 18px !important; }
   .svc-card-desc { font-size: 16px !important; }
+  .services-section { padding: 48px 0 0 !important; }
 
-  /* Blog cards on home */
+  /* ── Home: blog ── */
   .blog-cards { grid-template-columns: 1fr !important; }
   .blog-card { height: auto !important; }
+  .blog-section { padding: 48px 0 60px !important; }
+  .blog-section-title { font-size: 22px !important; }
+  .blog-section-sub { font-size: 16px !important; }
 
   /* ── Case Studies page ── */
-  .cs-grid { grid-template-columns: 1fr !important; }
+  .cs-grid { grid-template-columns: 1fr !important; padding: 40px 0 60px !important; }
   .cs-card-full { grid-column: auto !important; }
 
   /* ── Blog page ── */
   .blog-grid { grid-template-columns: 1fr !important; }
+  .blog-page { padding: 40px 0 60px !important; }
 
   /* ── Contacts page ── */
-  .contacts-wrap { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .contacts-wrap { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 0 60px !important; }
 
   /* ── About page ── */
   .about-wrap { padding: 40px 0 60px !important; gap: 32px !important; }
@@ -265,20 +312,7 @@ img { display: block; max-width: 100%; }
   .service-title { font-size: 18px !important; }
   .service-subtitle { font-size: 16px !important; }
   .service-body { grid-template-columns: 1fr !important; }
+  .tools-section { padding: 40px 0 60px !important; }
   .tools-grid { gap: 8px !important; }
   .tool-pill { font-size: 13px !important; padding: 8px 14px !important; }
-
-  /* Section spacing */
-  .cs-section { padding: 48px 0 0 !important; }
-  .services-section { padding: 48px 0 0 !important; }
-  .blog-section { padding: 48px 0 60px !important; }
-  .tools-section { padding: 40px 0 60px !important; }
-  .cs-grid { padding: 40px 0 60px !important; }
-  .blog-page { padding: 40px 0 60px !important; }
-
-  /* Section label on mobile */
-  .cs-section-title { font-size: 22px !important; }
-  .cs-section-sub { font-size: 16px !important; }
-  .blog-section-title { font-size: 22px !important; }
-  .blog-section-sub { font-size: 16px !important; }
 }

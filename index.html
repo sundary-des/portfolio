@@ -134,38 +134,21 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
-
+  <div class="mobile-menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
   <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
-    <a href="services.html" class="active">Services</a>
-    <a href="case-studies.html" class="active">Case Studies</a>
-    <a href="blog.html" class="active">Blog</a>
-    <a href="about.html" class="active">About me</a>
-    <a href="contacts.html" class="active">Contacts</a>
+    <div class="mobile-menu-top">
+      <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" /></a>
+      <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+    </div>
+    <div class="mobile-menu-links">
+    <a href="services.html">Services</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About me</a>
+    <a href="contacts.html">Contacts</a>
+    </div>
   </div>
 
-  <div class="page-wrapper">
-    <main class="page-content">
-      <div class="container">
-
-        <!-- HERO -->
-        <div class="hero">
-          <div class="hero-text">
-            <h1 class="hero-title">Hey there 👋<br>I'm Olga Kalinina, Lead Product &amp; UX/UI Designer.<br>Designing complex SaaS &amp; AI platforms for real users — not for Dribbble shots.</h1>
-            <p class="hero-sub">SaaS, AI workflows, dashboards, enterprise tooling, apps.</p>
-          </div>
-          <a href="contacts.html" class="btn-dark">Say Hi, and let's talk 👋</a>
-          <div class="hero-media">
-            <img src="images/ted_talk_2024.jpg" alt="Olga Kalinina at TED talk 2024" class="hero-photo" />
-            <div class="client-logos">
-              <img src="images/UNESCAP_logo.svg" alt="UN ESCAP" />
-              <img src="images/Moonbug_logo.svg" alt="Moonbug" />
-              <img src="images/Decade_of_action_logo.svg" alt="Decade of Action" />
-              <img src="images/Think_blue_data_logo.svg" alt="Think Blue Data" />
-              <img src="images/United_Nations_logo.svg" alt="United Nations" />
-              <img src="images/Plantations_international_logo.svg" alt="Plantations International" />
-            </div>
-          </div>
         </div>
 
         <!-- CASE STUDIES -->
@@ -383,6 +366,12 @@
     function closeNdaModal() { document.getElementById('ndaModal').classList.remove('active'); }
     document.getElementById('ndaModal').addEventListener('click', e => { if (e.target === document.getElementById('ndaModal')) closeNdaModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNdaModal(); });
+  </script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+      document.getElementById('menuBackdrop').classList.toggle('open');
+    }
   </script>
 </body>
 </html>

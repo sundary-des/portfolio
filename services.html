@@ -51,32 +51,21 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
-
+  <div class="mobile-menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
   <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+    <div class="mobile-menu-top">
+      <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" /></a>
+      <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+    </div>
+    <div class="mobile-menu-links">
     <a href="services.html" class="active">Services</a>
-    <a href="case-studies.html" class="active">Case Studies</a>
-    <a href="blog.html" class="active">Blog</a>
-    <a href="about.html" class="active">About me</a>
-    <a href="contacts.html" class="active">Contacts</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About me</a>
+    <a href="contacts.html">Contacts</a>
+    </div>
   </div>
 
-  <div class="page-wrapper">
-    <main class="page-content">
-      <div class="container">
-        <div class="page-hero">
-          <h1>Product Design Services</h1>
-          <p>How I can help — from discovery and UX flows to build-ready UI and prototypes.</p>
-          <a href="contacts.html" class="btn-dark">Contact me</a>
-        </div>
-
-        <div class="services-list">
-          <div class="service-item open">
-            <div class="service-header" onclick="toggleService(this)">
-              <div class="service-header-text">
-                <div class="service-title">UX Audit for Complex Products</div>
-                <div class="service-subtitle">Find what blocks users today and get a prioritised fix plan with clear, actionable recommendations.</div>
-              </div>
               <div class="service-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
             </div>
             <div class="service-body">
@@ -200,5 +189,11 @@
     <footer class="footer"><div class="footer-inner"><div class="footer-social-row"><nav class="footer-links"><a href="about.html">About me</a><span class="footer-dot"></span><a href="services.html">Services</a><span class="footer-dot"></span><a href="case-studies.html">Case Studies</a><span class="footer-dot"></span><a href="blog.html">Blog</a><span class="footer-dot"></span><a href="contacts.html">Contacts</a></nav><div class="footer-socials"><a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener"><img src="images/Linkedin_logo.png" alt="LinkedIn" /></a><a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener"><img src="images/Behance_logo.png" alt="Behance" /></a></div></div><p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p></div></footer>
   </div>
   <script>function toggleService(h){h.parentElement.classList.toggle('open');}</script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+      document.getElementById('menuBackdrop').classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
