@@ -1,0 +1,106 @@
+/* ============================================================
+   OLGA KALININA PORTFOLIO — Shared Design System
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --font: 'Inter', sans-serif;
+  --dark: #292b2d;
+  --gray: #707379;
+  --light-gray: #ebebeb;
+  --bg-soft: #fafafa;
+  --blue-accent: #1947f5;
+  --radius-card: 24px;
+  --radius-pill: 9999px;
+  --shadow-nav: 0 4px 12.8px rgba(68,130,255,0.1);
+  --transition: 0.2s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--font);
+  color: var(--dark);
+  background: linear-gradient(to bottom, #eaf0fe 0%, #ffffff 40%);
+  min-height: 100vh;
+}
+
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+.page-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
+.page-content { flex: 1; padding-top: 120px; }
+
+.container { max-width: 1187px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Nav ── */
+.nav {
+  position: fixed;
+  top: 31px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 20px 32px;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid #f5f5f5;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-nav);
+  white-space: nowrap;
+}
+
+.nav-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: opacity var(--transition);
+  background: linear-gradient(135deg, #c4b5fd, #818cf8);
+}
+.nav-avatar:hover { opacity: 0.85; }
+
+.nav a { font-size: 15px; font-weight: 500; color: var(--dark); transition: color var(--transition); }
+.nav a:hover { color: var(--blue-accent); }
+.nav a.active { color: var(--blue-accent); font-weight: 600; }
+
+/* ── Footer ── */
+.footer { background: var(--bg-soft); padding: 24px 0 40px; margin-top: auto; }
+.footer-inner { max-width: 1187px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.footer-social-row { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: center; }
+.footer-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.footer-links a { font-size: 16px; font-weight: 500; color: var(--dark); transition: color var(--transition); }
+.footer-links a:hover { color: var(--blue-accent); }
+.footer-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray); opacity: 0.5; display: inline-block; }
+.footer-socials { display: flex; align-items: center; gap: 14px; }
+.footer-socials a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; overflow: hidden; transition: opacity var(--transition); }
+.footer-socials a:hover { opacity: 0.75; }
+.footer-socials img { width: 32px; height: 32px; object-fit: cover; border-radius: 5px; }
+.footer-copy { font-size: 14px; font-weight: 500; color: var(--gray); text-align: center; }
+
+/* ── Buttons ── */
+.btn-dark { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; background: var(--dark); color: white; border-radius: var(--radius-pill); font-size: 18px; font-weight: 500; transition: opacity var(--transition), transform var(--transition); cursor: pointer; border: none; font-family: var(--font); }
+.btn-dark:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* ── Section labels ── */
+.section-label { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border: 2px solid var(--light-gray); border-radius: var(--radius-pill); font-size: 16px; font-weight: 500; color: var(--dark); }
+.section-label img { width: 24px; height: 24px; object-fit: contain; }
+
+/* ── NDA Modal ── */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; }
+.modal-overlay.active { display: flex; }
+.modal { background: white; border-radius: 20px; padding: 40px; max-width: 440px; width: 90%; box-shadow: 0 24px 64px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 16px; }
+.modal-icon { width: 48px; height: 48px; background: #f5f5f5; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.modal h2 { font-size: 20px; font-weight: 600; }
+.modal p { font-size: 15px; color: var(--gray); line-height: 1.6; }
+.modal-actions { display: flex; gap: 12px; margin-top: 8px; }
+.modal-cancel { flex: 1; padding: 12px; border: 1.5px solid var(--light-gray); border-radius: var(--radius-pill); font-size: 15px; font-weight: 500; background: white; cursor: pointer; font-family: var(--font); color: var(--dark); transition: border-color var(--transition); }
+.modal-cancel:hover { border-color: var(--dark); }
+.modal-submit { flex: 1; padding: 12px; background: var(--dark); color: white; border: none; border-radius: var(--radius-pill); font-size: 15px; font-weight: 500; cursor: pointer; font-family: var(--font); transition: opacity var(--transition); text-decoration: none; display: flex; align-items: center; justify-content: center; }
+.modal-submit:hover { opacity: 0.85; }

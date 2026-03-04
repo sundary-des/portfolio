@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olga Kalinina — Lead Product & UX/UI Designer</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Hero */
+    .hero { text-align: center; padding: 60px 0 0; display: flex; flex-direction: column; align-items: center; gap: 44px; }
+    .hero-text { display: flex; flex-direction: column; gap: 14px; max-width: 863px; }
+    .hero-title { font-size: 32px; font-weight: 500; color: var(--dark); line-height: 1.4; }
+    .hero-sub { font-size: 24px; font-weight: 500; color: var(--gray); }
+    .hero-media { display: flex; flex-direction: column; align-items: center; gap: 42px; width: 100%; max-width: 863px; }
+    .hero-photo { width: 100%; max-width: 802px; height: 314px; border-radius: 33px; object-fit: cover; background: linear-gradient(135deg,#c4b5fd,#818cf8); }
+    .client-logos { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .client-logos img { height: 46px; width: auto; object-fit: contain; opacity: 0.5; filter: grayscale(1); transition: opacity 0.2s; }
+    .client-logos img:hover { opacity: 0.8; }
+
+    /* Case Studies section */
+    .cs-section { display: flex; flex-direction: column; gap: 48px; align-items: center; padding: 80px 0 0; }
+    .cs-section-header { display: flex; flex-direction: column; gap: 24px; align-items: center; }
+    .cs-section-title { font-size: 30px; font-weight: 500; color: var(--dark); text-align: center; }
+    .cs-section-sub { font-size: 24px; font-weight: 500; color: var(--gray); text-align: center; }
+
+    /* Carousel */
+    .carousel-wrap { width: 100%; overflow: hidden; }
+    .carousel-slides { display: flex; transition: transform 0.45s ease; }
+    .carousel-slide { min-width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    .cs-card {
+      background: var(--bg-soft);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      position: relative;
+      height: 581px;
+      cursor: pointer;
+    }
+
+    .cs-card-inner { position: absolute; inset: 0; }
+    .cs-card-bg { width: 100%; height: 100%; object-fit: cover; }
+
+    .cs-card-header {
+      position: absolute;
+      top: 32px; left: 32px; right: 32px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 2;
+    }
+
+    .cs-card-title { font-size: 22px; font-weight: 600; color: var(--dark); margin-bottom: 6px; line-height: 1.3; }
+    .cs-card-desc { font-size: 15px; color: var(--gray); }
+
+    .cs-lock-btn {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .cs-lock-btn svg { width: 22px; height: 22px; }
+
+    .carousel-controls { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .carousel-progress { display: flex; gap: 8px; align-items: center; }
+    .carousel-progress span { width: 32px; height: 4px; background: var(--light-gray); border-radius: 2px; transition: background 0.3s; }
+    .carousel-progress span.active { background: var(--dark); }
+    .carousel-btns { display: flex; gap: 12px; }
+    .carousel-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 2px solid var(--light-gray);
+      background: white; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s;
+    }
+    .carousel-btn:hover, .carousel-btn.active { border-color: var(--dark); }
+    .carousel-btn svg { width: 20px; height: 20px; }
+
+    /* Services section */
+    .services-section { display: flex; flex-direction: column; gap: 22px; padding: 80px 0 0; }
+    .services-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .svc-card {
+      background: var(--bg-soft);
+      border-radius: var(--radius-card);
+      padding: 20px 20px 40px;
+      display: flex; flex-direction: column; gap: 16px;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      min-height: 302px;
+    }
+    .svc-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-3px); }
+    .svc-card-icon { width: 32px; height: 32px; object-fit: contain; }
+    .svc-card-title { font-size: 24px; font-weight: 500; color: var(--dark); line-height: 1.3; }
+    .svc-card-desc { font-size: 20px; color: var(--dark); line-height: 1.4; }
+    .svc-card-more { display: flex; align-items: center; justify-content: center; }
+    .svc-card-more span { font-size: 24px; color: var(--gray); }
+
+    /* Blog section */
+    .blog-section { display: flex; flex-direction: column; gap: 48px; align-items: center; padding: 80px 0 100px; }
+    .blog-section-header { display: flex; flex-direction: column; gap: 24px; align-items: center; }
+    .blog-section-title { font-size: 30px; font-weight: 500; color: var(--dark); text-align: center; }
+    .blog-section-sub { font-size: 24px; font-weight: 500; color: var(--gray); text-align: center; }
+    .blog-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; }
+    .blog-card {
+      border: 2px solid var(--light-gray);
+      border-radius: var(--radius-card);
+      padding: 20px 20px 40px;
+      display: flex; flex-direction: column; gap: 17px;
+      cursor: pointer; transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none; color: inherit;
+      height: 330px;
+    }
+    .blog-card:hover { border-color: var(--dark); transform: translateY(-3px); }
+    .blog-tag {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      font-size: 12px; font-weight: 500;
+      width: fit-content;
+      white-space: nowrap;
+    }
+    .blog-card-title { font-size: 20px; font-weight: 500; color: var(--dark); line-height: 1.3; }
+    .blog-card-excerpt { font-size: 16px; color: var(--dark); line-height: 1.6; flex: 1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
+    <a href="services.html">Services</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About me</a>
+    <a href="contacts.html">Contacts</a>
+  </nav>
+
+  <div class="page-wrapper">
+    <main class="page-content">
+      <div class="container">
+
+        <!-- HERO -->
+        <div class="hero">
+          <div class="hero-text">
+            <h1 class="hero-title">Hey there 👋<br>I'm Olga Kalinina, Lead Product &amp; UX/UI Designer.<br>Designing complex SaaS &amp; AI platforms for real users — not for Dribbble shots.</h1>
+            <p class="hero-sub">SaaS, AI workflows, dashboards, enterprise tooling, apps.</p>
+          </div>
+          <a href="contacts.html" class="btn-dark">Say Hi, and let's talk 👋</a>
+          <div class="hero-media">
+            <img src="images/ted_talk_2024.jpg" alt="Olga Kalinina at TED talk 2024" class="hero-photo" />
+            <div class="client-logos">
+              <img src="images/logo-unescap.png" alt="UN ESCAP" />
+              <img src="images/logo-moonbug.png" alt="Moonbug" />
+              <img src="images/logo-sdg.png" alt="Decade of Action" />
+              <img src="images/logo-tbd.png" alt="Think Blue Data" />
+              <img src="images/logo-un.png" alt="United Nations" />
+              <img src="images/logo-nationalize.png" alt="Plantations International" />
+            </div>
+          </div>
+        </div>
+
+        <!-- CASE STUDIES -->
+        <div class="cs-section">
+          <div class="cs-section-header">
+            <span class="section-label">
+              <img src="https://www.figma.com/api/mcp/asset/669cde46-c608-445a-9646-161b37947d87" alt="" />
+              Case Studies
+            </span>
+            <div class="cs-section-title">15+ years in product design.</div>
+            <div class="cs-section-sub">I turn "it's a mess" into "it makes sense."</div>
+          </div>
+
+          <div style="width:100%">
+            <div class="carousel-wrap">
+              <div class="carousel-slides" id="csSlides">
+
+                <!-- Slide 1 -->
+                <div class="carousel-slide">
+                  <a class="cs-card" href="cs-payli.html">
+                    <img src="images/cs-payli-cover.jpg" alt="Payli Budget App" class="cs-card-bg" onerror="this.style.background='#e8eeff';this.remove()" />
+                    <div class="cs-card-header">
+                      <div>
+                        <div class="cs-card-title">Payli Budget App</div>
+                        <div class="cs-card-desc">App for tracking bills, recurring payments, and monthly spending.</div>
+                      </div>
+                    </div>
+                  </a>
+                  <div class="cs-card" onclick="openNdaModal()">
+                    <img src="images/cs-un-cover.jpg" alt="UN ESCAP" class="cs-card-bg" onerror="this.style.background='#103550';this.remove()" />
+                    <div class="cs-card-header">
+                      <div>
+                        <div class="cs-card-title">UN ESCAP — Risk and Resilience Portal</div>
+                        <div class="cs-card-desc">Portal for exploring climate risk data by country.</div>
+                      </div>
+                      <div class="cs-lock-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                  <a class="cs-card" href="cs-ghibli.html">
+                    <img src="images/cs-ghibli-cover.jpg" alt="Maserati Ghibli" class="cs-card-bg" onerror="this.style.background='#1a1a2e';this.remove()" />
+                    <div class="cs-card-header">
+                      <div>
+                        <div class="cs-card-title">Maserati Ghibli Website Redesign</div>
+                        <div class="cs-card-desc">Concept redesign for Maserati's Ghibli model website.</div>
+                      </div>
+                    </div>
+                  </a>
+                  <div class="cs-card" onclick="openNdaModal()">
+                    <img src="images/cs-b2c-cover.jpg" alt="B2C FitnessTech" class="cs-card-bg" onerror="this.style.background='#0f2027';this.remove()" />
+                    <div class="cs-card-header">
+                      <div>
+                        <div class="cs-card-title">B2C FitnessTech Platform</div>
+                        <div class="cs-card-desc">Platform for creators: community, programs, and subscriptions.</div>
+                      </div>
+                      <div class="cs-lock-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                  <div class="cs-card" onclick="openNdaModal()">
+                    <img src="images/cs-dam-cover.jpg" alt="Digital Assets Management" class="cs-card-bg" onerror="this.style.background='#1c1c2e';this.remove()" />
+                    <div class="cs-card-header">
+                      <div>
+                        <div class="cs-card-title">Digital Assets Management System</div>
+                        <div class="cs-card-desc">Enterprise DAM to organize, tag, and share media at scale.</div>
+                      </div>
+                      <div class="cs-lock-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cs-card" style="display:flex;align-items:center;justify-content:center;">
+                    <span style="font-size:20px;color:var(--gray);text-align:center;">🚀<br><br>More coming soon</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="carousel-controls" style="margin-top:24px;">
+              <div class="carousel-progress">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="carousel-btns">
+                <button class="carousel-btn" onclick="slideCS(-1)" aria-label="Previous">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+                </button>
+                <button class="carousel-btn active" onclick="slideCS(1)" aria-label="Next">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SERVICES -->
+        <div class="services-section">
+          <span class="section-label">
+            <img src="https://www.figma.com/api/mcp/asset/b2f01db1-5012-470f-a04a-482f9f2932a0" alt="" />
+            My Services
+          </span>
+          <div class="services-cards">
+            <a href="services.html" class="svc-card">
+              <img src="https://www.figma.com/api/mcp/asset/b08ae03b-2baa-4e80-bd98-6d101f8cdcc6" alt="" class="svc-card-icon" />
+              <div class="svc-card-title">UX Audit for Complex Products</div>
+              <div class="svc-card-desc">Find what blocks users today and get a prioritised fix plan with clear, actionable recommendations.</div>
+            </a>
+            <a href="services.html" class="svc-card">
+              <img src="https://www.figma.com/api/mcp/asset/7ddaf8c1-bddf-4b99-9e47-ca3d37bc16bb" alt="" class="svc-card-icon" />
+              <div class="svc-card-title">MVP Product Design</div>
+              <div class="svc-card-desc">From idea to a clickable MVP: core flows, key screens, and a prototype ready for testing and build.</div>
+            </a>
+            <a href="services.html" class="svc-card">
+              <img src="https://www.figma.com/api/mcp/asset/945bbfa3-a407-4d3b-a40c-c15907a6f439" alt="" class="svc-card-icon" />
+              <div class="svc-card-title">Product Discovery Sprint</div>
+              <div class="svc-card-desc">Clarify the problem, audience, and scope — so you build the right MVP without guesswork.</div>
+            </a>
+            <a href="services.html" class="svc-card svc-card-more">
+              <span>+6 more →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- BLOG -->
+        <div class="blog-section">
+          <div class="blog-section-header">
+            <span class="section-label">
+              <img src="https://www.figma.com/api/mcp/asset/31a7e6ab-718e-445a-964b-aa6d80397c13" alt="" />
+              PRO Blog
+            </span>
+            <div class="blog-section-title">Some helpful texts for designers &amp; tech teams</div>
+            <div class="blog-section-sub">Talk about SaaS, AI, Product Design, User Psychology, etc</div>
+          </div>
+          <div class="blog-cards">
+            <a href="blog-post.html" class="blog-card">
+              <span class="blog-tag" style="background:rgba(161,25,245,0.2);color:#7b00c2;">AI</span>
+              <div class="blog-card-title">Understanding the Users</div>
+              <div class="blog-card-excerpt">User research is crucial for gathering insights about the target audience, their needs, pain points, and behaviors. This process helps inform design decisions and improve product usability.</div>
+            </a>
+            <a href="blog-post.html" class="blog-card">
+              <span class="blog-tag" style="background:rgba(25,71,245,0.2);color:#1947f5;">User Research</span>
+              <div class="blog-card-title">Understanding the Users</div>
+              <div class="blog-card-excerpt">User research is crucial for gathering insights about the target audience, their needs, pain points, and behaviors. This process helps inform design decisions and improve product usability.</div>
+            </a>
+            <a href="blog-post.html" class="blog-card">
+              <span class="blog-tag" style="background:rgba(25,245,73,0.2);color:#0a7a20;">SaaS Design</span>
+              <div class="blog-card-title">Creating Layouts</div>
+              <div class="blog-card-excerpt">Wireframing involves sketching layouts for interfaces, focusing on structure and functionality without distractions of color or graphic design. It serves as a blueprint for the final design.</div>
+            </a>
+            <a href="blog-post.html" class="blog-card">
+              <span class="blog-tag" style="background:rgba(245,25,201,0.2);color:#b5007c;">Dashboard</span>
+              <div class="blog-card-title">Testing Ideas</div>
+              <div class="blog-card-excerpt">Prototyping allows designers to create interactive mockups of their designs, enabling user testing and feedback before final development, ensuring that the product meets user expectations.</div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-social-row">
+          <nav class="footer-links">
+            <a href="about.html">About me</a><span class="footer-dot"></span>
+            <a href="services.html">Services</a><span class="footer-dot"></span>
+            <a href="case-studies.html">Case Studies</a><span class="footer-dot"></span>
+            <a href="blog.html">Blog</a><span class="footer-dot"></span>
+            <a href="contacts.html">Contacts</a>
+          </nav>
+          <div class="footer-socials">
+            <a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <img src="https://www.figma.com/api/mcp/asset/3c3e9d89-fbef-43cf-b5ab-0806dbf49abd" alt="LinkedIn" />
+            </a>
+            <a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener" aria-label="Behance">
+              <img src="https://www.figma.com/api/mcp/asset/fee934ce-f601-4110-af3f-dcb2f1286b98" alt="Behance" />
+            </a>
+          </div>
+        </div>
+        <p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- NDA MODAL -->
+  <div class="modal-overlay" id="ndaModal">
+    <div class="modal">
+      <div class="modal-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      </div>
+      <h2>This project is under NDA</h2>
+      <p>This case study contains confidential client work. Please reach out to request access — I'd be happy to walk you through it personally.</p>
+      <div class="modal-actions">
+        <button class="modal-cancel" onclick="closeNdaModal()">Close</button>
+        <a href="contacts.html" class="modal-submit">Contact me →</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let csIndex = 0;
+    const totalSlides = 3;
+    function slideCS(dir) {
+      csIndex = (csIndex + dir + totalSlides) % totalSlides;
+      document.getElementById('csSlides').style.transform = `translateX(-${csIndex * 100}%)`;
+      document.querySelectorAll('.carousel-progress span').forEach((s,i) => s.classList.toggle('active', i === csIndex));
+    }
+    function openNdaModal() { document.getElementById('ndaModal').classList.add('active'); }
+    function closeNdaModal() { document.getElementById('ndaModal').classList.remove('active'); }
+    document.getElementById('ndaModal').addEventListener('click', e => { if (e.target === document.getElementById('ndaModal')) closeNdaModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNdaModal(); });
+  </script>
+</body>
+</html>

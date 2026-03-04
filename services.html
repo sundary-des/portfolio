@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Olga Kalinina</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { text-align: center; padding: 60px 0 56px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .page-hero h1 { font-size: 32px; font-weight: 500; color: var(--dark); }
+    .page-hero p { font-size: 24px; font-weight: 500; color: var(--gray); }
+    .page-hero .btn-dark { margin-top: 18px; }
+
+    .services-list { border-top: 1px solid var(--light-gray); }
+    .service-item { border-bottom: 1px solid var(--light-gray); }
+    .service-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding: 24px 20px; cursor: pointer; user-select: none; }
+    .service-header-text { flex: 1; }
+    .service-title { font-size: 24px; font-weight: 500; color: var(--dark); margin-bottom: 8px; }
+    .service-subtitle { font-size: 20px; color: var(--gray); line-height: 1.4; }
+    .service-toggle { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--light-gray); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 4px; transition: all 0.2s; }
+    .service-toggle svg { width: 16px; height: 16px; transition: transform 0.3s; }
+    .service-item.open .service-toggle { border-color: var(--dark); background: var(--dark); }
+    .service-item.open .service-toggle svg { stroke: white; transform: rotate(45deg); }
+    .service-body { display: none; grid-template-columns: 1fr 1fr; gap: 40px; padding: 0 20px 32px; }
+    .service-item.open .service-body { display: grid; }
+    .service-body-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dark); margin-bottom: 12px; }
+    .service-body-text { font-size: 16px; color: var(--dark); line-height: 1.7; }
+    .service-body-text p { margin-bottom: 8px; }
+    .service-body-text p:last-child { margin-bottom: 0; }
+
+    .tools-section { padding: 64px 0 100px; }
+    .tools-title { font-size: 32px; font-weight: 500; color: var(--dark); margin-bottom: 12px; }
+    .tools-subtitle { font-size: 24px; font-weight: 500; color: var(--gray); margin-bottom: 36px; }
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+    .tool-pill { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border: 2px solid var(--light-gray); border-radius: var(--radius-pill); font-size: 16px; font-weight: 500; color: var(--dark); transition: border-color 0.2s; }
+    .tool-pill:hover { border-color: var(--dark); }
+    .tool-pill img { width: 20px; height: 20px; object-fit: contain; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
+    <a href="services.html" class="active">Services</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About me</a>
+    <a href="contacts.html">Contacts</a>
+  </nav>
+
+  <div class="page-wrapper">
+    <main class="page-content">
+      <div class="container">
+        <div class="page-hero">
+          <h1>Product Design Services</h1>
+          <p>How I can help — from discovery and UX flows to build-ready UI and prototypes.</p>
+          <a href="contacts.html" class="btn-dark">Contact me</a>
+        </div>
+
+        <div class="services-list">
+          <div class="service-item open">
+            <div class="service-header" onclick="toggleService(this)">
+              <div class="service-header-text">
+                <div class="service-title">UX Audit for Complex Products</div>
+                <div class="service-subtitle">Find what blocks users today and get a prioritised fix plan with clear, actionable recommendations.</div>
+              </div>
+              <div class="service-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="service-body">
+              <div><div class="service-body-label">Service Description</div><div class="service-body-text"><p>A focused review of your existing product to identify what's slowing users down and where the experience breaks. I'll map the key journeys, evaluate information hierarchy, states, and usability friction, and turn findings into clear, actionable improvements.</p><p>This is ideal when the product "works" but feels heavy, confusing, or inconsistent — and you need a realistic plan to fix it.</p></div></div>
+              <div><div class="service-body-label">What You'll Get</div><div class="service-body-text"><p>— A prioritised list of issues (quick wins + high-impact fixes)</p><p>— Clear recommendations with examples (what to change and why)</p><p>— A practical next-step plan your team can execute</p></div></div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-header" onclick="toggleService(this)">
+              <div class="service-header-text"><div class="service-title">MVP Product Design</div><div class="service-subtitle">From idea to a clickable MVP: core flows, key screens, and a prototype ready for testing and build.</div></div>
+              <div class="service-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="service-body">
+              <div><div class="service-body-label">Service Description</div><div class="service-body-text"><p>End-to-end product design for a new MVP: from defining the core user journeys to creating key screens and a clickable prototype. The focus is on shipping the smallest version that proves value without cutting essential UX.</p><p>Great for early-stage products or new initiatives that need clarity, speed, and a solid foundation for development.</p></div></div>
+              <div><div class="service-body-label">What You'll Get</div><div class="service-body-text"><p>— MVP scope and core flows (user journeys + key states)</p><p>— Wireframes → high-fidelity screens for the MVP</p><p>— A clickable prototype ready for testing and build</p></div></div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-header" onclick="toggleService(this)">
+              <div class="service-header-text"><div class="service-title">Information Architecture &amp; UX Flows</div><div class="service-subtitle">Turn complex workflows into clear, step-by-step journeys with edge cases covered.</div></div>
+              <div class="service-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="service-body">
+              <div><div class="service-body-label">Service Description</div><div class="service-body-text"><p>I structure complex products so they feel simple: navigation, content hierarchy, and step-by-step flows that users can follow confidently. We'll define roles, states, edge cases, and error/empty scenarios.</p><p>Best when the product has many features, screens, or user types and needs a clear logic.</p></div></div>
+              <div><div class="service-body-label">What You'll Get</div><div class="service-body-text"><p>— A clear IA/navigation proposal</p><p>— User flows for key scenarios (including edge cases)</p><p>— UX rules for states: empty, error, loading, permissions</p></div></div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-header" onclick="toggleService(this)">
+              <div class="service-header-text"><div class="service-title">New Feature Design</div><div class="service-subtitle">Design new features that fit the product logic and improve the experience without adding clutter.</div></div>
+              <div class="service-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="service-body">
+              <div><div class="service-body-label">Service Description</div><div class="service-body-text"><p>Design of new features that fit your current product logic and improve the experience without adding clutter. I'll align the feature with user goals, integrate it into existing flows, and define the necessary states for implementation.</p></div></div>
+              <div><div class="service-body-label">What You'll Get</div><div class="service-body-text"><p>— Feature flow + integration into existing journeys</p><p>— Key screens and interaction details (states included)</p><p>— A build-ready design handoff in Figma</p></div></div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-header" onclick="toggleService(this)">
+              <div class="service-header-text"><div class="service-title">Usability Testing &amp; Iteration</div><div class="service-subtitle">Run quick, practical user testing and translate insights into focused design improvements.</div></div>
+              <div class="service-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="service-body">
+              <div><div class="service-body-label">Service Description</div><div class="service-body-text"><p>Lightweight, practical user testing for your product or prototype — followed by focused improvements. The goal is to validate assumptions, spot friction early, and iterate quickly without heavy process.</p></div></div>
+              <div><div class="service-body-label">What You'll Get</div><div class="service-body-text"><p>— A simple test plan + moderated sessions (remote)</p><p>— Findings summary (patterns, pain points, quotes)</p><p>— Prioritized design improvements</p></div></div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-header" onclick="toggleService(this)">
+              <div class="service-header-text"><div class="service-title">High-Fidelity UI for Web Products</div><div class="service-subtitle">Polished, build-ready UI for key screens — consistent, modern, and easy to implement.</div></div>
+              <div class="service-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="service-body">
+              <div><div class="service-body-label">Service Description</div><div class="service-body-text"><p>Polished, build-ready UI for key screens — modern, consistent, and aligned with your product's tone. I focus on clarity, hierarchy, and components that engineers can implement without guesswork.</p></div></div>
+              <div><div class="service-body-label">What You'll Get</div><div class="service-body-text"><p>— High-fidelity UI for selected screens/flows</p><p>— Component-based layouts for easier implementation</p><p>— Interaction/state specs for production readiness</p></div></div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-header" onclick="toggleService(this)">
+              <div class="service-header-text"><div class="service-title">AI Feature UX</div><div class="service-subtitle">Design AI-assisted flows that feel safe, understandable, and user-controlled.</div></div>
+              <div class="service-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="service-body">
+              <div><div class="service-body-label">Service Description</div><div class="service-body-text"><p>Design of AI-assisted workflows that feel trustworthy and user-controlled. I focus on clear inputs/outputs, review/edit loops, regeneration, transparency, and strong error recovery.</p></div></div>
+              <div><div class="service-body-label">What You'll Get</div><div class="service-body-text"><p>— AI flow design (prompting → output → review/edit/regenerate)</p><p>— UX guardrails: states, errors, empty cases, safety patterns</p><p>— Build-ready screens and interaction specs</p></div></div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-header" onclick="toggleService(this)">
+              <div class="service-header-text"><div class="service-title">Handoff &amp; Build Support</div><div class="service-subtitle">Detailed handoff, team support, and design QA to ensure what ships matches the intent.</div></div>
+              <div class="service-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="service-body">
+              <div><div class="service-body-label">Service Description</div><div class="service-body-text"><p>Support during implementation to make sure what ships matches the design intent. I provide clear handoff, answer dev questions, align on edge cases, and do design QA during build.</p></div></div>
+              <div><div class="service-body-label">What You'll Get</div><div class="service-body-text"><p>— Clean handoff with specs, states, and annotations</p><p>— Async support for dev/PM questions</p><p>— Design QA review + fix list before release</p></div></div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-header" onclick="toggleService(this)">
+              <div class="service-header-text"><div class="service-title">Fractional Product Design Partner</div><div class="service-subtitle">Ongoing support as your design lead — strategy, UX, and delivery without hiring full-time.</div></div>
+              <div class="service-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="service-body">
+              <div><div class="service-body-label">Service Description</div><div class="service-body-text"><p>Ongoing product design support as a senior partner — without a full-time hire. I can own UX direction, help shape scope, design key flows/features, and support delivery across iterations.</p></div></div>
+              <div><div class="service-body-label">What You'll Get</div><div class="service-body-text"><p>— A reliable design partner across roadmap initiatives</p><p>— UX direction + execution (flows, UI, prototypes)</p><p>— Regular touchpoints aligned with your team</p></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tools-section">
+          <div class="tools-title">Tools</div>
+          <div class="tools-subtitle">What I use to bring your product to life</div>
+          <div class="tools-grid">
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/3786e8f3-5274-411f-8588-66f7ed3f3b5a" alt="Figma" />Figma / FigJam / Figma Make</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/88dd129a-274f-4531-8617-d7e30c3d2a75" alt="Jira" />Jira</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/bcd63028-c792-4708-bca1-1c3686859c78" alt="Notion" />Notion</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/d8a91e3c-e665-4c2e-b118-f8bbb35bf424" alt="Gemini" />Gemini</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/17ddce41-5917-4a6f-abba-92a580f04e84" alt="NotebookLM" />NotebookLM</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/06ca55e0-b651-44ed-9cf4-ce24205eca69" alt="ChatGPT" />ChatGPT</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/08dd0d49-d6e4-4d50-a4f6-0e570f821556" alt="Claude" />Claude</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/5e5b680c-3879-4ef7-9e54-ffc9c5f40c63" alt="Maze" />Maze</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/baf8f9dd-4bbe-4809-9442-7cf183856139" alt="Miro" />Miro</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/6bcf7298-8177-46d4-9875-68fa987fd0e1" alt="Amplitude" />Amplitude</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/c13dbd80-aad1-477b-a671-e57729506d1e" alt="Google Analytics" />Google Analytics</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/4a9e64f5-e18f-4fe7-a2bb-443fa0215935" alt="Webflow" />Webflow</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/b22e8e85-161c-4a24-89b6-73043dd87388" alt="Hotjar" />Hotjar</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/e5caa77c-7435-4db3-aab9-a09dcd5f87b5" alt="Adobe CC" />Adobe CC</span>
+            <span class="tool-pill"><img src="https://www.figma.com/api/mcp/asset/541e2c15-78ce-40fd-a45e-1c4b0a5ebf86" alt="LucidChart" />LucidChart</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"><div class="footer-inner"><div class="footer-social-row"><nav class="footer-links"><a href="about.html">About me</a><span class="footer-dot"></span><a href="services.html">Services</a><span class="footer-dot"></span><a href="case-studies.html">Case Studies</a><span class="footer-dot"></span><a href="blog.html">Blog</a><span class="footer-dot"></span><a href="contacts.html">Contacts</a></nav><div class="footer-socials"><a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener"><img src="https://www.figma.com/api/mcp/asset/3c3e9d89-fbef-43cf-b5ab-0806dbf49abd" alt="LinkedIn" /></a><a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener"><img src="https://www.figma.com/api/mcp/asset/fee934ce-f601-4110-af3f-dcb2f1286b98" alt="Behance" /></a></div></div><p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p></div></footer>
+  </div>
+  <script>function toggleService(h){h.parentElement.classList.toggle('open');}</script>
+</body>
+</html>

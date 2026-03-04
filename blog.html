@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Olga Kalinina</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .blog-page { padding: 60px 0 100px; }
+    .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+    .filter-tag { padding: 5px 14px; border-radius: var(--radius-pill); font-size: 13px; font-weight: 500; cursor: pointer; border: 1.5px solid var(--light-gray); background: white; color: var(--dark); transition: all 0.2s; white-space: nowrap; }
+    .filter-tag:hover { border-color: var(--dark); }
+    .filter-tag.active { background: var(--dark); color: white; border-color: var(--dark); }
+    .blog-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .blog-card { border: 2px solid var(--light-gray); border-radius: var(--radius-card); padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.2s; text-decoration: none; color: inherit; }
+    .blog-card:hover { border-color: var(--dark); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+    /* FIX: tags are fit-content, not stretched */
+    .blog-tag { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 500; width: fit-content; white-space: nowrap; }
+    .blog-card-title { font-size: 20px; font-weight: 500; color: var(--dark); line-height: 1.3; }
+    .blog-card-excerpt { font-size: 15px; color: var(--gray); line-height: 1.6; flex: 1; }
+    .blog-card-date { font-size: 13px; color: var(--gray); }
+    @media (max-width: 1024px) { .blog-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
+    <a href="services.html">Services</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="about.html">About me</a>
+    <a href="contacts.html">Contacts</a>
+  </nav>
+
+  <div class="page-wrapper">
+    <main class="page-content">
+      <div class="container">
+        <div class="blog-page">
+          <div class="filter-row" id="filterRow">
+            <button class="filter-tag active" data-filter="all">All</button>
+            <button class="filter-tag" data-filter="Artificial Intelligence">Artificial Intelligence</button>
+            <button class="filter-tag" data-filter="User Research">User Research</button>
+            <button class="filter-tag" data-filter="SaaS">SaaS Design</button>
+            <button class="filter-tag" data-filter="Dashboard">Dashboard</button>
+            <button class="filter-tag" data-filter="Interaction Design">Interaction Design</button>
+            <button class="filter-tag" data-filter="Accessibility">Accessibility</button>
+          </div>
+          <div class="blog-grid" id="blogGrid">
+            <a href="blog-post.html" class="blog-card" data-category="Artificial Intelligence">
+              <span class="blog-tag" style="background:rgba(161,25,245,0.2);color:#7b00c2;">AI</span>
+              <div class="blog-card-title">Understanding the Users</div>
+              <div class="blog-card-excerpt">User research is crucial for gathering insights about the target audience, their needs, pain points, and behaviors.</div>
+              <div class="blog-card-date">Jan 12, 2026</div>
+            </a>
+            <a href="blog-post.html" class="blog-card" data-category="User Research">
+              <span class="blog-tag" style="background:rgba(25,71,245,0.2);color:#1947f5;">User Research</span>
+              <div class="blog-card-title">Understanding the Users</div>
+              <div class="blog-card-excerpt">User research is crucial for gathering insights about the target audience, their needs, pain points, and behaviors.</div>
+              <div class="blog-card-date">Jan 12, 2026</div>
+            </a>
+            <a href="blog-post.html" class="blog-card" data-category="SaaS">
+              <span class="blog-tag" style="background:rgba(25,245,73,0.2);color:#0a7a20;">SaaS Design</span>
+              <div class="blog-card-title">Creating Layouts</div>
+              <div class="blog-card-excerpt">Wireframing involves sketching layouts for interfaces, focusing on structure and functionality without distractions.</div>
+              <div class="blog-card-date">Jan 12, 2026</div>
+            </a>
+            <a href="blog-post.html" class="blog-card" data-category="Dashboard">
+              <span class="blog-tag" style="background:rgba(245,25,201,0.2);color:#b5007c;">Dashboard</span>
+              <div class="blog-card-title">Testing Ideas</div>
+              <div class="blog-card-excerpt">Prototyping allows designers to create interactive mockups of their designs, enabling user testing and feedback.</div>
+              <div class="blog-card-date">Jan 12, 2026</div>
+            </a>
+            <a href="blog-post.html" class="blog-card" data-category="Interaction Design">
+              <span class="blog-tag" style="background:rgba(255,140,0,0.2);color:#b85c00;">Interaction Design</span>
+              <div class="blog-card-title">Enhancing User Engagement</div>
+              <div class="blog-card-excerpt">Interaction design focuses on creating engaging interfaces with well-thought-out behaviors and actions.</div>
+              <div class="blog-card-date">Jan 12, 2026</div>
+            </a>
+            <a href="blog-post.html" class="blog-card" data-category="Accessibility">
+              <span class="blog-tag" style="background:rgba(25,200,245,0.2);color:#0077a8;">Accessibility</span>
+              <div class="blog-card-title">Inclusive Design Principles</div>
+              <div class="blog-card-excerpt">Designing for accessibility involves creating products that can be used by individuals with diverse abilities and impairments.</div>
+              <div class="blog-card-date">Jan 12, 2026</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"><div class="footer-inner"><div class="footer-social-row"><nav class="footer-links"><a href="about.html">About me</a><span class="footer-dot"></span><a href="services.html">Services</a><span class="footer-dot"></span><a href="case-studies.html">Case Studies</a><span class="footer-dot"></span><a href="blog.html">Blog</a><span class="footer-dot"></span><a href="contacts.html">Contacts</a></nav><div class="footer-socials"><a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener"><img src="https://www.figma.com/api/mcp/asset/3c3e9d89-fbef-43cf-b5ab-0806dbf49abd" alt="LinkedIn" /></a><a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener"><img src="https://www.figma.com/api/mcp/asset/fee934ce-f601-4110-af3f-dcb2f1286b98" alt="Behance" /></a></div></div><p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p></div></footer>
+  </div>
+  <script>
+    document.getElementById('filterRow').addEventListener('click',function(e){
+      const btn=e.target.closest('.filter-tag');if(!btn)return;
+      document.querySelectorAll('.filter-tag').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f=btn.dataset.filter;
+      document.querySelectorAll('.blog-card').forEach(c=>{c.style.display=(f==='all'||c.dataset.category===f)?'':'none';});
+    });
+  </script>
+</body>
+</html>
