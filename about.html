@@ -6,12 +6,13 @@
   <title>About me — Olga Kalinina</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    body { background: white; }
     .about-wrap { max-width: 760px; margin: 0 auto; padding: 60px 0 100px; display: flex; flex-direction: column; gap: 48px; }
-    .about-title { font-size: 36px; font-weight: 600; color: var(--dark); }
-    .about-body { display: flex; flex-direction: column; gap: 24px; }
-    .about-body p { font-size: 17px; color: var(--dark); line-height: 1.75; }
-    .about-photo { width: 100%; border-radius: 24px; overflow: hidden; }
-    .about-photo img { width: 100%; height: 420px; object-fit: cover; }
+    .about-section { display: flex; flex-direction: column; gap: 16px; }
+    .about-section h2 { font-size: 28px; font-weight: 600; color: var(--dark); }
+    .about-section p { font-size: 16px; color: var(--dark); line-height: 1.75; }
+    .about-photo img { width: 100%; height: auto; display: block; border-radius: 24px; }
+    .about-caption { font-size: 14px; color: var(--gray); text-align: center; margin-top: 12px; }
   </style>
 </head>
 <body>
@@ -28,30 +29,44 @@
     <main class="page-content">
       <div class="container">
         <div class="about-wrap">
-          <h1 class="about-title">20+ years in the design field</h1>
 
-          <div class="about-body">
+          <div class="about-section">
+            <h2>20+ years in the design field</h2>
             <p>I started as a graphic designer and spent several years creating visual advertising for companies and agencies. That background gave me a strong foundation in composition, typography, and storytelling, and taught me how much design depends on truly understanding people.</p>
             <p>Over time, I realised that a good product can't be built on visuals alone. I became deeply interested in user psychology: how people interact with interfaces, what they actually need, where they get stuck, and how the experience can be improved step by step.</p>
             <p>I also genuinely love teaching and talking about design. I teach design at a design academy, and working with students — especially people who are just entering the field — is one of the most rewarding parts of my work. I enjoy mentoring, sharing practical ways of thinking, and helping others build confidence through real projects. I also love speaking at events and conferences — I'm happiest when I can translate "why design matters" into something people can feel and apply.</p>
             <p>Today, I design digital products that balance clarity and craft — making complex things understandable, useful, and enjoyable to use.</p>
           </div>
 
-          <div class="about-photo">
-            <img src="images/kyrgyzstan_2023.jpg" alt="Olga Kalinina in Kyrgyzstan 2023" onerror="this.style.background='linear-gradient(135deg,#a78bfa,#60a5fa)';this.style.height='420px';this.style.display='block'" />
+          <div class="about-section">
+            <h2>Ui design &amp; branding</h2>
+            <p>In 2019, I took an in-depth UI course to strengthen my UI and graphic design skills — and that's when I started working more actively on web and mobile interfaces.</p>
+            <p>One of my early UI projects was a banking experience for a financial company in Bangkok, including a kid-friendly banking app where the interface had to feel simple, safe, and intuitive. Around the same time, I worked in brand protection and built product-facing experiences where users scan a unique QR code on packaging and instantly see a specific product page — provenance, details, usage, and trust signals — rather than a generic website. We created similar solutions for consumer brands like wine and baby food, where clarity and authenticity matter.</p>
+            <p>I still enjoy UI and branding work today. It's not my main specialization, but because I started as a graphic designer, I can confidently build visual systems when a product needs a stronger identity — and connect it back to usability and real product goals.</p>
           </div>
 
-          <div class="about-body">
-            <p>Outside of work, I love exploring the world — both physically and intellectually. I'm drawn to places with real history and real landscapes: mountains, ancient cities, places that make you feel small in the best way.</p>
+          <div class="about-section">
+            <h2>UX &amp; Product design</h2>
+            <p>From 2020 onward, my work shifted from "making interfaces look good" to designing full product experiences — understanding user needs, shaping flows, and partnering closely with product and engineering to ship.</p>
+            <p>I started with UI-heavy work and gradually moved into UX: research, information architecture, user journeys, and end-to-end workflows. That transition is what shaped me into a product designer — not just designing screens, but designing how the product works.</p>
+            <p>My product design career truly took off when I joined Thin Blue Data. It was a turning point: I moved deeper into problem framing, system thinking, and making design decisions that affect real business outcomes — while still keeping the human side of the experience at the center.</p>
           </div>
 
-          <div style="text-align:center;">
-            <a href="contacts.html" class="btn-dark">Let's work together →</a>
+          <div class="about-section">
+            <h2>If not a design</h2>
+            <p>Outside of design, many things help me stay grounded and curious. I love oil painting, sports (swimming and running), traveling, and long, active trips.</p>
+            <p>One of my favorite adventures was in Kyrgyzstan: a three-week horseback journey along the Great Silk Road through the mountains, reaching altitudes of around 4,000 meters. It was challenging, beautiful, and it definitely taught me patience — the kind that's surprisingly useful in design, too.</p>
           </div>
+
+          <div>
+            <img src="images/kyrgyzstan_2023.jpg" alt="Kyrgyzstan expedition, 2023" style="width:100%;border-radius:24px;display:block;" />
+            <p class="about-caption">Kyrgyzstan expedition, 2023</p>
+          </div>
+
         </div>
       </div>
     </main>
-    <footer class="footer"><div class="footer-inner"><div class="footer-social-row"><nav class="footer-links"><a href="about.html">About me</a><span class="footer-dot"></span><a href="services.html">Services</a><span class="footer-dot"></span><a href="case-studies.html">Case Studies</a><span class="footer-dot"></span><a href="blog.html">Blog</a><span class="footer-dot"></span><a href="contacts.html">Contacts</a></nav><div class="footer-socials"><a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener"><img src="https://www.figma.com/api/mcp/asset/3c3e9d89-fbef-43cf-b5ab-0806dbf49abd" alt="LinkedIn" /></a><a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener"><img src="https://www.figma.com/api/mcp/asset/fee934ce-f601-4110-af3f-dcb2f1286b98" alt="Behance" /></a></div></div><p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p></div></footer>
+    <footer class="footer"><div class="footer-inner"><div class="footer-social-row"><nav class="footer-links"><a href="about.html">About me</a><span class="footer-dot"></span><a href="services.html">Services</a><span class="footer-dot"></span><a href="case-studies.html">Case Studies</a><span class="footer-dot"></span><a href="blog.html">Blog</a><span class="footer-dot"></span><a href="contacts.html">Contacts</a></nav><div class="footer-socials"><a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener"><img src="https://www.figma.com/api/mcp/asset/0a31a0bf-3e2f-4e09-97c5-01b79fee93ae" alt="LinkedIn" /></a><a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener"><img src="https://www.figma.com/api/mcp/asset/a5ab0882-22eb-4ca2-b830-8fed0ce161de" alt="Behance" /></a></div></div><p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p></div></footer>
   </div>
 </body>
 </html>
