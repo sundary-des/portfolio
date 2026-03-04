@@ -6,18 +6,17 @@
   <title>Olga Kalinina — Lead Product & UX/UI Designer</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Hero */
+    /* ── Hero ── */
     .hero { text-align: center; padding: 60px 0 0; display: flex; flex-direction: column; align-items: center; gap: 44px; }
     .hero-text { display: flex; flex-direction: column; gap: 14px; max-width: 863px; }
     .hero-title { font-size: 32px; font-weight: 500; color: var(--dark); line-height: 1.4; }
     .hero-sub { font-size: 24px; font-weight: 500; color: var(--gray); }
     .hero-media { display: flex; flex-direction: column; align-items: center; gap: 42px; width: 100%; max-width: 863px; }
-    .hero-photo { width: 100%; max-width: 802px; height: 314px; border-radius: 33px; object-fit: cover; background: linear-gradient(135deg,#c4b5fd,#818cf8); }
-    .client-logos { display: flex; align-items: center; gap: 32px; flex-wrap: nowrap; justify-content: center; }
-    .client-logos img { height: 40px; width: auto; max-width: 120px; object-fit: contain; opacity: 0.5; filter: grayscale(1); transition: opacity 0.2s; flex-shrink: 0; }
-    .client-logos img:hover { opacity: 0.8; }
+    .hero-photo { width: 100%; max-width: 802px; height: 314px; border-radius: 33px; object-fit: cover; display: block; background: #e8eeff; }
+    .client-logos { display: flex; align-items: center; gap: 24px; flex-wrap: nowrap; justify-content: center; }
+    .client-logos img { height: 40px; width: auto; max-width: 130px; object-fit: contain; opacity: 0.5; filter: grayscale(1); flex-shrink: 0; }
 
-    /* Case Studies section */
+    /* ── Case Studies section ── */
     .cs-section { display: flex; flex-direction: column; gap: 48px; align-items: center; padding: 80px 0 0; }
     .cs-section-header { display: flex; flex-direction: column; gap: 24px; align-items: center; }
     .cs-section-title { font-size: 30px; font-weight: 500; color: var(--dark); text-align: center; }
@@ -32,14 +31,10 @@
       background: var(--bg-soft);
       border-radius: var(--radius-card);
       padding: 28px 28px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      overflow: hidden;
-      cursor: pointer;
+      display: flex; flex-direction: column; gap: 8px;
+      overflow: hidden; cursor: pointer;
       transition: transform 0.25s, box-shadow 0.25s;
-      text-decoration: none;
-      color: inherit;
+      text-decoration: none; color: inherit;
     }
     .cs-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
     .cs-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
@@ -48,8 +43,7 @@
     .cs-lock-btn {
       width: 36px; height: 36px; border-radius: 50%;
       background: white; border: 1px solid var(--light-gray);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: 2px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
     }
     .cs-lock-btn svg { width: 18px; height: 18px; }
     .cs-card-img { margin: 16px -28px 0; overflow: hidden; border-radius: 16px 16px 0 0; }
@@ -62,59 +56,43 @@
     .carousel-btns { display: flex; gap: 12px; }
     .carousel-btn {
       width: 48px; height: 48px; border-radius: 50%;
-      border: 2px solid var(--light-gray);
-      background: white; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.2s;
+      border: 2px solid var(--light-gray); background: white;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s;
     }
-    .carousel-btn:hover, .carousel-btn.active { border-color: var(--dark); }
+    .carousel-btn:hover { border-color: var(--dark); }
+    .carousel-btn.active { border-color: var(--dark); }
     .carousel-btn svg { width: 20px; height: 20px; }
 
-    /* Services section */
+    /* ── Services ── */
     .services-section { display: flex; flex-direction: column; gap: 22px; padding: 80px 0 0; align-items: flex-start; }
-    .services-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .services-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; width: 100%; }
     .svc-card {
-      background: var(--bg-soft);
-      border-radius: var(--radius-card);
-      padding: 20px 20px 40px;
-      display: flex; flex-direction: column; gap: 16px;
-      cursor: pointer;
-      transition: box-shadow 0.2s, transform 0.2s;
-      text-decoration: none;
-      color: inherit;
-      min-height: 302px;
+      background: var(--bg-soft); border-radius: var(--radius-card);
+      padding: 20px 20px 40px; display: flex; flex-direction: column; gap: 16px;
+      cursor: pointer; transition: box-shadow 0.2s, transform 0.2s;
+      text-decoration: none; color: inherit; min-height: 302px;
     }
     .svc-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-3px); }
     .svc-card-icon { width: 32px; height: 32px; object-fit: contain; }
     .svc-card-title { font-size: 24px; font-weight: 500; color: var(--dark); line-height: 1.3; }
     .svc-card-desc { font-size: 20px; color: var(--dark); line-height: 1.4; }
-    .svc-card-more { display: flex; align-items: center; justify-content: center; }
+    .svc-card-more { align-items: center; justify-content: center; }
     .svc-card-more span { font-size: 24px; color: var(--gray); }
 
-    /* Blog section */
+    /* ── Blog ── */
     .blog-section { display: flex; flex-direction: column; gap: 48px; align-items: center; padding: 80px 0 100px; }
     .blog-section-header { display: flex; flex-direction: column; gap: 24px; align-items: center; }
     .blog-section-title { font-size: 30px; font-weight: 500; color: var(--dark); text-align: center; }
     .blog-section-sub { font-size: 24px; font-weight: 500; color: var(--gray); text-align: center; }
-    .blog-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; }
+    .blog-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; width: 100%; }
     .blog-card {
-      border: 2px solid var(--light-gray);
-      border-radius: var(--radius-card);
-      padding: 20px 20px 40px;
-      display: flex; flex-direction: column; gap: 17px;
+      border: 2px solid var(--light-gray); border-radius: var(--radius-card);
+      padding: 20px 20px 40px; display: flex; flex-direction: column; gap: 17px;
       cursor: pointer; transition: border-color 0.2s, transform 0.2s;
-      text-decoration: none; color: inherit;
-      height: 330px;
+      text-decoration: none; color: inherit; height: 330px;
     }
     .blog-card:hover { border-color: var(--dark); transform: translateY(-3px); }
-    .blog-tag {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 4px 8px;
-      border-radius: var(--radius-pill);
-      font-size: 12px; font-weight: 500;
-      width: fit-content;
-      white-space: nowrap;
-    }
+    .blog-tag { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 500; width: fit-content; white-space: nowrap; }
     .blog-card-title { font-size: 20px; font-weight: 500; color: var(--dark); line-height: 1.3; }
     .blog-card-excerpt { font-size: 16px; color: var(--dark); line-height: 1.6; flex: 1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
   </style>
@@ -124,16 +102,17 @@
   <nav class="nav">
     <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
     <div class="nav-links">
-    <a href="services.html" class="active">Services</a>
-    <a href="case-studies.html" class="active">Case Studies</a>
-    <a href="blog.html" class="active">Blog</a>
-    <a href="about.html" class="active">About me</a>
-    <a href="contacts.html" class="active">Contacts</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About me</a>
+      <a href="contacts.html">Contacts</a>
     </div>
     <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
+
   <div class="mobile-menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-top">
@@ -141,14 +120,36 @@
       <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
     </div>
     <div class="mobile-menu-links">
-    <a href="services.html">Services</a>
-    <a href="case-studies.html">Case Studies</a>
-    <a href="blog.html">Blog</a>
-    <a href="about.html">About me</a>
-    <a href="contacts.html">Contacts</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About me</a>
+      <a href="contacts.html">Contacts</a>
     </div>
   </div>
 
+  <div class="page-wrapper">
+    <main class="page-content">
+      <div class="container">
+
+        <!-- HERO -->
+        <div class="hero">
+          <div class="hero-text">
+            <h1 class="hero-title">Hey there 👋<br>I'm Olga Kalinina, Lead Product &amp; UX/UI Designer.<br>Designing complex SaaS &amp; AI platforms for real users — not for Dribbble shots.</h1>
+            <p class="hero-sub">SaaS, AI workflows, dashboards, enterprise tooling, apps.</p>
+          </div>
+          <a href="contacts.html" class="btn-dark">Say Hi, and let's talk 👋</a>
+          <div class="hero-media">
+            <img src="images/ted_talk_2024.jpg" alt="Olga Kalinina at TED talk 2024" class="hero-photo" />
+            <div class="client-logos">
+              <img src="images/UNESCAP_logo.svg" alt="UN ESCAP" />
+              <img src="images/Moonbug_logo.svg" alt="Moonbug" />
+              <img src="images/Decade_of_action_logo.svg" alt="Decade of Action" />
+              <img src="images/Think_blue_data_logo.svg" alt="Think Blue Data" />
+              <img src="images/United_Nations_logo.svg" alt="United Nations" />
+              <img src="images/Plantations_international_logo.svg" alt="Plantations International" />
+            </div>
+          </div>
         </div>
 
         <!-- CASE STUDIES -->
@@ -162,7 +163,7 @@
             <div class="cs-section-sub">I turn "it's a mess" into "it makes sense."</div>
           </div>
 
-          <div style="width:100%">
+          <div style="width:100%;">
             <div class="carousel-wrap">
               <div class="carousel-slides" id="csSlides">
 
@@ -222,7 +223,7 @@
                       </div>
                       <div class="cs-lock-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
                     </div>
-                    <div class="cs-card-img"><img src="images/Digital_assets_management_system_image.png" alt="DAM System" /></div>
+                    <div class="cs-card-img"><img src="images/Digital_assets_management_system_image.png" alt="DAM" /></div>
                   </div>
                   <div class="cs-card" style="align-items:center;justify-content:center;display:flex;">
                     <span style="font-size:18px;color:var(--gray);text-align:center;">🚀<br><br>More coming soon</span>
@@ -234,9 +235,7 @@
 
             <div class="carousel-controls" style="margin-top:24px;">
               <div class="carousel-progress">
-                <span class="active"></span>
-                <span></span>
-                <span></span>
+                <span class="active"></span><span></span><span></span>
               </div>
               <div class="carousel-btns">
                 <button class="carousel-btn" onclick="slideCS(-1)" aria-label="Previous">
@@ -252,7 +251,7 @@
 
         <!-- SERVICES -->
         <div class="services-section">
-          <span class="section-label" style="align-self:flex-start;">
+          <span class="section-label">
             <img src="images/My_services_icon.svg" alt="" />
             My Services
           </span>
@@ -326,10 +325,10 @@
             <a href="contacts.html">Contacts</a>
           </nav>
           <div class="footer-socials">
-            <a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener">
               <img src="images/Linkedin_logo.png" alt="LinkedIn" />
             </a>
-            <a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener" aria-label="Behance">
+            <a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener">
               <img src="images/Behance_logo.png" alt="Behance" />
             </a>
           </div>
@@ -355,6 +354,7 @@
   </div>
 
   <script>
+    // Carousel
     let csIndex = 0;
     const totalSlides = 3;
     function slideCS(dir) {
@@ -362,12 +362,12 @@
       document.getElementById('csSlides').style.transform = `translateX(-${csIndex * 100}%)`;
       document.querySelectorAll('.carousel-progress span').forEach((s,i) => s.classList.toggle('active', i === csIndex));
     }
+    // NDA modal
     function openNdaModal() { document.getElementById('ndaModal').classList.add('active'); }
     function closeNdaModal() { document.getElementById('ndaModal').classList.remove('active'); }
     document.getElementById('ndaModal').addEventListener('click', e => { if (e.target === document.getElementById('ndaModal')) closeNdaModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNdaModal(); });
-  </script>
-  <script>
+    // Mobile menu
     function toggleMenu() {
       document.getElementById('mobileMenu').classList.toggle('open');
       document.getElementById('menuBackdrop').classList.toggle('open');
