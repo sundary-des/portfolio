@@ -3,37 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Understanding the Users — Olga Kalinina Blog</title>
+  <title>Blog Post — Olga Kalinina</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .post-wrap { max-width: 720px; margin: 0 auto; padding: 60px 0 100px; }
-    .post-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 40px; }
-    .post-meta { display: flex; flex-direction: column; gap: 10px; }
-    .post-title { font-size: 40px; font-weight: 600; color: var(--dark); line-height: 1.2; }
-    .post-date { font-size: 15px; color: var(--gray); }
-    .share-btn { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--light-gray); background: white; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; margin-top: 6px; transition: border-color 0.2s; }
-    .share-btn:hover { border-color: var(--dark); }
-    .share-btn svg { width: 18px; height: 18px; }
-    .post-body { display: flex; flex-direction: column; gap: 28px; }
-    .post-body p { font-size: 17px; color: var(--dark); line-height: 1.75; }
-    .post-img { width: 100%; border-radius: 16px; overflow: hidden; }
-    .post-img img { width: 100%; height: 320px; object-fit: cover; }
-    .post-img-caption { font-size: 13px; color: var(--gray); text-align: center; margin-top: 8px; }
+    .post-wrap { max-width: 720px; margin: 0 auto; padding: 60px 0 100px; display: flex; flex-direction: column; gap: 32px; }
+    .post-tag { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: var(--radius-pill); font-size: 13px; font-weight: 500; background: rgba(161,25,245,0.2); color: #7b00c2; width: fit-content; }
+    .post-title { font-size: 36px; font-weight: 600; color: var(--dark); line-height: 1.3; }
+    .post-meta { font-size: 14px; color: var(--gray); }
+    .post-body { display: flex; flex-direction: column; gap: 20px; }
+    .post-body p { font-size: 17px; color: var(--dark); line-height: 1.8; }
+    .post-body h2 { font-size: 24px; font-weight: 600; color: var(--dark); margin-top: 12px; }
   </style>
 </head>
 <body>
   <nav class="nav">
     <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
     <div class="nav-links">
-    <a href="services.html" class="active">Services</a>
-    <a href="case-studies.html" class="active">Case Studies</a>
-    <a href="blog.html" class="active">Blog</a>
-    <a href="about.html" class="active">About me</a>
-    <a href="contacts.html" class="active">Contacts</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="about.html">About me</a>
+      <a href="contacts.html">Contacts</a>
     </div>
-    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="mobile-menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
   <div class="mobile-menu" id="mobileMenu">
@@ -42,23 +34,36 @@
       <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
     </div>
     <div class="mobile-menu-links">
-    <a href="services.html">Services</a>
-    <a href="case-studies.html">Case Studies</a>
-    <a href="blog.html" class="active">Blog</a>
-    <a href="about.html">About me</a>
-    <a href="contacts.html">Contacts</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="about.html">About me</a>
+      <a href="contacts.html">Contacts</a>
     </div>
   </div>
 
+  <div class="page-wrapper">
+    <main class="page-content">
+      <div class="container">
+        <div class="post-wrap">
+          <span class="post-tag">AI</span>
+          <h1 class="post-title">Understanding the Users</h1>
+          <p class="post-meta">March 2026 · 5 min read</p>
+          <div class="post-body">
+            <p>User research is crucial for gathering insights about the target audience, their needs, pain points, and behaviors. This process helps inform design decisions and improve product usability.</p>
+            <h2>Why it matters</h2>
+            <p>When teams skip research, they build based on assumptions. Assumptions are cheap to make and expensive to fix. A few hours of research early in the process can save weeks of rework later — and more importantly, it means the product actually solves a real problem for real people.</p>
+            <h2>What good research looks like</h2>
+            <p>Good research doesn't have to be expensive or time-consuming. Even five interviews with the right people will surface patterns you didn't expect. The goal isn't to validate what you already believe — it's to be genuinely surprised, and to let that surprise change your direction.</p>
+            <p>The best designers I know treat every user session as a source of truth. They listen more than they speak. They ask "why" when something unexpected happens. And they bring those insights back to the team in a way that's actionable, not academic.</p>
+          </div>
+        </div>
       </div>
     </main>
     <footer class="footer"><div class="footer-inner"><div class="footer-social-row"><nav class="footer-links"><a href="about.html">About me</a><span class="footer-dot"></span><a href="services.html">Services</a><span class="footer-dot"></span><a href="case-studies.html">Case Studies</a><span class="footer-dot"></span><a href="blog.html">Blog</a><span class="footer-dot"></span><a href="contacts.html">Contacts</a></nav><div class="footer-socials"><a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener"><img src="images/Linkedin_logo.png" alt="LinkedIn" /></a><a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener"><img src="images/Behance_logo.png" alt="Behance" /></a></div></div><p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p></div></footer>
   </div>
   <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-      document.getElementById('menuBackdrop').classList.toggle('open');
-    }
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); document.getElementById('menuBackdrop').classList.toggle('open'); }
   </script>
 </body>
 </html>

@@ -6,85 +6,31 @@
   <title>Case Studies — Olga Kalinina</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body { background: white; }
-    .cs-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      padding: 60px 0 100px;
-    }
-
-    /* Card base */
-    .cs-card {
-      background: #fafafa;
-      border-radius: 24px;
-      padding: 28px 28px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.25s, box-shadow 0.25s;
-      text-decoration: none;
-      color: inherit;
-    }
+    .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 60px 0 100px; }
+    .cs-card { background: #fafafa; border-radius: 24px; padding: 28px 28px 0; display: flex; flex-direction: column; gap: 8px; overflow: hidden; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s; text-decoration: none; color: inherit; }
     .cs-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
-
-    /* Card header row: title+desc on left, lock on right */
-    .cs-card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-    }
+    .cs-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
     .cs-card-title { font-size: 22px; font-weight: 600; color: var(--dark); line-height: 1.3; margin-bottom: 6px; }
     .cs-card-desc { font-size: 15px; color: var(--gray); line-height: 1.5; }
-    .cs-lock {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: white;
-      border: 1px solid var(--light-gray);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .cs-lock svg { width: 18px; height: 18px; color: var(--dark); }
-
-    /* Card image — sits at the bottom, overflows slightly */
-    .cs-card-img {
-      margin: 20px -28px 0;
-      overflow: hidden;
-      border-radius: 16px 16px 0 0;
-    }
-    .cs-card-img img {
-      width: 100%;
-      height: 340px;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-    }
-
-    /* 5th card spans full width but stays same height */
-    .cs-card-full {
-      grid-column: 1 / -1;
-    }
-    .cs-card-full .cs-card-img img {
-      height: 400px;
-    }
+    .cs-lock { width: 36px; height: 36px; border-radius: 50%; background: white; border: 1px solid var(--light-gray); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .cs-lock svg { width: 18px; height: 18px; }
+    .cs-card-img { margin: 20px -28px 0; overflow: hidden; border-radius: 16px 16px 0 0; }
+    .cs-card-img img { width: 100%; height: 340px; object-fit: cover; object-position: top; display: block; }
+    .cs-card-full { grid-column: 1 / -1; }
+    .cs-card-full .cs-card-img img { height: 400px; }
   </style>
 </head>
 <body>
   <nav class="nav">
     <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
     <div class="nav-links">
-    <a href="services.html" class="active">Services</a>
-    <a href="case-studies.html" class="active">Case Studies</a>
-    <a href="blog.html" class="active">Blog</a>
-    <a href="about.html" class="active">About me</a>
-    <a href="contacts.html" class="active">Contacts</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html" class="active">Case Studies</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About me</a>
+      <a href="contacts.html">Contacts</a>
     </div>
-    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="mobile-menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
   <div class="mobile-menu" id="mobileMenu">
@@ -93,94 +39,46 @@
       <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
     </div>
     <div class="mobile-menu-links">
-    <a href="services.html">Services</a>
-    <a href="case-studies.html" class="active">Case Studies</a>
-    <a href="blog.html">Blog</a>
-    <a href="about.html">About me</a>
-    <a href="contacts.html">Contacts</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html" class="active">Case Studies</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About me</a>
+      <a href="contacts.html">Contacts</a>
     </div>
   </div>
 
-            </div>
-            <div class="cs-card-img">
-              <img src="images/Payli_image.png" alt="Payli Budget App" />
-            </div>
+  <div class="page-wrapper">
+    <main class="page-content">
+      <div class="container">
+        <div class="cs-grid">
+          <a class="cs-card" href="cs-payli.html">
+            <div class="cs-card-header"><div><div class="cs-card-title">Payli Budget App</div><div class="cs-card-desc">App for tracking bills, recurring payments, and monthly spending.</div></div></div>
+            <div class="cs-card-img"><img src="images/Payli_image.png" alt="Payli Budget App" /></div>
           </a>
-
-          <!-- Ghibli — public -->
           <a class="cs-card" href="cs-ghibli.html">
-            <div class="cs-card-header">
-              <div>
-                <div class="cs-card-title">Maserati Ghibli website redesign</div>
-                <div class="cs-card-desc">Concept redesign for Maserati's Ghibli model website.</div>
-              </div>
-            </div>
-            <div class="cs-card-img">
-              <img src="images/Ghibli_image.png" alt="Maserati Ghibli Website Redesign" />
-            </div>
+            <div class="cs-card-header"><div><div class="cs-card-title">Maserati Ghibli website redesign</div><div class="cs-card-desc">Concept redesign for Maserati's Ghibli model website.</div></div></div>
+            <div class="cs-card-img"><img src="images/Ghibli_image.png" alt="Maserati Ghibli" /></div>
           </a>
-
-          <!-- B2C — NDA -->
           <div class="cs-card" onclick="openNdaModal()">
-            <div class="cs-card-header">
-              <div>
-                <div class="cs-card-title">B2C FitnessTech Platform</div>
-                <div class="cs-card-desc">Platform for creators: community, programs, and subscriptions.</div>
-              </div>
-              <div class="cs-lock">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-              </div>
-            </div>
-            <div class="cs-card-img">
-              <img src="images/B2C_fitness_platform_image.png" alt="B2C FitnessTech Platform" />
-            </div>
+            <div class="cs-card-header"><div><div class="cs-card-title">B2C FitnessTech Platform</div><div class="cs-card-desc">Platform for creators: community, programs, and subscriptions.</div></div><div class="cs-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div></div>
+            <div class="cs-card-img"><img src="images/B2C_fitness_platform_image.png" alt="B2C FitnessTech" /></div>
           </div>
-
-          <!-- UN ESCAP — NDA -->
           <div class="cs-card" onclick="openNdaModal()">
-            <div class="cs-card-header">
-              <div>
-                <div class="cs-card-title">UN ESCAP — Risk and Resilience Portal</div>
-                <div class="cs-card-desc">Portal for exploring climate risk data by country.</div>
-              </div>
-              <div class="cs-lock">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-              </div>
-            </div>
-            <div class="cs-card-img">
-              <img src="images/UN_case_study_image.png" alt="UN ESCAP Risk and Resilience Portal" />
-            </div>
+            <div class="cs-card-header"><div><div class="cs-card-title">UN ESCAP — Risk and Resilience Portal</div><div class="cs-card-desc">Portal for exploring climate risk data by country.</div></div><div class="cs-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div></div>
+            <div class="cs-card-img"><img src="images/UN_case_study_image.png" alt="UN ESCAP" /></div>
           </div>
-
-          <!-- DAM — NDA, full width -->
           <div class="cs-card cs-card-full" onclick="openNdaModal()">
-            <div class="cs-card-header">
-              <div>
-                <div class="cs-card-title">Digital Assets Management System</div>
-                <div class="cs-card-desc">Enterprise DAM to organize, tag, and share media at scale.</div>
-              </div>
-              <div class="cs-lock">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-              </div>
-            </div>
-            <div class="cs-card-img">
-              <img src="images/Digital_assets_management_system_image.png" alt="Digital Assets Management System" />
-            </div>
+            <div class="cs-card-header"><div><div class="cs-card-title">Digital Assets Management System</div><div class="cs-card-desc">Enterprise DAM to organize, tag, and share media at scale.</div></div><div class="cs-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div></div>
+            <div class="cs-card-img"><img src="images/Digital_assets_management_system_image.png" alt="DAM" /></div>
           </div>
-
         </div>
       </div>
     </main>
-
     <footer class="footer"><div class="footer-inner"><div class="footer-social-row"><nav class="footer-links"><a href="about.html">About me</a><span class="footer-dot"></span><a href="services.html">Services</a><span class="footer-dot"></span><a href="case-studies.html">Case Studies</a><span class="footer-dot"></span><a href="blog.html">Blog</a><span class="footer-dot"></span><a href="contacts.html">Contacts</a></nav><div class="footer-socials"><a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener"><img src="images/Linkedin_logo.png" alt="LinkedIn" /></a><a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener"><img src="images/Behance_logo.png" alt="Behance" /></a></div></div><p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p></div></footer>
   </div>
-
-  <!-- NDA Modal -->
   <div class="modal-overlay" id="ndaModal">
     <div class="modal">
-      <div class="modal-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-      </div>
+      <div class="modal-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
       <h2>This project is under NDA</h2>
       <p>This case study contains confidential client work. Please reach out to request access — I'd be happy to walk you through it personally.</p>
       <div class="modal-actions">
@@ -189,18 +87,12 @@
       </div>
     </div>
   </div>
-
   <script>
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); document.getElementById('menuBackdrop').classList.toggle('open'); }
     function openNdaModal() { document.getElementById('ndaModal').classList.add('active'); }
     function closeNdaModal() { document.getElementById('ndaModal').classList.remove('active'); }
     document.getElementById('ndaModal').addEventListener('click', e => { if (e.target === document.getElementById('ndaModal')) closeNdaModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNdaModal(); });
-  </script>
-  <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-      document.getElementById('menuBackdrop').classList.toggle('open');
-    }
   </script>
 </body>
 </html>

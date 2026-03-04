@@ -3,44 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payli Budget App — Case Study</title>
+  <title>Payli Budget App — Olga Kalinina</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .cs-wrap { max-width: 900px; margin: 0 auto; padding: 60px 0 100px; display: flex; flex-direction: column; gap: 56px; }
-    .cs-hero-img { width: 100%; border-radius: 24px; overflow: hidden; }
-    .cs-hero-img img { width: 100%; height: 480px; object-fit: cover; }
-    .cs-header { display: flex; flex-direction: column; gap: 14px; }
-    .cs-back { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--gray); margin-bottom: 8px; transition: color 0.2s; }
-    .cs-back:hover { color: var(--dark); }
-    .cs-back svg { width: 16px; height: 16px; }
-    .cs-title { font-size: 40px; font-weight: 600; color: var(--dark); line-height: 1.2; }
-    .cs-subtitle { font-size: 20px; color: var(--gray); line-height: 1.6; }
-    .cs-meta { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; padding: 28px; background: var(--bg-soft); border-radius: 20px; }
-    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
-    .cs-meta-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray); }
-    .cs-meta-value { font-size: 15px; font-weight: 500; color: var(--dark); }
-    .cs-section { display: flex; flex-direction: column; gap: 16px; }
-    .cs-section h2 { font-size: 26px; font-weight: 600; color: var(--dark); }
-    .cs-section p { font-size: 17px; color: var(--dark); line-height: 1.75; }
-    .cs-section img { width: 100%; border-radius: 16px; }
-    .coming-soon { text-align: center; padding: 80px 40px; background: var(--bg-soft); border-radius: 24px; }
-    .coming-soon h2 { font-size: 28px; font-weight: 600; color: var(--dark); margin-bottom: 12px; }
-    .coming-soon p { font-size: 17px; color: var(--gray); }
+    .cs-post { max-width: 900px; margin: 0 auto; padding: 60px 0 100px; display: flex; flex-direction: column; gap: 40px; }
+    .cs-post-title { font-size: 36px; font-weight: 600; color: var(--dark); }
+    .cs-post-desc { font-size: 20px; color: var(--gray); }
+    .cs-post-img { width: 100%; border-radius: 24px; overflow: hidden; }
+    .cs-post-img img { width: 100%; display: block; border-radius: 24px; }
+    .cs-coming-soon { background: var(--bg-soft); border-radius: 24px; padding: 60px 40px; text-align: center; font-size: 18px; color: var(--gray); }
   </style>
 </head>
 <body>
   <nav class="nav">
     <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
     <div class="nav-links">
-    <a href="services.html" class="active">Services</a>
-    <a href="case-studies.html" class="active">Case Studies</a>
-    <a href="blog.html" class="active">Blog</a>
-    <a href="about.html" class="active">About me</a>
-    <a href="contacts.html" class="active">Contacts</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html" class="active">Case Studies</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About me</a>
+      <a href="contacts.html">Contacts</a>
     </div>
-    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="mobile-menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
   <div class="mobile-menu" id="mobileMenu">
@@ -49,35 +33,28 @@
       <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
     </div>
     <div class="mobile-menu-links">
-    <a href="services.html">Services</a>
-    <a href="case-studies.html" class="active">Case Studies</a>
-    <a href="blog.html">Blog</a>
-    <a href="about.html">About me</a>
-    <a href="contacts.html">Contacts</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html" class="active">Case Studies</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About me</a>
+      <a href="contacts.html">Contacts</a>
     </div>
   </div>
-
-            <div class="cs-meta-item"><div class="cs-meta-label">Timeline</div><div class="cs-meta-value">3 months</div></div>
-            <div class="cs-meta-item"><div class="cs-meta-label">Platform</div><div class="cs-meta-value">iOS & Android</div></div>
-            <div class="cs-meta-item"><div class="cs-meta-label">Year</div><div class="cs-meta-value">2025</div></div>
-          </div>
-
-          <div class="coming-soon">
-            <h2>🚧 Full case study coming soon</h2>
-            <p>The detailed write-up is in progress. Want to know more about this project now?</p>
-            <br />
-            <a href="contacts.html" class="btn-dark">Get in touch →</a>
-          </div>
+  <div class="page-wrapper">
+    <main class="page-content">
+      <div class="container">
+        <div class="cs-post">
+          <h1 class="cs-post-title">Payli Budget App</h1>
+          <p class="cs-post-desc">App for tracking bills, recurring payments, and monthly spending.</p>
+          <div class="cs-post-img"><img src="images/Payli_image.png" alt="Payli Budget App" /></div>
+          <div class="cs-coming-soon">🚀 Full case study coming soon.</div>
         </div>
       </div>
     </main>
     <footer class="footer"><div class="footer-inner"><div class="footer-social-row"><nav class="footer-links"><a href="about.html">About me</a><span class="footer-dot"></span><a href="services.html">Services</a><span class="footer-dot"></span><a href="case-studies.html">Case Studies</a><span class="footer-dot"></span><a href="blog.html">Blog</a><span class="footer-dot"></span><a href="contacts.html">Contacts</a></nav><div class="footer-socials"><a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener"><img src="images/Linkedin_logo.png" alt="LinkedIn" /></a><a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener"><img src="images/Behance_logo.png" alt="Behance" /></a></div></div><p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p></div></footer>
   </div>
   <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-      document.getElementById('menuBackdrop').classList.toggle('open');
-    }
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); document.getElementById('menuBackdrop').classList.toggle('open'); }
   </script>
 </body>
 </html>
