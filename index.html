@@ -284,8 +284,8 @@
               <img src="images/PRO_blog_icon.svg" alt="" />
               PRO Blog
             </span>
-            <div class="blog-section-title">Some helpful texts for designers &amp; tech teams</div>
-            <div class="blog-section-sub">Talk about SaaS, AI, Product Design, User Psychology, etc</div>
+            <div class="blog-section-title">Product Design Notes</div>
+            <div class="blog-section-sub">Insights on SaaS, AI products, UX strategy, and building tools people actually use — for designers, founders, and product teams.</div>
           </div>
           <div class="blog-cards">
             <a href="blog-post.html" class="blog-card">
@@ -308,6 +308,21 @@
               <div class="blog-card-title">Testing Ideas</div>
               <div class="blog-card-excerpt">Prototyping allows designers to create interactive mockups of their designs, enabling user testing and feedback before final development, ensuring that the product meets user expectations.</div>
             </a>
+          </div>
+
+          <!-- Blog pagination -->
+          <div class="carousel-controls" style="margin-top:0;">
+            <div class="carousel-progress" id="blogProgress">
+              <span class="active"></span><span></span><span></span>
+            </div>
+            <div class="carousel-btns">
+              <button class="carousel-btn" onclick="slideBlog(-1)" aria-label="Previous">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+              </button>
+              <button class="carousel-btn active" onclick="slideBlog(1)" aria-label="Next">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -361,6 +376,12 @@
       csIndex = (csIndex + dir + totalSlides) % totalSlides;
       document.getElementById('csSlides').style.transform = `translateX(-${csIndex * 100}%)`;
       document.querySelectorAll('.carousel-progress span').forEach((s,i) => s.classList.toggle('active', i === csIndex));
+    }
+    // Blog pagination (static, just dots for now)
+    let blogIndex = 0;
+    function slideBlog(dir) {
+      blogIndex = (blogIndex + dir + 3) % 3;
+      document.querySelectorAll('#blogProgress span').forEach((s,i) => s.classList.toggle('active', i === blogIndex));
     }
     // NDA modal
     function openNdaModal() { document.getElementById('ndaModal').classList.add('active'); }

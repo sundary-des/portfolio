@@ -7,25 +7,28 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     .services-page { padding: 60px 0 100px; display: flex; flex-direction: column; gap: 64px; }
-    .services-page-title { font-size: 40px; font-weight: 600; color: var(--dark); }
     .accordion-list { display: flex; flex-direction: column; }
     .accordion-item { border-top: 1px solid var(--light-gray); }
     .accordion-item:last-child { border-bottom: 1px solid var(--light-gray); }
     .accordion-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 28px 0; cursor: pointer; gap: 24px;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 20px; cursor: pointer; gap: 16px;
     }
-    .accordion-left { display: flex; flex-direction: column; gap: 6px; }
+    .accordion-left { display: flex; flex-direction: column; gap: 10px; flex: 1; }
     .accordion-title { font-size: 24px; font-weight: 500; color: var(--dark); }
-    .accordion-subtitle { font-size: 16px; color: var(--gray); }
+    .accordion-subtitle { font-size: 18px; font-weight: 400; color: var(--gray); }
     .accordion-btn {
-      width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--light-gray);
+      width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--light-gray);
       background: white; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; flex-shrink: 0; transition: all 0.2s; font-size: 20px; color: var(--dark);
+      cursor: pointer; flex-shrink: 0; transition: all 0.2s; font-size: 18px; line-height: 1;
+      color: var(--dark); font-family: var(--font); padding: 0;
     }
     .accordion-item.open .accordion-btn { background: var(--dark); color: white; border-color: var(--dark); transform: rotate(45deg); }
-    .accordion-body { display: none; padding: 0 0 28px; font-size: 17px; color: var(--gray); line-height: 1.7; max-width: 700px; }
+    .accordion-body { display: none; padding: 0 20px 32px; }
     .accordion-item.open .accordion-body { display: block; }
+    .accordion-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .accordion-col-title { font-size: 16px; font-weight: 600; color: var(--dark); text-transform: uppercase; margin-bottom: 12px; }
+    .accordion-col-text { font-size: 18px; color: var(--dark); line-height: 1.65; }
 
     .tools-section { display: flex; flex-direction: column; gap: 24px; }
     .tools-title { font-size: 28px; font-weight: 600; color: var(--dark); }
@@ -70,19 +73,36 @@
     <main class="page-content">
       <div class="container">
         <div class="services-page">
-          <h1 class="services-page-title">Services</h1>
+          <div class="services-header" style="display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;max-width:706px;margin:0 auto 80px;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <h1 style="font-size:32px;font-weight:500;color:var(--dark);margin:0;">Product Design Services</h1>
+              <p style="font-size:24px;font-weight:400;color:var(--gray);margin:0;">How I can help — from discovery and UX flows to build-ready UI and prototypes.</p>
+            </div>
+            <a href="contacts.html" class="btn-dark" style="width:auto;">Contact me</a>
+          </div>
 
           <div class="accordion-list">
 
-            <div class="accordion-item">
+            <div class="accordion-item open">
               <div class="accordion-header" onclick="toggleAccordion(this)">
                 <div class="accordion-left">
                   <div class="accordion-title">UX Audit for Complex Products</div>
                   <div class="accordion-subtitle">Find what blocks users today and get a prioritised fix plan with clear, actionable recommendations.</div>
                 </div>
-                <div class="accordion-btn">+</div>
+                <button class="accordion-btn">+</button>
               </div>
-              <div class="accordion-body">A structured review of your existing product — I map friction points, identify where users drop off or get confused, and deliver a prioritised list of UX fixes with clear rationale. Ideal for products that have grown fast and need a reset before the next build cycle.</div>
+              <div class="accordion-body">
+                <div class="accordion-cols">
+                  <div>
+                    <div class="accordion-col-title">Service description</div>
+                    <div class="accordion-col-text">A focused review of your existing product to identify what's slowing users down and where the experience breaks. I'll map the key journeys, evaluate information hierarchy, states, and usability friction, and turn findings into clear, actionable improvements.<br><br>This is ideal when the product "works" but feels heavy, confusing, or inconsistent — and you need a realistic plan to fix it.</div>
+                  </div>
+                  <div>
+                    <div class="accordion-col-title">What you'll get</div>
+                    <div class="accordion-col-text">- A prioritised list of issues (quick wins + high-impact fixes)<br>- Clear recommendations with examples (what to change and why)<br>- A practical next-step plan your team can execute</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="accordion-item">
@@ -91,20 +111,20 @@
                   <div class="accordion-title">MVP Product Design</div>
                   <div class="accordion-subtitle">From idea to a clickable MVP: core flows, key screens, and a prototype ready for testing and build.</div>
                 </div>
-                <div class="accordion-btn">+</div>
+                <button class="accordion-btn">+</button>
               </div>
-              <div class="accordion-body">I work with you to define what the MVP needs to do, then design the core flows and key screens — enough to validate the idea, get stakeholder buy-in, or hand off to engineering. Fast, focused, and grounded in what real users actually need.</div>
-            </div>
-
-            <div class="accordion-item">
-              <div class="accordion-header" onclick="toggleAccordion(this)">
-                <div class="accordion-left">
-                  <div class="accordion-title">Product Discovery Sprint</div>
-                  <div class="accordion-subtitle">Clarify the problem, audience, and scope — so you build the right MVP without guesswork.</div>
+              <div class="accordion-body">
+                <div class="accordion-cols">
+                  <div>
+                    <div class="accordion-col-title">Service description</div>
+                    <div class="accordion-col-text">End-to-end product design for a new MVP: from defining the core user journeys to creating key screens and a clickable prototype. The focus is on shipping the smallest version that proves value without cutting essential UX.<br><br>Great for early-stage products or new initiatives that need clarity, speed, and a solid foundation for development.</div>
+                  </div>
+                  <div>
+                    <div class="accordion-col-title">What you'll get</div>
+                    <div class="accordion-col-text">- MVP scope and core flows (user journeys + key states)<br>- Wireframes → high-fidelity screens for the MVP<br>- A clickable prototype ready for testing and build</div>
+                  </div>
                 </div>
-                <div class="accordion-btn">+</div>
               </div>
-              <div class="accordion-body">Before any design or development, I help teams get aligned on what problem they're solving, who for, and why now. The output is a clear problem statement, user profile, and scoped feature set — so the team builds with confidence, not assumptions.</div>
             </div>
 
             <div class="accordion-item">
@@ -113,9 +133,20 @@
                   <div class="accordion-title">Information Architecture &amp; UX Flows</div>
                   <div class="accordion-subtitle">Turn complex workflows into clear, step-by-step journeys with edge cases covered.</div>
                 </div>
-                <div class="accordion-btn">+</div>
+                <button class="accordion-btn">+</button>
               </div>
-              <div class="accordion-body">I map the full product structure — navigation, content hierarchy, key user journeys — and make sure every path makes sense before a single screen is designed. Especially valuable for enterprise tools, dashboards, and multi-role systems where complexity is the default.</div>
+              <div class="accordion-body">
+                <div class="accordion-cols">
+                  <div>
+                    <div class="accordion-col-title">Service description</div>
+                    <div class="accordion-col-text">I structure complex products so they feel simple: navigation, content hierarchy, and step-by-step flows that users can follow confidently. We'll define roles, states, edge cases, and error/empty scenarios — so the experience holds up in real use.<br><br>Best when the product has many features, screens, or user types and needs a clear logic.</div>
+                  </div>
+                  <div>
+                    <div class="accordion-col-title">What you'll get</div>
+                    <div class="accordion-col-text">- A clear IA/navigation proposal (how the product is organized)<br>- User flows for key scenarios (including edge cases)<br>- UX rules for states: empty, error, loading, permissions</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="accordion-item">
@@ -124,9 +155,20 @@
                   <div class="accordion-title">New Feature Design</div>
                   <div class="accordion-subtitle">Design new features that fit the product logic and improve the experience without adding clutter.</div>
                 </div>
-                <div class="accordion-btn">+</div>
+                <button class="accordion-btn">+</button>
               </div>
-              <div class="accordion-body">I design new features end-to-end — from concept to final screens — making sure they integrate with the existing product in a way that feels natural, not bolted on. Edge cases, empty states, and error flows are included, not afterthoughts.</div>
+              <div class="accordion-body">
+                <div class="accordion-cols">
+                  <div>
+                    <div class="accordion-col-title">Service description</div>
+                    <div class="accordion-col-text">Design of new features that fit your current product logic and improve the experience without adding clutter. I'll align the feature with user goals, integrate it into existing flows, and define the necessary states for implementation.<br><br>Ideal for product teams scaling functionality while keeping UX consistent.</div>
+                  </div>
+                  <div>
+                    <div class="accordion-col-title">What you'll get</div>
+                    <div class="accordion-col-text">- Feature flow + integration into existing journeys<br>- Key screens and interaction details (states included)<br>- A build-ready design handoff in Figma</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="accordion-item">
@@ -135,9 +177,20 @@
                   <div class="accordion-title">Usability Testing &amp; Iteration</div>
                   <div class="accordion-subtitle">Run quick, practical user testing and translate insights into focused design improvements.</div>
                 </div>
-                <div class="accordion-btn">+</div>
+                <button class="accordion-btn">+</button>
               </div>
-              <div class="accordion-body">I plan and run lightweight usability tests — moderated or unmoderated — then synthesise findings into clear design actions. No lengthy reports, just the insights that matter and what to do with them.</div>
+              <div class="accordion-body">
+                <div class="accordion-cols">
+                  <div>
+                    <div class="accordion-col-title">Service description</div>
+                    <div class="accordion-col-text">Lightweight, practical user testing for your product or prototype — followed by focused improvements. The goal is to validate assumptions, spot friction early, and iterate quickly without heavy process.<br><br>Works well before development, during MVP, or when a feature isn't performing.</div>
+                  </div>
+                  <div>
+                    <div class="accordion-col-title">What you'll get</div>
+                    <div class="accordion-col-text">- A simple test plan + moderated sessions (remote)<br>- Findings summary (patterns, pain points, quotes)<br>- Prioritized design improvements (what to fix first)</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="accordion-item">
@@ -146,9 +199,20 @@
                   <div class="accordion-title">High-Fidelity UI for Web Products</div>
                   <div class="accordion-subtitle">Polished, build-ready UI for key screens — consistent, modern, and easy to implement.</div>
                 </div>
-                <div class="accordion-btn">+</div>
+                <button class="accordion-btn">+</button>
               </div>
-              <div class="accordion-body">When the UX is solid and the product needs to look the part, I design high-fidelity screens that are ready to hand off. Component-based, responsive-ready, and built around your design system — or I'll help you create one.</div>
+              <div class="accordion-body">
+                <div class="accordion-cols">
+                  <div>
+                    <div class="accordion-col-title">Service description</div>
+                    <div class="accordion-col-text">Polished, build-ready UI for key screens — modern, consistent, and aligned with your product's tone. I focus on clarity, hierarchy, and components that engineers can implement without guesswork.<br><br>Best when you have UX direction but need strong final UI and detail.</div>
+                  </div>
+                  <div>
+                    <div class="accordion-col-title">What you'll get</div>
+                    <div class="accordion-col-text">- High-fidelity UI for selected screens/flows<br>- Component-based layouts for easier implementation<br>- Interaction/state specs for production readiness</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="accordion-item">
@@ -157,9 +221,20 @@
                   <div class="accordion-title">AI Feature UX</div>
                   <div class="accordion-subtitle">Design AI-assisted flows that feel safe, understandable, and user-controlled.</div>
                 </div>
-                <div class="accordion-btn">+</div>
+                <button class="accordion-btn">+</button>
               </div>
-              <div class="accordion-body">AI features fail when users don't understand what the system is doing or why. I design AI-assisted interactions that are transparent, controllable, and actually useful — so users trust the feature instead of working around it.</div>
+              <div class="accordion-body">
+                <div class="accordion-cols">
+                  <div>
+                    <div class="accordion-col-title">Service description</div>
+                    <div class="accordion-col-text">Design of AI-assisted workflows that feel trustworthy and user-controlled. I focus on clear inputs/outputs, review/edit loops, regeneration, transparency, and strong error recovery — so AI helps users ship real work, not just "generate content."<br><br>Best for products adding AI into creation, admin, or decision workflows.</div>
+                  </div>
+                  <div>
+                    <div class="accordion-col-title">What you'll get</div>
+                    <div class="accordion-col-text">- AI flow design (prompting → output → review/edit/regenerate)<br>- UX guardrails: states, errors, empty cases, safety/clarity patterns<br>- Build-ready screens and interaction specs</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="accordion-item">
@@ -168,15 +243,49 @@
                   <div class="accordion-title">Handoff &amp; Build Support</div>
                   <div class="accordion-subtitle">Detailed handoff, team support, and design QA to ensure what ships matches the intent.</div>
                 </div>
-                <div class="accordion-btn">+</div>
+                <button class="accordion-btn">+</button>
               </div>
-              <div class="accordion-body">I prepare design files for development handoff — annotated specs, component documentation, and responsive notes — and stay available during implementation to answer questions and review builds before they ship.</div>
+              <div class="accordion-body">
+                <div class="accordion-cols">
+                  <div>
+                    <div class="accordion-col-title">Service description</div>
+                    <div class="accordion-col-text">Support during implementation to make sure what ships matches the design intent. I provide clear handoff, answer dev questions, align on edge cases, and do design QA during build.<br><br>Ideal when speed matters and you want fewer redesign loops in development.</div>
+                  </div>
+                  <div>
+                    <div class="accordion-col-title">What you'll get</div>
+                    <div class="accordion-col-text">- Clean handoff with specs, states, and annotations<br>- Async support for dev/PM questions<br>- Design QA review + fix list before release</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-left">
+                  <div class="accordion-title">Fractional Product Design Partner</div>
+                  <div class="accordion-subtitle">Ongoing support as your design lead — strategy, UX, and delivery without hiring full-time.</div>
+                </div>
+                <button class="accordion-btn">+</button>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-cols">
+                  <div>
+                    <div class="accordion-col-title">Service description</div>
+                    <div class="accordion-col-text">Ongoing product design support as a senior partner — without a full-time hire. I can own UX direction, help shape scope, design key flows/features, and support delivery across iterations.<br><br>Best for startups or teams that need consistent senior-level design leadership.</div>
+                  </div>
+                  <div>
+                    <div class="accordion-col-title">What you'll get</div>
+                    <div class="accordion-col-text">- A reliable design partner across roadmap initiatives<br>- UX direction + execution (flows, UI, prototypes)<br>- Regular touchpoints and delivery cadence aligned with your team</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
 
           <div class="tools-section">
-            <h2 class="tools-title">Tools I work with</h2>
+            <h2 class="tools-title">Tools</h2>
+            <p class="tools-subtitle">What I use to bring your product to life</p>
             <div class="tools-grid">
               <span class="tool-pill"><img src="images/Figma_logo.svg" alt="Figma" />Figma / FigJam / Figma Make</span>
               <span class="tool-pill"><img src="images/jira_logo.svg" alt="Jira" />Jira</span>

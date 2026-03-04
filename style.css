@@ -27,9 +27,9 @@ body {
   overflow-x: hidden;
 }
 
-/* Home page ONLY gets the blue gradient */
+/* Home page — white background, no gradient */
 body.home {
-  background: linear-gradient(to bottom, #eaf0fe 0%, #ffffff 40%);
+  background: white;
 }
 
 a { text-decoration: none; color: inherit; }
