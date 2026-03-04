@@ -26,12 +26,26 @@
 <body>
   <nav class="nav">
     <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
-    <a href="services.html">Services</a>
-    <a href="case-studies.html">Case Studies</a>
+    <div class="nav-links">
+    <a href="services.html" class="active">Services</a>
+    <a href="case-studies.html" class="active">Case Studies</a>
     <a href="blog.html" class="active">Blog</a>
-    <a href="about.html">About me</a>
-    <a href="contacts.html">Contacts</a>
+    <a href="about.html" class="active">About me</a>
+    <a href="contacts.html" class="active">Contacts</a>
+    </div>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+    <a href="services.html" class="active">Services</a>
+    <a href="case-studies.html" class="active">Case Studies</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="about.html" class="active">About me</a>
+    <a href="contacts.html" class="active">Contacts</a>
+  </div>
 
   <div class="page-wrapper">
     <main class="page-content">

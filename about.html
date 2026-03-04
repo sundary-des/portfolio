@@ -18,12 +18,26 @@
 <body>
   <nav class="nav">
     <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
-    <a href="services.html">Services</a>
-    <a href="case-studies.html">Case Studies</a>
-    <a href="blog.html">Blog</a>
+    <div class="nav-links">
+    <a href="services.html" class="active">Services</a>
+    <a href="case-studies.html" class="active">Case Studies</a>
+    <a href="blog.html" class="active">Blog</a>
     <a href="about.html" class="active">About me</a>
-    <a href="contacts.html">Contacts</a>
+    <a href="contacts.html" class="active">Contacts</a>
+    </div>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+    <a href="services.html" class="active">Services</a>
+    <a href="case-studies.html" class="active">Case Studies</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="about.html" class="active">About me</a>
+    <a href="contacts.html" class="active">Contacts</a>
+  </div>
 
   <div class="page-wrapper">
     <main class="page-content">
@@ -66,7 +80,7 @@
         </div>
       </div>
     </main>
-    <footer class="footer"><div class="footer-inner"><div class="footer-social-row"><nav class="footer-links"><a href="about.html">About me</a><span class="footer-dot"></span><a href="services.html">Services</a><span class="footer-dot"></span><a href="case-studies.html">Case Studies</a><span class="footer-dot"></span><a href="blog.html">Blog</a><span class="footer-dot"></span><a href="contacts.html">Contacts</a></nav><div class="footer-socials"><a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener"><img src="https://www.figma.com/api/mcp/asset/0a31a0bf-3e2f-4e09-97c5-01b79fee93ae" alt="LinkedIn" /></a><a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener"><img src="https://www.figma.com/api/mcp/asset/a5ab0882-22eb-4ca2-b830-8fed0ce161de" alt="Behance" /></a></div></div><p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p></div></footer>
+    <footer class="footer"><div class="footer-inner"><div class="footer-social-row"><nav class="footer-links"><a href="about.html">About me</a><span class="footer-dot"></span><a href="services.html">Services</a><span class="footer-dot"></span><a href="case-studies.html">Case Studies</a><span class="footer-dot"></span><a href="blog.html">Blog</a><span class="footer-dot"></span><a href="contacts.html">Contacts</a></nav><div class="footer-socials"><a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener"><img src="images/Linkedin_logo.png" alt="LinkedIn" /></a><a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener"><img src="images/Behance_logo.png" alt="Behance" /></a></div></div><p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p></div></footer>
   </div>
 </body>
 </html>
