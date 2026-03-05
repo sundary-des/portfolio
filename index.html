@@ -95,6 +95,11 @@
     .blog-tag { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 500; width: fit-content; white-space: nowrap; }
     .blog-card-title { font-size: 20px; font-weight: 500; color: var(--dark); line-height: 1.3; }
     .blog-card-excerpt { font-size: 16px; color: var(--dark); line-height: 1.6; flex: 1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+
+    /* ── Clickable section-label badges ── */
+    a:has(.section-label) { display: inline-block; }
+    a:has(.section-label):hover .section-label { opacity: 0.7; transform: translateY(-1px); transition: opacity 0.2s, transform 0.2s; }
+    .section-label { transition: opacity 0.2s, transform 0.2s; cursor: pointer; }
   </style>
 </head>
 <body class="home">
@@ -155,10 +160,12 @@
         <!-- CASE STUDIES -->
         <div class="cs-section">
           <div class="cs-section-header">
+            <a href="case-studies.html" style="text-decoration:none;color:inherit;">
             <span class="section-label">
               <img src="images/case_study_icon.svg" alt="" />
               Case Studies
             </span>
+            </a>
             <div class="cs-section-title">15+ years in product design.</div>
             <div class="cs-section-sub">I turn "it's a mess" into "it makes sense."</div>
           </div>
@@ -251,10 +258,12 @@
 
         <!-- SERVICES -->
         <div class="services-section">
+          <a href="services.html" style="text-decoration:none;color:inherit;">
           <span class="section-label">
             <img src="images/My_services_icon.svg" alt="" />
             My Services
           </span>
+          </a>
           <div class="services-cards">
             <a href="services.html" class="svc-card">
               <img src="images/shield-tick.svg" alt="" class="svc-card-icon" />
@@ -280,10 +289,12 @@
         <!-- BLOG -->
         <div class="blog-section">
           <div class="blog-section-header">
+            <a href="blog.html" style="text-decoration:none;color:inherit;">
             <span class="section-label">
               <img src="images/PRO_blog_icon.svg" alt="" />
               PRO Blog
             </span>
+            </a>
             <div class="blog-section-title">Product Design Notes</div>
             <div class="blog-section-sub">Insights on SaaS, AI products, UX strategy, and building tools people actually use — for designers, founders, and product teams.</div>
           </div>
