@@ -29,32 +29,80 @@
       transition: background var(--transition), color var(--transition);
     }
     .blog-tab:hover { color: var(--dark); }
-    .blog-tab.active {
-      background: var(--dark);
-      color: white;
-    }
+    .blog-tab.active { background: var(--dark); color: white; }
 
     /* ── Blog grid ── */
     .blog-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 16px;
+      align-items: start;
     }
 
-    /* ── Blog card — reuses .blog-card + .blog-tag from style.css ── */
-    /* All tag colour variants */
-    .tag-startup        { background: #d1fae5; color: #065f46; }
-    .tag-ai             { background: #dbeafe; color: #1e40af; }
-    .tag-user-research  { background: #ede9fe; color: #6d28d9; }
-    .tag-saas           { background: #d1fae5; color: #065f46; }
-    .tag-dashboard      { background: #fce7f3; color: #9d174d; }
-    .tag-interaction    { background: #fef9c3; color: #854d0e; }
-    .tag-accessibility  { background: #fee2e2; color: #991b1b; }
+    /* ── Blog card — white bg, border, rounded, matches Blog.png ── */
+    .bcard {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: white;
+      border: 1.5px solid var(--light-gray);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .bcard:hover {
+      border-color: var(--dark);
+      transform: translateY(-3px);
+    }
 
-    .blog-card-title  { font-size: 20px; font-weight: 500; color: var(--dark); line-height: 1.3; }
-    .blog-card-excerpt { font-size: 16px; color: var(--dark); line-height: 1.6; flex: 1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
-    .blog-card-date   { font-size: 14px; font-weight: 500; color: var(--gray); margin-top: auto; padding-top: 4px; }
+    /* ── Tag pills — colored bg + text, matches Blog.png exactly ── */
+    .btag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 500;
+      width: fit-content;
+      white-space: nowrap;
+    }
+    /* Each tag's bg/text colours match the Figma design */
+    .btag-startup        { background: #d1fae5; color: #065f46; }
+    .btag-ai             { background: #dbeafe; color: #1e40af; }
+    .btag-user-research  { background: #ede9fe; color: #6d28d9; }
+    .btag-saas           { background: #d1fae5; color: #065f46; }
+    .btag-dashboard      { background: #fce7f3; color: #9d174d; }
+    .btag-interaction    { background: #fef9c3; color: #854d0e; }
+    .btag-accessibility  { background: #fee2e2; color: #991b1b; }
 
+    .bcard-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+    .bcard-excerpt {
+      font-size: 15px;
+      color: var(--dark);
+      line-height: 1.65;
+      flex: 1;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+    }
+    .bcard-date {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray);
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    /* ── Responsive ── */
     @media (max-width: 768px) {
       .blog-grid { grid-template-columns: 1fr !important; }
       .blog-page { padding: 40px 0 60px !important; }
@@ -118,46 +166,46 @@
           <div class="blog-grid" id="blogGrid">
 
             <!-- NEW: Startup analysis post -->
-            <a class="blog-card" href="blog-post-startups.html" data-cat="Startup">
-              <span class="blog-tag tag-startup">Startup</span>
-              <div class="blog-card-title">100 AI Startups: what's actually working in 2026</div>
-              <div class="blog-card-excerpt">Based on trends across 100 startup listings as of March 2026, this analysis highlights where AI is creating real value — across products, business models, and categories.</div>
-              <div class="blog-card-date">Mar 18, 2026</div>
+            <a class="bcard" href="blog-post-startups.html" data-cat="Startup">
+              <span class="btag btag-startup">Startup</span>
+              <div class="bcard-title">100 AI Startups: what's actually working in 2026</div>
+              <div class="bcard-excerpt">Based on trends across 100 startup listings as of March 2026, this analysis highlights where AI is creating real value — across products, business models, and categories.</div>
+              <div class="bcard-date">Mar 18, 2026</div>
             </a>
 
-            <a class="blog-card" href="blog-post.html" data-cat="Artificial Intelligence">
-              <span class="blog-tag tag-ai">Artificial Intelligence</span>
-              <div class="blog-card-title">Understanding the Users</div>
-              <div class="blog-card-excerpt">User research is crucial for gathering insights about the target audience, their needs, pain points, and behaviors. This process helps inform design decisions and improve product usability.</div>
-              <div class="blog-card-date">Jan 12, 2026</div>
+            <a class="bcard" href="blog-post.html" data-cat="Artificial Intelligence">
+              <span class="btag btag-ai">Artificial Intelligence</span>
+              <div class="bcard-title">Understanding the Users</div>
+              <div class="bcard-excerpt">User research is crucial for gathering insights about the target audience, their needs, pain points, and behaviors. This process helps inform design decisions and improve product usability.</div>
+              <div class="bcard-date">Jan 12, 2026</div>
             </a>
 
-            <a class="blog-card" href="blog-post.html" data-cat="User Research">
-              <span class="blog-tag tag-user-research">User Research</span>
-              <div class="blog-card-title">Understanding the Users</div>
-              <div class="blog-card-excerpt">User research is crucial for gathering insights about the target audience, their needs, pain points, and behaviors. This process helps inform design decisions and improve product usability.</div>
-              <div class="blog-card-date">Jan 12, 2026</div>
+            <a class="bcard" href="blog-post.html" data-cat="User Research">
+              <span class="btag btag-user-research">User Research</span>
+              <div class="bcard-title">Understanding the Users</div>
+              <div class="bcard-excerpt">User research is crucial for gathering insights about the target audience, their needs, pain points, and behaviors. This process helps inform design decisions and improve product usability.</div>
+              <div class="bcard-date">Jan 12, 2026</div>
             </a>
 
-            <a class="blog-card" href="blog-post.html" data-cat="SaaS">
-              <span class="blog-tag tag-saas">SaaS</span>
-              <div class="blog-card-title">Creating Layouts</div>
-              <div class="blog-card-excerpt">Wireframing involves sketching layouts for interfaces, focusing on structure and functionality without distractions of color or graphic design. It serves as a blueprint for the final design.</div>
-              <div class="blog-card-date">Jan 12, 2026</div>
+            <a class="bcard" href="blog-post.html" data-cat="SaaS">
+              <span class="btag btag-saas">SaaS</span>
+              <div class="bcard-title">Creating Layouts</div>
+              <div class="bcard-excerpt">Wireframing involves sketching layouts for interfaces, focusing on structure and functionality without distractions of color or graphic design. It serves as a blueprint for the final design.</div>
+              <div class="bcard-date">Jan 12, 2026</div>
             </a>
 
-            <a class="blog-card" href="blog-post.html" data-cat="Dashboard">
-              <span class="blog-tag tag-dashboard">Dashboard</span>
-              <div class="blog-card-title">Testing Ideas</div>
-              <div class="blog-card-excerpt">Prototyping allows designers to create interactive mockups of their designs, enabling user testing and feedback before final development, ensuring that the product meets user expectations.</div>
-              <div class="blog-card-date">Jan 12, 2026</div>
+            <a class="bcard" href="blog-post.html" data-cat="Dashboard">
+              <span class="btag btag-dashboard">Dashboard</span>
+              <div class="bcard-title">Testing Ideas</div>
+              <div class="bcard-excerpt">Prototyping allows designers to create interactive mockups of their designs, enabling user testing and feedback before final development, ensuring that the product meets user expectations.</div>
+              <div class="bcard-date">Jan 12, 2026</div>
             </a>
 
-            <a class="blog-card" href="blog-post.html" data-cat="Interaction Design">
-              <span class="blog-tag tag-interaction">Interaction Design</span>
-              <div class="blog-card-title">Enhancing User Engagement</div>
-              <div class="blog-card-excerpt">Interaction design focuses on creating engaging interfaces with well-thought-out behaviors and actions, ensuring that users can navigate seamlessly and enjoyably.</div>
-              <div class="blog-card-date">Jan 12, 2026</div>
+            <a class="bcard" href="blog-post.html" data-cat="Interaction Design">
+              <span class="btag btag-interaction">Interaction Design</span>
+              <div class="bcard-title">Enhancing User Engagement</div>
+              <div class="bcard-excerpt">Interaction design focuses on creating engaging interfaces with well-thought-out behaviors and actions, ensuring that users can navigate seamlessly and enjoyably.</div>
+              <div class="bcard-date">Jan 12, 2026</div>
             </a>
 
           </div>
@@ -203,9 +251,8 @@
       document.getElementById('menuBackdrop').classList.toggle('open');
     }
 
-    // Category filtering
     const tabs  = document.querySelectorAll('.blog-tab');
-    const cards = document.querySelectorAll('#blogGrid .blog-card');
+    const cards = document.querySelectorAll('#blogGrid .bcard');
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
