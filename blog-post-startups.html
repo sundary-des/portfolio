@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>100 AI Startups: what's actually working in 2026 — Olga Kalinina</title>
+  <meta name="description" content="Based on trends across 100 startup listings as of March 2026, this analysis highlights where AI is creating real value — across products, business models, and categories." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Blog post base (mirrors blog-post.html patterns) ── */
+    .post-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      background: #d4f5d4;
+      color: #1a7a1a;
+      margin-bottom: 16px;
+    }
+    .post-header {
+      max-width: 720px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+      position: relative;
+    }
+    .post-header h1 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 12px 0 8px;
+      color: #0f0f0f;
+    }
+    .post-meta {
+      font-size: 14px;
+      color: #888;
+    }
+    .share-btn-header {
+      position: absolute;
+      top: 0;
+      right: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: #888;
+      display: flex;
+      align-items: center;
+    }
+    .share-btn-header:hover { color: #0f0f0f; }
+    .share-btn-header svg { width: 20px; height: 20px; }
+
+    /* ── Post body ── */
+    .post-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .post-body h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 48px 0 12px;
+      color: #0f0f0f;
+    }
+    .post-body p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #444;
+      margin: 0 0 20px;
+    }
+
+    /* ── Insight cards 2×2 ── */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0 48px;
+    }
+    @media (max-width: 600px) {
+      .insight-grid { grid-template-columns: 1fr; }
+    }
+    .insight-card {
+      background: #f5f5f5;
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .insight-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0 0 12px;
+      color: #0f0f0f;
+    }
+    .insight-card ul {
+      margin: 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .insight-card li {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #444;
+    }
+    .insight-card li strong {
+      color: #0f0f0f;
+      font-weight: 600;
+    }
+
+    /* ── Table intro text ── */
+    .table-intro {
+      text-align: center;
+      margin: 0 0 32px;
+    }
+    .table-intro p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Filter bar ── */
+    .filter-section {
+      margin-bottom: 20px;
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .filter-label {
+      font-size: 13px;
+      color: #888;
+      padding-top: 5px;
+      white-space: nowrap;
+      min-width: 48px;
+    }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .filter-pill {
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1.5px solid #ddd;
+      background: #fff;
+      font-size: 13px;
+      color: #444;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .filter-pill:hover { border-color: #aaa; color: #111; }
+    .filter-pill.active {
+      background: #0f0f0f;
+      border-color: #0f0f0f;
+      color: #fff;
+    }
+
+    /* ── Table ── */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid #e8e8e8;
+      background: #fff;
+      margin-bottom: 12px;
+    }
+    .startup-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .startup-table thead th {
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #e8e8e8;
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+      background: #fafafa;
+    }
+    .startup-table thead th:first-child { border-radius: 16px 0 0 0; }
+    .startup-table thead th:last-child  { border-radius: 0 16px 0 0; }
+    .startup-table thead th:hover { color: #0f0f0f; }
+    .startup-table tbody tr { border-bottom: 1px solid #f0f0f0; }
+    .startup-table tbody tr:last-child { border-bottom: none; }
+    .startup-table tbody tr:hover td { background: #fafafa; }
+    .startup-table td {
+      padding: 12px 14px;
+      color: #333;
+      vertical-align: top;
+    }
+    .td-num { color: #bbb; font-size: 12px; width: 32px; }
+    .td-name { font-weight: 500; max-width: 200px; line-height: 1.4; }
+    .td-notes { color: #888; max-width: 180px; font-size: 12px; line-height: 1.4; }
+
+    /* ── Inline topic/model badges ── */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .badge-topic    { background: #e8f0fe; color: #3558d6; }
+    .badge-saas     { background: #e6f4ea; color: #1a7a2e; }
+    .badge-app      { background: #fce8ff; color: #8a2be2; }
+    .badge-platform { background: #fff3e0; color: #e65100; }
+    .badge-portfolio{ background: #f1f3f4; color: #5f6368; }
+    .badge-plugin   { background: #fce4ec; color: #c2185b; }
+    .badge-b2b      { background: #e8f5e9; color: #2e7d32; }
+    .badge-b2c      { background: #fff8e1; color: #f57f17; }
+
+    .table-count {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 32px;
+    }
+
+    /* ── Trends section ── */
+    .trends-section {
+      margin-top: 48px;
+    }
+    .trends-section h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f0f0f;
+      margin: 0 0 20px;
+    }
+    .trends-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .trends-grid { grid-template-columns: 1fr; }
+    }
+    .trend-card {
+      background: #f5f5f5;
+      border-radius: 14px;
+      padding: 18px 16px;
+    }
+    .trend-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .trend-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+    .trend-bar-label {
+      font-size: 12px;
+      color: #444;
+      width: 90px;
+      flex-shrink: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .trend-bar-track {
+      flex: 1;
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .trend-bar-fill {
+      height: 100%;
+      background: #0f0f0f;
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    .trend-bar-num {
+      font-size: 12px;
+      color: #888;
+      min-width: 20px;
+      text-align: right;
+    }
+
+    /* ── CTA section ── */
+    .cta-section {
+      margin-top: 64px;
+      text-align: center;
+      padding: 48px 24px;
+      border-top: 1px solid #efefef;
+    }
+    .cta-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f0f0f;
+      margin: 0 0 8px;
+    }
+    .cta-section p {
+      font-size: 15px;
+      color: #666;
+      margin: 0 0 28px;
+    }
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1.5px solid #ddd;
+      background: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      color: #0f0f0f;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .cta-btn:hover {
+      border-color: #0f0f0f;
+      background: #f5f5f5;
+    }
+    .cta-btn img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      padding: 40px;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV (matches site pattern) ═══ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/olga_kalinina.jpg" alt="Olga Kalinina" />
+      </a>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="services.html">Services</a></li>
+        <li><a href="case-studies.html">Case Study</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="about.html">About me</a></li>
+        <li><a href="contacts.html">Contacts</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ MOBILE NAV OVERLAY ═══ -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="images/olga_kalinina.jpg" alt="Olga Kalinina" />
+    </a>
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <ul>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About me</a></li>
+      <li><a href="contacts.html">Contacts</a></li>
+    </ul>
+  </div>
+
+  <!-- ═══ POST HEADER ═══ -->
+  <article>
+    <div class="post-header">
+      <span class="post-tag">Startup</span>
+      <h1>100 AI Startups: what's actually working in 2026</h1>
+      <p class="post-meta">Mar 18, 2026</p>
+      <button class="share-btn-header" id="shareBtn" title="Share this post" aria-label="Share">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- ═══ POST BODY ═══ -->
+    <div class="post-body">
+
+      <h2>Key Patterns Across AI Startups</h2>
+      <p>Based on trends across 100 startup listings as of March 2026, this analysis highlights where AI is creating real value — across products, business models, and categories.</p>
+
+      <!-- 2×2 insight cards -->
+      <div class="insight-grid">
+        <div class="insight-card">
+          <h3>Domain Topics:</h3>
+          <ul>
+            <li><strong>AI is everywhere</strong> — ~60% of listings have AI as a core feature, spanning productivity, creative tools, marketing, HR, education, and health</li>
+            <li><strong>HealthTech</strong> is the second biggest cluster — calorie trackers, mental wellness, gut health, quit smoking, facial analysis</li>
+            <li><strong>Utility apps</strong> are a steady category — cleaners, VPNs, scanners, phone tools — often sold as portfolios</li>
+          </ul>
+        </div>
+        <div class="insight-card">
+          <h3>Emerging patterns:</h3>
+          <ul>
+            <li><strong>AI + creative</strong> (music gen, video, headshots, character creators) is a hot exit category</li>
+            <li>Dating/social apps with AI twists are increasing</li>
+            <li><strong>"Profitable but small"</strong> — many listings show $20K–$400K ARR with thin teams, signaling solo founders exiting micro-SaaS</li>
+          </ul>
+        </div>
+        <div class="insight-card">
+          <h3>Business model split:</h3>
+          <ul>
+            <li><strong>B2C dominates (~70%)</strong> — most mobile apps target consumers with subscriptions</li>
+            <li><strong>B2B is growing</strong> — especially in AI automation, recruiting, customer service, and marketing SaaS</li>
+          </ul>
+        </div>
+        <div class="insight-card">
+          <h3>Product type:</h3>
+          <ul>
+            <li><strong>Apps are the majority (~55%)</strong> — iOS-first is very common</li>
+            <li><strong>SaaS is strong (~35%)</strong> — recurring revenue, often B2B</li>
+            <li><strong>Portfolios</strong> appear regularly — sellers bundling 5-14 apps together</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Table intro -->
+      <div class="table-intro">
+        <p>Explore the full dataset of AI startups below.<br>
+        Use filters to navigate by domain and business model, and uncover patterns across categories.</p>
+      </div>
+
+      <!-- ── Filters ── -->
+      <div class="filter-section">
+        <div class="filter-row">
+          <span class="filter-label">Topic:</span>
+          <div class="filter-pills" id="topic-pills"></div>
+        </div>
+        <div class="filter-row">
+          <span class="filter-label">Model:</span>
+          <div class="filter-pills" id="model-pills"></div>
+        </div>
+      </div>
+
+      <!-- ── Table ── -->
+      <p class="table-count" id="table-count"></p>
+      <div class="table-wrapper">
+        <table class="startup-table">
+          <thead>
+            <tr>
+              <th class="td-num" onclick="sortBy('id')"># <span id="sort-id"></span></th>
+              <th onclick="sortBy('name')">STARTUP <span id="sort-name"></span></th>
+              <th onclick="sortBy('topic')">TOPIC <span id="sort-topic"></span></th>
+              <th onclick="sortBy('type')">TYPE <span id="sort-type"></span></th>
+              <th onclick="sortBy('model')">BUSINESS MODEL <span id="sort-model"></span></th>
+              <th onclick="sortBy('date')">DATE <span id="sort-date"></span></th>
+              <th>NOTES</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+
+      <!-- ── Trends ── -->
+      <div class="trends-section">
+        <h2>Trends across 100 listings</h2>
+        <div class="trends-grid">
+          <div class="trend-card">
+            <div class="trend-card-label">Top Topics</div>
+            <div id="trend-topics"></div>
+          </div>
+          <div class="trend-card">
+            <div class="trend-card-label">Product Type</div>
+            <div id="trend-types"></div>
+          </div>
+          <div class="trend-card">
+            <div class="trend-card-label">Business Model</div>
+            <div id="trend-models"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CTA ── -->
+      <div class="cta-section">
+        <h2>Enjoyed this analysis?</h2>
+        <p>Share it with your network or subscribe for future insights.</p>
+        <div class="cta-buttons">
+          <button class="cta-btn" id="shareCtaBtn">
+            Share with your network
+            <img src="images/share-07.png" alt="share" />
+          </button>
+          <a class="cta-btn" href="https://substack.com/@olinproduct/" target="_blank" rel="noopener">
+            Subscribe
+            <img src="images/substack.png" alt="Substack" />
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /post-body -->
+  </article>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <nav class="footer-nav">
+        <a href="about.html">About me</a>
+        <span>•</span>
+        <a href="services.html">Services</a>
+        <span>•</span>
+        <a href="case-studies.html">Case Studies</a>
+        <span>•</span>
+        <a href="blog.html">Blog</a>
+        <span>•</span>
+        <a href="contacts.html">Contacts</a>
+      </nav>
+      <div class="footer-icons">
+        <a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="images/Linkedin_logo.png" alt="LinkedIn" />
+        </a>
+        <a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener" aria-label="Behance">
+          <img src="images/Behance_logo.png" alt="Behance" />
+        </a>
+        <a href="https://substack.com/@olinproduct/" target="_blank" rel="noopener" aria-label="Substack">
+          <img src="images/Substack_logo_footer.png" alt="Substack" />
+        </a>
+      </div>
+      <p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p>
+    </div>
+  </footer>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script>
+    // ── Data ──────────────────────────────────────────────────────────────
+    const STARTUPS = [
+      {id:1,  name:"Africa money transfer app",                               topic:"Fintech",                 type:"App",       model:"B2C", date:"2026-03-18", notes:"$3.5M TTM rev, $250k profit, Founded 2021"},
+      {id:2,  name:"AI photo & video funny app (Top 100 App Store)",          topic:"AI / Creative",           type:"App",       model:"B2C", date:"2026-03-17", notes:"Top 100 App Store"},
+      {id:3,  name:"AI Note-Taking SaaS",                                     topic:"AI / Productivity",       type:"SaaS",      model:"B2C", date:"2026-03-16", notes:"$384K ARR, 114% growth, 5K+ customers"},
+      {id:4,  name:"B2B fitness challenge platform",                          topic:"HealthTech",              type:"SaaS",      model:"B2B", date:"2026-03-15", notes:"Team-building, self-serve"},
+      {id:5,  name:"AI kids storybook publishing",                            topic:"AI / EdTech",             type:"App",       model:"B2C", date:"2026-03-15", notes:"Helps kids publish first storybook"},
+      {id:6,  name:"AI social media automation SaaS",                        topic:"AI / Marketing",          type:"SaaS",      model:"B2B", date:"2026-03-13", notes:"$637k ARR, 253% YoY growth"},
+      {id:7,  name:"Voice teleprompter iPad app",                             topic:"Content / Creator Tools", type:"App",       model:"B2C", date:"2026-03-12", notes:"For video creators & production pros"},
+      {id:8,  name:"Dating app with AI messaging & songs",                   topic:"Social / Dating",         type:"App",       model:"B2C", date:"2026-03-12", notes:"Helps men on dating apps"},
+      {id:9,  name:"AI recruitment platform",                                 topic:"AI / HR",                 type:"SaaS",      model:"B2B", date:"2026-03-12", notes:"End-to-end hiring for employers"},
+      {id:10, name:"Multi-model AI video/image SaaS",                         topic:"AI / Creative",           type:"SaaS",      model:"B2C", date:"2026-03-10", notes:"$6K ARR, 50-100 customers"},
+      {id:11, name:"Age calculator app",                                      topic:"Utility",                 type:"App",       model:"B2C", date:"2026-03-10", notes:"Simple, fast utility"},
+      {id:12, name:"AI coding assistant for VS Code",                         topic:"AI / Dev Tools",          type:"Plugin",    model:"B2C", date:"2026-03-10", notes:"$378k TTM, 2.2M downloads, 140% YoY"},
+      {id:13, name:"AI chat & companion app portfolio",                       topic:"AI / Social",             type:"Portfolio", model:"B2C", date:"2026-03-09", notes:"~$444K run-rate, ~97% margin"},
+      {id:14, name:"AI face analysis for appearance improvement",             topic:"AI / Beauty",             type:"App",       model:"B2C", date:"2026-03-09", notes:"Personalized appearance tips"},
+      {id:15, name:"Online resume builder",                                   topic:"Career / HR",             type:"SaaS",      model:"B2C", date:"2026-03-07", notes:"Fast professional CV creation"},
+      {id:16, name:"Real-time visual AI agent for customer service",          topic:"AI / CX",                 type:"SaaS",      model:"B2B", date:"2026-03-06", notes:"Faster, secure customer resolutions"},
+      {id:17, name:"Premium iOS keyboard app",                                topic:"Utility",                 type:"App",       model:"B2C", date:"2026-03-06", notes:"Built-in organic growth engine"},
+      {id:18, name:"Unified GPT/Gemini/Grok AI assistant",                   topic:"AI / Productivity",       type:"SaaS",      model:"B2C", date:"2026-03-05", notes:"500+ customers, $10K TTM profit"},
+      {id:19, name:"AI personalized song generator",                          topic:"AI / Creative",           type:"Platform",  model:"B2C", date:"2026-03-05", notes:"Personal stories into emotional gifts"},
+      {id:20, name:"Multi-language AI tools mobile courses",                  topic:"EdTech",                  type:"App",       model:"B2C", date:"2026-03-05", notes:"Structured mobile courses"},
+      {id:21, name:"Anonymous Instagram activity alerts (Gen Z)",             topic:"Social / Dating",         type:"App",       model:"B2C", date:"2026-03-05", notes:"Dating transparency for Gen Z"},
+      {id:22, name:"Arabic & Quran recitation learning app",                  topic:"EdTech",                  type:"App",       model:"B2C", date:"2026-03-04", notes:"$455K+ proceeds, 175K users, 21.5% CVR"},
+      {id:23, name:"AI booking SaaS for SMBs",                               topic:"AI / Productivity",       type:"SaaS",      model:"B2B", date:"2026-03-04", notes:"32+ languages, 24/7, qualified leads"},
+      {id:24, name:"AI interior & exterior design app",                       topic:"AI / Creative",           type:"App",       model:"B2C", date:"2026-03-04", notes:"Instant home makeover via AI"},
+      {id:25, name:"AI crafting SaaS",                                        topic:"AI / Creative",           type:"SaaS",      model:"B2C", date:"2026-03-03", notes:"5K+ users, 68K+ assets, 96% growth"},
+      {id:26, name:"Subscription reels video maker app",                      topic:"Content / Creator Tools", type:"App",       model:"B2C", date:"2026-03-03", notes:"$61K ARR, 125% growth, 5K+ users"},
+      {id:27, name:"iOS ringtone app",                                        topic:"Utility",                 type:"App",       model:"B2C", date:"2026-03-02", notes:"Passive, subscription-based revenue"},
+      {id:28, name:"Veteran benefits & discounts hub",                        topic:"Utility",                 type:"App",       model:"B2C", date:"2026-02-27", notes:"Faster access to veteran benefits"},
+      {id:29, name:"Cross-platform social widget app",                        topic:"Social",                  type:"App",       model:"B2C", date:"2026-02-25", notes:"21K MAU, 4.7 rating, 84% margin"},
+      {id:30, name:"AI-powered design tool for content creation",             topic:"AI / Creative",           type:"SaaS",      model:"B2B", date:"2026-02-25", notes:"Fast, professional content"},
+      {id:31, name:"Text-native AI chief of staff",                           topic:"AI / Productivity",       type:"App",       model:"B2C", date:"2026-02-25", notes:"iMessage/SMS/WhatsApp personal assistant"},
+      {id:32, name:"AI music generator platform",                             topic:"AI / Creative",           type:"Platform",  model:"B2C", date:"2026-02-24", notes:"Web + iOS/Android, strong organic growth"},
+      {id:33, name:"EdTech study tools app",                                  topic:"EdTech",                  type:"App",       model:"B2C", date:"2026-02-23", notes:"Improves habits & academic performance"},
+      {id:34, name:"AI personalized song creator",                            topic:"AI / Creative",           type:"App",       model:"B2C", date:"2026-02-18", notes:"No music skills needed"},
+      {id:35, name:"AI hiring platform (multilingual, anti-cheat)",           topic:"AI / HR",                 type:"SaaS",      model:"B2B", date:"2026-02-17", notes:"Multilingual interviews, live coding"},
+      {id:36, name:"Compatibility-first matchmaking platform",                topic:"Social / Dating",         type:"Platform",  model:"B2C", date:"2026-02-17", notes:"Meaningful connections"},
+      {id:37, name:"Cosmetic scanner safety app",                             topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-02-16", notes:"Product safety for health-conscious consumers"},
+      {id:38, name:"No-code AI agents for conversations",                     topic:"AI / Automation",         type:"SaaS",      model:"B2B", date:"2026-02-16", notes:"Real conversations, no-code"},
+      {id:39, name:"Habit reversal iOS app (nail-biting)",                    topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-02-16", notes:"Stop nail-biting, improve nail health"},
+      {id:40, name:"AI chat assistant for students & professionals",          topic:"AI / Productivity",       type:"App",       model:"B2C", date:"2026-02-16", notes:"Productivity enhancement"},
+      {id:41, name:"Storage cleaner iOS app",                                 topic:"Utility",                 type:"App",       model:"B2C", date:"2026-02-16", notes:"15K+ paid subscribers"},
+      {id:42, name:"AI Reddit marketing automation",                          topic:"AI / Marketing",          type:"SaaS",      model:"B2B", date:"2026-02-12", notes:"Discovery to posting automation"},
+      {id:43, name:"iOS AI photo/video enhancer",                             topic:"AI / Creative",           type:"App",       model:"B2C", date:"2026-02-12", notes:"$40K TTM profit, 100+ templates"},
+      {id:44, name:"AI content rewriting platform",                           topic:"AI / Marketing",          type:"SaaS",      model:"B2B", date:"2026-02-12", notes:"Clear, natural copy"},
+      {id:45, name:"iPhone smart lighting control app",                       topic:"Utility",                 type:"App",       model:"B2C", date:"2026-02-12", notes:"16K+ organic installs"},
+      {id:46, name:"AI calorie tracker with smart clarification",             topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-02-11", notes:"Unmatched accuracy"},
+      {id:47, name:"Enterprise AI agent deployment platform",                 topic:"AI / Enterprise",         type:"SaaS",      model:"B2B", date:"2026-02-10", notes:"Secure, controllable AI agents"},
+      {id:48, name:"Screen-time reduction app",                               topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-02-09", notes:"High-margin, helps users scroll less"},
+      {id:49, name:"AI brand visibility analytics tool",                      topic:"AI / Marketing",          type:"SaaS",      model:"B2B", date:"2026-02-09", notes:"How AI views your brand"},
+      {id:50, name:"Virtual phone number & eSIM app",                         topic:"Utility",                 type:"App",       model:"B2C", date:"2026-02-09", notes:"Privacy, business, travel"},
+      {id:51, name:"Social music discovery platform",                         topic:"Social",                  type:"Platform",  model:"B2C", date:"2026-02-09", notes:"580K users, 160K MAU, untapped monetization"},
+      {id:52, name:"Enterprise AI data context layer",                        topic:"AI / Enterprise",         type:"SaaS",      model:"B2B", date:"2026-02-09", notes:"Fortune 500 adopted, investor-backed"},
+      {id:53, name:"VPN service app",                                         topic:"Utility",                 type:"App",       model:"B2C", date:"2026-02-09", notes:"Privacy & global content access"},
+      {id:54, name:"Health & fitness facial appearance app",                  topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-02-09", notes:"Smartphone-based"},
+      {id:55, name:"iOS portfolio: print, scan, fax, call recording, VPN",   topic:"Utility",                 type:"Portfolio", model:"B2C", date:"2026-02-09", notes:"Strong recurring revenue, 6 apps"},
+      {id:56, name:"Android voice-changer apps (2 apps)",                    topic:"Content / Creator Tools", type:"Portfolio", model:"B2C", date:"2026-02-09", notes:"Gamers, creators, artists"},
+      {id:57, name:"Top European yoga app",                                   topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-02-09", notes:"1M+ downloads, $88K TTM profit"},
+      {id:58, name:"14-app iOS portfolio",                                    topic:"Utility",                 type:"Portfolio", model:"B2C", date:"2026-02-09", notes:"140K monthly downloads, 100% organic"},
+      {id:59, name:"9-app iOS portfolio",                                     topic:"Utility",                 type:"Portfolio", model:"B2C", date:"2026-02-09", notes:"7-year main app, organic traffic"},
+      {id:60, name:"AI executive workspace SaaS",                             topic:"AI / Productivity",       type:"SaaS",      model:"B2B", date:"2026-02-08", notes:"Memory, tasks, agent automations"},
+      {id:61, name:"Interactive AI avatars for conversions",                  topic:"AI / Marketing",          type:"SaaS",      model:"B2B", date:"2026-02-06", notes:"Boost trust, engagement & conversions"},
+      {id:62, name:"AI learning OS with educational guardrails",              topic:"AI / EdTech",             type:"SaaS",      model:"B2B", date:"2026-02-06", notes:"Built-in safety for learning"},
+      {id:63, name:"AI prompt generator mobile app",                          topic:"AI / Productivity",       type:"App",       model:"B2C", date:"2026-02-05", notes:"Ready to scale or integrate"},
+      {id:64, name:"iOS AI video app",                                        topic:"AI / Creative",           type:"App",       model:"B2C", date:"2026-02-05", notes:"Profitable, strong growth potential"},
+      {id:65, name:"Quiz & flashcard maker app",                              topic:"EdTech",                  type:"App",       model:"B2C", date:"2026-02-04", notes:"Faster, smarter study"},
+      {id:66, name:"AI localization SaaS",                                    topic:"AI / Marketing",          type:"SaaS",      model:"B2B", date:"2026-02-04", notes:"Consistent brand voice, pre-revenue"},
+      {id:67, name:"Virtual SMS verification service",                        topic:"Utility",                 type:"App",       model:"B2C", date:"2026-02-03", notes:"Privacy & online account verification"},
+      {id:68, name:"AI creative app (photo + video effects)",                 topic:"AI / Creative",           type:"App",       model:"B2C", date:"2026-02-02", notes:"$25.5K TTM rev, $14.7K TTM profit"},
+      {id:69, name:"Everyday utility apps (audio, photo, network)",           topic:"Utility",                 type:"Portfolio", model:"B2C", date:"2026-02-02", notes:"Save users time, simple tools"},
+      {id:70, name:"AI nose reshaping selfie app",                            topic:"AI / Beauty",             type:"App",       model:"B2C", date:"2026-02-02", notes:"Confident, symmetric selfies"},
+      {id:71, name:"macOS print/scan app",                                    topic:"Utility",                 type:"App",       model:"B2C", date:"2026-02-02", notes:"$180K ARR, 2.4K paid subscribers"},
+      {id:72, name:"AI asset organizer for creatives",                        topic:"AI / Productivity",       type:"SaaS",      model:"B2B", date:"2026-02-02", notes:"File management for creatives"},
+      {id:73, name:"Phone-based gram scale app",                              topic:"Utility",                 type:"App",       model:"B2C", date:"2026-02-02", notes:"$6K ARR, 1K+ users, 100% growth"},
+      {id:74, name:"AI job application SaaS",                                 topic:"AI / HR",                 type:"SaaS",      model:"B2C", date:"2026-02-01", notes:"Resume, cover letter, LinkedIn — $4.99/mo"},
+      {id:75, name:"Padel/pickleball SaaS",                                   topic:"Sports",                  type:"SaaS",      model:"B2B", date:"2026-01-30", notes:"5K+ players, club booking & matchmaking"},
+      {id:76, name:"AI corporate microlearning platform",                     topic:"AI / EdTech",             type:"SaaS",      model:"B2B", date:"2026-01-30", notes:"Gamified, bite-sized, white-label"},
+      {id:77, name:"AI kids story SaaS",                                      topic:"AI / EdTech",             type:"SaaS",      model:"B2C", date:"2026-01-29", notes:"83% margins, $425/yr ops"},
+      {id:78, name:"iOS & Android social app for couples/friends",            topic:"Social",                  type:"App",       model:"B2C", date:"2026-01-29", notes:"Fast-growing"},
+      {id:79, name:"AI comment engine for X (Twitter)",                       topic:"AI / Marketing",          type:"SaaS",      model:"B2B", date:"2026-01-29", notes:"$24K ARR, 30% growth, B2B brand engagement"},
+      {id:80, name:"AI photo restoration app",                                topic:"AI / Creative",           type:"App",       model:"B2C", date:"2026-01-29", notes:"Restore treasured memories"},
+      {id:81, name:"iOS AI chat & workflow app",                              topic:"AI / Productivity",       type:"App",       model:"B2C", date:"2026-01-28", notes:"$52K TTM profit, organic"},
+      {id:82, name:"Positive affirmations lifestyle app",                     topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-01-27", notes:"Daily happiness for adults"},
+      {id:83, name:"AI dating profile optimization app",                      topic:"Social / Dating",         type:"App",       model:"B2C", date:"2026-01-27", notes:"More matches and dates"},
+      {id:84, name:"AI mental wellness app",                                  topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-01-26", notes:"Reduce stress, improve well-being"},
+      {id:85, name:"AI data-to-report platform",                              topic:"AI / Productivity",       type:"SaaS",      model:"B2B", date:"2026-01-24", notes:"Complex data into client-ready reports"},
+      {id:86, name:"Bloating trigger discovery app",                          topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-01-24", notes:"Gut health, look & feel better"},
+      {id:87, name:"AI mannequin photography SaaS for ecommerce",             topic:"AI / eCommerce",          type:"SaaS",      model:"B2B", date:"2026-01-24", notes:"50+ customers, profit-positive"},
+      {id:88, name:"Class action payout discovery app",                       topic:"Fintech",                 type:"App",       model:"B2C", date:"2026-01-23", notes:"Rapid growth, high-margin"},
+      {id:89, name:"AI speech-to-text transcription app",                     topic:"AI / Productivity",       type:"App",       model:"B2C", date:"2026-01-22", notes:"High-accuracy, intelligent summaries"},
+      {id:90, name:"AI prompt management platform",                           topic:"AI / Dev Tools",          type:"SaaS",      model:"B2B", date:"2026-01-20", notes:"Structured, production-ready prompts"},
+      {id:91, name:"AI voice receptionist for restaurants",                   topic:"AI / Automation",         type:"SaaS",      model:"B2B", date:"2026-01-20", notes:"Captures missed phone orders"},
+      {id:92, name:"Quit-smoking app",                                        topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-01-19", notes:"$46K ARR, 50% growth, iOS/Android"},
+      {id:93, name:"AI calorie & macro tracker",                              topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-01-18", notes:"Meet health goals"},
+      {id:94, name:"AI digestive health app",                                 topic:"HealthTech",              type:"App",       model:"B2C", date:"2026-01-16", notes:"Food & symptom data to insights"},
+      {id:95, name:"AI character creator SaaS",                               topic:"AI / Creative",           type:"SaaS",      model:"B2C", date:"2026-01-15", notes:"Guided funnel, dual revenue streams"},
+      {id:96, name:"AI email management tool",                                topic:"AI / Productivity",       type:"SaaS",      model:"B2B", date:"2026-01-15", notes:"Organize and automate email responses"},
+      {id:97, name:"AI instant headshots",                                    topic:"AI / Creative",           type:"SaaS",      model:"B2C", date:"2026-01-15", notes:"Fraction of traditional cost"},
+      {id:98, name:"AI neurodivergent communication app",                     topic:"AI / HealthTech",         type:"App",       model:"B2C", date:"2026-01-14", notes:"Bridge communication gap"},
+      {id:99, name:"AI product holding video generator",                      topic:"AI / Marketing",          type:"SaaS",      model:"B2B", date:"2026-01-14", notes:"1000+ avatars, 60s VEO3, 15+ languages"},
+      {id:100,name:"Fire TV remote control app",                              topic:"Utility",                 type:"App",       model:"B2C", date:"2026-01-13", notes:"Simplify device navigation"},
+    ];
+
+    // ── State ─────────────────────────────────────────────────────────────
+    let activeTopics = new Set();
+    let activeModels = new Set();
+    let sortCol  = 'id';
+    let sortDir  = 1;
+
+    // ── Type badge class ─────────────────────────────────────────────────
+    const typeClass = {
+      'SaaS':'badge-saas','App':'badge-app','Platform':'badge-platform',
+      'Portfolio':'badge-portfolio','Plugin':'badge-plugin'
+    };
+    const modelClass = { 'B2B':'badge-b2b', 'B2C':'badge-b2c' };
+
+    // ── Build filter pills ────────────────────────────────────────────────
+    function buildFilters() {
+      const topics = [...new Set(STARTUPS.map(d => d.topic))].sort();
+      const models = ['B2B', 'B2C'];
+
+      const topicEl = document.getElementById('topic-pills');
+      topicEl.innerHTML = topics.map(t =>
+        `<button class="filter-pill" data-topic="${t}" onclick="toggleTopic('${t}')">${t}</button>`
+      ).join('');
+
+      const modelEl = document.getElementById('model-pills');
+      modelEl.innerHTML = models.map(m =>
+        `<button class="filter-pill" data-model="${m}" onclick="toggleModel('${m}')">${m}</button>`
+      ).join('');
+    }
+
+    function toggleTopic(t) {
+      activeTopics.has(t) ? activeTopics.delete(t) : activeTopics.add(t);
+      document.querySelectorAll(`[data-topic="${t}"]`).forEach(b => b.classList.toggle('active', activeTopics.has(t)));
+      render();
+    }
+    function toggleModel(m) {
+      activeModels.has(m) ? activeModels.delete(m) : activeModels.add(m);
+      document.querySelectorAll(`[data-model="${m}"]`).forEach(b => b.classList.toggle('active', activeModels.has(m)));
+      render();
+    }
+
+    // ── Sort ──────────────────────────────────────────────────────────────
+    function sortBy(col) {
+      sortDir = (sortCol === col) ? -sortDir : 1;
+      sortCol = col;
+      render();
+    }
+
+    // ── Filter + sort ─────────────────────────────────────────────────────
+    function getFiltered() {
+      return STARTUPS.filter(d => {
+        if (activeTopics.size && !activeTopics.has(d.topic)) return false;
+        if (activeModels.size && !activeModels.has(d.model)) return false;
+        return true;
+      }).sort((a, b) => {
+        const av = a[sortCol], bv = b[sortCol];
+        if (typeof av === 'number') return sortDir * (av - bv);
+        return sortDir * String(av).localeCompare(String(bv));
+      });
+    }
+
+    // ── Render table ──────────────────────────────────────────────────────
+    function renderTable(rows) {
+      const tbody = document.getElementById('table-body');
+      document.getElementById('table-count').textContent =
+        `Showing ${rows.length} of ${STARTUPS.length} startups`;
+
+      if (!rows.length) {
+        tbody.innerHTML = `<tr><td colspan="7" class="no-results">No startups match the selected filters.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = rows.map((d, i) => `
+        <tr>
+          <td class="td-num">${i + 1}</td>
+          <td class="td-name">${d.name}</td>
+          <td><span class="badge badge-topic">${d.topic}</span></td>
+          <td><span class="badge ${typeClass[d.type] || 'badge-app'}">${d.type}</span></td>
+          <td><span class="badge ${modelClass[d.model] || ''}">${d.model}</span></td>
+          <td style="white-space:nowrap;color:#888;font-size:12px">${d.date.slice(5)}</td>
+          <td class="td-notes">${d.notes}</td>
+        </tr>
+      `).join('');
+    }
+
+    // ── Render trends ─────────────────────────────────────────────────────
+    function renderTrends(rows) {
+      const count = (field) => {
+        const map = {};
+        rows.forEach(d => { map[d[field]] = (map[d[field]] || 0) + 1; });
+        return Object.entries(map).sort((a,b) => b[1]-a[1]);
+      };
+
+      const bars = (entries, maxN, containerId) => {
+        const top = entries.slice(0, maxN);
+        const max = top[0]?.[1] || 1;
+        document.getElementById(containerId).innerHTML = top.map(([k, v]) => `
+          <div class="trend-bar-row">
+            <span class="trend-bar-label" title="${k}">${k.length > 13 ? k.slice(0,12)+'…' : k}</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" style="width:${Math.round(v/max*100)}%"></div></div>
+            <span class="trend-bar-num">${v}</span>
+          </div>
+        `).join('') || '<p style="font-size:13px;color:#bbb;margin:0">No data</p>';
+      };
+
+      bars(count('topic'), 6, 'trend-topics');
+      bars(count('type'),  5, 'trend-types');
+      bars(count('model'), 3, 'trend-models');
+    }
+
+    // ── Main render ───────────────────────────────────────────────────────
+    function render() {
+      const rows = getFiltered();
+      renderTable(rows);
+      renderTrends(rows);
+    }
+
+    // ── Share ─────────────────────────────────────────────────────────────
+    function setupShare() {
+      const share = async () => {
+        const url  = window.location.href;
+        const title = '100 AI Startups: what\'s actually working in 2026';
+        if (navigator.share) {
+          try { await navigator.share({ title, url }); return; } catch(e) {}
+        }
+        try {
+          await navigator.clipboard.writeText(url);
+          const btn = document.getElementById('shareCtaBtn');
+          const orig = btn.innerHTML;
+          btn.innerHTML = 'Link copied! ✓';
+          setTimeout(() => { btn.innerHTML = orig; }, 2000);
+        } catch(e) { window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank'); }
+      };
+      document.getElementById('shareBtn').addEventListener('click', share);
+      document.getElementById('shareCtaBtn').addEventListener('click', share);
+    }
+
+    // ── Mobile nav ────────────────────────────────────────────────────────
+    function setupNav() {
+      const burger   = document.getElementById('burger');
+      const mobileNav = document.getElementById('mobile-nav');
+      const close    = document.getElementById('mobile-close');
+      if (burger)    burger.addEventListener('click',  () => mobileNav.classList.add('open'));
+      if (close)     close.addEventListener('click',   () => mobileNav.classList.remove('open'));
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────
+    buildFilters();
+    render();
+    setupShare();
+    setupNav();
+  </script>
+
+</body>
+</html>
