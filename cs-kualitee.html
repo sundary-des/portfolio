@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kualitee — Why the Sign-Up Page Was Leaking Conversions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #292b2d;
+      --ink-muted:  #707379;
+      --bg-card:    #fafafa;
+      --border:     #e9eaec;
+      --yellow:     #fdd30e;
+      --red:        #fd220e;
+      --white:      #ffffff;
+      --font:       'Inter', sans-serif;
+      --content-w:  1187px;
+      --page-w:     1440px;
+    }
+
+    html { font-family: var(--font); color: var(--ink); background: var(--white); }
+    body { min-height: 100vh; }
+    a { color: inherit; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 31px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 24px;
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(5px);
+      border: 1px solid #f5f5f5; border-radius: 9999px;
+      padding: 12px 16px;
+      box-shadow: 0 4px 12.8px rgba(68,130,255,0.1);
+      z-index: 100; white-space: nowrap;
+    }
+    .nav-avatar {
+      width: 41px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+    }
+    .nav-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .nav a {
+      font-size: 15px; font-weight: 500; color: var(--ink);
+      text-decoration: none; transition: opacity .15s;
+    }
+    .nav a:hover { opacity: .6; }
+    .nav a.active { font-weight: 700; }
+
+    /* ── PAGE WRAPPER ── */
+    .page {
+      max-width: var(--page-w);
+      margin: 0 auto;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: var(--content-w);
+      margin: 0 auto;
+      padding: 96px 24px 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+
+    /* ── LOGO ROW ── */
+    .logo-row {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-row img.logo { height: 57px; width: auto; }
+    .share-btn {
+      width: 24px; height: 24px; cursor: pointer; opacity: .7;
+      background: none; border: none; padding: 0;
+    }
+    .share-btn svg { width: 24px; height: 24px; }
+
+    /* ── TITLE BLOCK ── */
+    .title-block { display: flex; flex-direction: column; gap: 10px; }
+    .title-block h1 {
+      font-size: 36px; font-weight: 600; line-height: 1.2; color: var(--ink);
+    }
+    .title-block .subtitle {
+      font-size: 16px; font-weight: 500; color: var(--ink-muted);
+    }
+    .title-block .description {
+      font-size: 22px; font-weight: 400; color: var(--ink); margin-top: 6px;
+      line-height: 1.45;
+    }
+
+    /* ── COVER IMAGE ── */
+    .cover-img {
+      width: 100%; border-radius: 32px; border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(112,115,121,0.1);
+      display: block; object-fit: cover;
+    }
+
+    /* ── SNAPSHOT CARDS ── */
+    .snapshot-cards { display: flex; flex-direction: column; gap: 24px; }
+    .card {
+      background: var(--bg-card); border-radius: 24px;
+      padding: 32px 24px; width: 100%;
+    }
+    .card h2 {
+      font-size: 24px; font-weight: 500; margin-bottom: 24px; line-height: 1.2;
+    }
+    .card p, .card li {
+      font-size: 18px; font-weight: 400; line-height: 28px; color: var(--ink);
+    }
+    .card p + p { margin-top: 8px; }
+    .card strong { font-weight: 700; }
+    .card em { font-style: italic; }
+
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      font-size: 32px; font-weight: 700; line-height: 1.2; color: var(--ink);
+    }
+
+    /* ── ANNOTATED IMAGE ── */
+    .annotated-img-wrap {
+      position: relative; display: inline-block; width: 100%;
+    }
+    .annotated-img-wrap img {
+      width: 100%; border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(112,115,121,0.1);
+      display: block;
+    }
+    .dot {
+      position: absolute;
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; line-height: 1;
+      transform: translate(-50%, -50%);
+    }
+    .dot-yellow { background: var(--yellow); color: #000; }
+    .dot-red    { background: var(--red);    color: #fff; }
+
+    .img-caption {
+      font-size: 18px; font-style: italic; color: var(--ink-muted);
+      text-align: center; margin-top: 4px;
+    }
+
+    /* ── NUMBERED ROWS ── */
+    .numbered-rows { display: flex; flex-direction: column; gap: 32px; }
+    .numbered-row { display: flex; gap: 16px; align-items: flex-start; }
+    .num-badge {
+      width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700;
+    }
+    .num-badge-grey { background: var(--border); color: var(--ink); }
+    .num-badge-red  { background: var(--red);    color: #fff; }
+    .numbered-row-text { flex: 1; font-size: 18px; line-height: 28px; color: var(--ink); }
+    .numbered-row-text strong { font-weight: 700; }
+    .numbered-row-text em { font-style: italic; }
+    .numbered-row-text p + p { margin-top: 8px; }
+
+    /* ── CALLOUT BOX (lamp / brain / warning) ── */
+    .callout {
+      background: var(--bg-card); border-radius: 24px;
+      padding: 24px; display: flex; gap: 24px; align-items: flex-start;
+      width: 100%;
+    }
+    .callout-icon { width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; }
+    .callout-body { flex: 1; font-size: 18px; font-style: italic; line-height: 28px; color: var(--ink); }
+    .callout-body strong { font-weight: 700; }
+
+    /* ── 3 QUESTIONS BLOCK ── */
+    .questions-section {
+      display: flex; flex-direction: column; gap: 32px; align-items: center;
+    }
+    .questions-icon { width: 64px; height: 64px; object-fit: contain; }
+    .questions-title {
+      font-size: 24px; font-weight: 700; color: var(--ink); text-align: center;
+    }
+    .questions-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; width: 100%; }
+    .question-card {
+      background: var(--bg-card); border-radius: 24px; padding: 32px 24px;
+    }
+    .question-card h3 {
+      font-size: 24px; font-weight: 500; line-height: 1.3; margin-bottom: 24px; color: var(--ink);
+    }
+    .question-card p {
+      font-size: 18px; font-weight: 400; line-height: 28px; color: var(--ink);
+    }
+
+    /* ── MOBILE + TEXT SIDE BY SIDE ── */
+    .mobile-section {
+      background: var(--bg-card); border-radius: 24px;
+      padding: 53px 60px;
+      display: flex; gap: 60px; align-items: center;
+      width: 100%;
+    }
+    .mobile-screen {
+      width: 420px; flex-shrink: 0; border-radius: 40px; overflow: hidden;
+    }
+    .mobile-screen img { width: 100%; display: block; border-radius: 40px; }
+    .mobile-text { flex: 1; }
+    .mobile-text h3 {
+      font-size: 24px; font-weight: 500; margin-bottom: 24px; color: var(--ink); line-height: 1.3;
+    }
+    .mobile-text p {
+      font-size: 18px; line-height: 28px; color: var(--ink); margin-bottom: 8px;
+    }
+    .mobile-text strong { font-weight: 700; }
+
+    /* ── WHAT THIS IS ABOUT ── */
+    .about-section {
+      display: flex; flex-direction: column; gap: 32px; align-items: center;
+    }
+    .about-section .brain-icon { width: 64px; height: 64px; object-fit: contain; }
+    .about-section h2 {
+      font-size: 24px; font-weight: 700; text-align: center; color: var(--ink);
+    }
+    .about-list {
+      list-style: disc; padding-left: 27px;
+      font-size: 18px; line-height: 28px; color: var(--ink);
+    }
+    .about-list li { margin-bottom: 0; }
+
+    /* ── THREE QUESTIONS CLOSING ── */
+    .closing-questions { display: flex; flex-direction: column; gap: 32px; width: 100%; }
+    .closing-questions h2 {
+      font-size: 24px; font-weight: 700; line-height: 28px; color: var(--ink);
+    }
+    .closing-questions .q-block p { font-size: 18px; line-height: 28px; color: var(--ink); }
+    .closing-questions .q-block + .q-block { margin-top: 32px; }
+    .closing-questions .q-label { font-weight: 700; margin-bottom: 8px; }
+
+    /* ── SOURCES ── */
+    .sources-block {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+    }
+    .sources-block p, .sources-block li {
+      font-size: 14px; font-style: italic; color: var(--ink-muted); line-height: 20px;
+    }
+    .sources-block ul { list-style: disc; padding-left: 20px; margin-top: 8px; }
+    .sources-block li { margin-bottom: 0; }
+    .sources-block a { color: var(--ink-muted); text-decoration: underline; }
+    .sources-block a:hover { color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-card);
+      padding: 24px 0 40px;
+      display: flex; flex-direction: column; align-items: center; gap: 24px;
+    }
+    .footer-nav {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .footer-nav a {
+      font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none;
+    }
+    .footer-nav a:hover { opacity: .6; }
+    .footer-sep { color: var(--ink-muted); font-size: 14px; user-select: none; }
+    .footer-social { display: flex; align-items: center; gap: 14px; }
+    .footer-social img { width: 32px; height: 32px; border-radius: 5px; object-fit: cover; }
+    .footer-copy {
+      font-size: 14px; font-weight: 500; color: var(--ink-muted); text-align: center;
+    }
+
+    /* ── INLINE ITALIC BOLD ── */
+    .bold-italic { font-weight: 700; font-style: italic; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .questions-grid { grid-template-columns: 1fr; }
+      .mobile-section { flex-direction: column; padding: 32px 24px; }
+      .mobile-screen { width: 100%; }
+      .nav { display: none; } /* simplify on mobile */
+      .content { padding-top: 40px; }
+    }
+    @media (max-width: 640px) {
+      .title-block h1 { font-size: 26px; }
+      .section-heading { font-size: 24px; }
+      .card h2 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav class="nav">
+  <div class="nav-avatar">
+    <img src="images/Logo.png" alt="Olga Kalinina" />
+  </div>
+  <a href="services.html">Services</a>
+  <a href="case-studies.html" class="active">Case Study</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About me</a>
+  <a href="contacts.html">Contacts</a>
+</nav>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="page">
+<div class="content">
+
+  <!-- LOGO + SHARE -->
+  <div class="logo-row">
+    <img class="logo" src="images/Logo.png" alt="Olga Kalinina" />
+    <button class="share-btn" aria-label="Share">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#292b2d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/>
+        <polyline points="16 6 12 2 8 6"/>
+        <line x1="12" y1="2" x2="12" y2="15"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- TITLE -->
+  <div class="title-block">
+    <div>
+      <h1>Kualitee — Why the Sign-Up page was leaking conversions</h1>
+      <p class="subtitle">Product Design | B2B SaaS | 2026</p>
+    </div>
+    <p class="description">A three-way design critique of a real SaaS sign-up form — and what the right redesign actually changes.</p>
+  </div>
+
+  <!-- COVER -->
+  <img class="cover-img" src="images/Cover_image.png" alt="Kualitee case study cover" />
+
+  <!-- PROJECT SNAPSHOT -->
+  <div class="snapshot-cards">
+    <div class="card">
+      <h2>Project snapshot</h2>
+      <p><strong>Product:</strong> Kualitee — B2B SaaS for software testing teams</p>
+      <p><strong>Focus:</strong> Sign-up page / trial activation</p>
+      <p><strong>My role:</strong> Product Designer (UX/UI, flows, conversion design)</p>
+      <p><strong>Core metrics to optimise:</strong> visitor-to-trial conversion rate (industry avg 2–5%, target: top quartile &gt;11%), form completion rate (drop-off by field), trial-to-paid conversion rate</p>
+      <p><strong>Versions compared:</strong> Current live design → Client's proposed redesign → My redesign</p>
+    </div>
+
+    <div class="card">
+      <h2>The real question</h2>
+      <p>When a QA manager lands on your sign-up page, what are they thinking?</p>
+      <p>Not <em>"I need a release-ready project."</em> They're thinking: <em>"We keep shipping bugs. My team is drowning. I need something that works before our next release cycle."</em></p>
+      <p>So the design question isn't "how do we make the form look better?" It's: <strong>why would this person hesitate — and what can we remove to make hesitation harder?</strong></p>
+    </div>
+  </div>
+
+  <!-- VERSION 1 -->
+  <div>
+    <p class="section-heading" style="margin-bottom:32px;">Version 1: The original live page</p>
+
+    <div style="margin-bottom:24px;">
+      <div class="annotated-img-wrap">
+        <img src="images/OLD_current.png" alt="Original Kualitee sign-up page" />
+        <!-- dots match Figma coordinates scaled to % -->
+        <div class="dot dot-yellow" style="left:7.1%;top:5%;">1</div>
+        <div class="dot dot-yellow" style="left:27%;top:32.7%;">2</div>
+        <div class="dot dot-yellow" style="left:44.5%;top:17.2%;">4</div>
+        <div class="dot dot-yellow" style="left:56.9%;top:46.1%;">5</div>
+        <div class="dot dot-yellow" style="left:83%;top:19.1%;">3</div>
+      </div>
+      <p class="img-caption">SignUp page of Kualitee.com</p>
+    </div>
+
+    <p style="font-size:18px;line-height:28px;margin-bottom:32px;">It looks fine: two columns, form on the left, benefits on the right. Clean and... forgettable.</p>
+
+    <div class="numbered-rows">
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">1</div>
+        <div class="numbered-row-text">
+          <p><strong>The headline: "Get started for free."</strong></p>
+          <p>Every SaaS product says this. It's the design equivalent of "Welcome!" — technically correct, but completely empty.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">2</div>
+        <div class="numbered-row-text">
+          <p><strong>The CTA: "Get it Now."</strong></p>
+          <p><em>"Now"</em> implies urgency. B2B buyers don't want urgency — they want confidence. <em>"Now"</em> sounds like a flash sale, not a professional tool.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">3</div>
+        <div class="numbered-row-text">
+          <p><strong>The right column has 11 feature list.</strong></p>
+          <p>Unlimited projects, AI credits, 24/7 support, etc. — everything listed, nothing prioritised. When everything is important, nothing is.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">4</div>
+        <div class="numbered-row-text">
+          <p><strong>The Subdomain field with a tooltip.</strong></p>
+          <p>This asks for a permanent decision before the user has seen the product once. The tooltip explains what the field is, but not why it shouldn't frighten them. Some users will pause here, some will leave.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">5</div>
+        <div class="numbered-row-text">
+          <p><strong>Trust signals are below the fold.</strong></p>
+          <p>G2 badges, client logos, ISO certification — all placed after the form, far from the moment of doubt. Social proof only works when it's next to the hesitation.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:18px;line-height:28px;margin-top:32px;">The right column tries to sell, the left column asks, but they don't speak to each other. The user is left to make the connection on their own. Some do, many don't.</p>
+  </div>
+
+  <!-- CALLOUT: BY THE NUMBERS 1 -->
+  <div class="callout">
+    <img class="callout-icon" src="images/lamp_icon_small.png" alt="" />
+    <div class="callout-body">
+      <p><strong>By the numbers</strong></p>
+      <p>The average SaaS sign-up conversion rate is <strong>2–5%</strong>. Top performers convert above <strong>11%</strong>. That gap is rarely about traffic quality — it's about friction. Reducing form fields from 7 to 3 increases conversions by 20–35%. A single focused CTA converts 32% better than pages with two or more competing actions.</p>
+    </div>
+  </div>
+
+  <!-- VERSION 2 -->
+  <div>
+    <p class="section-heading" style="margin-bottom:32px;">Version 2: The client's proposed redesign</p>
+
+    <div style="margin-bottom:24px;">
+      <div class="annotated-img-wrap">
+        <img src="images/Client.png" alt="Client's proposed redesign" />
+        <div class="dot dot-yellow" style="left:21.8%;top:11.5%;">1</div>
+        <div class="dot dot-yellow" style="left:33.9%;top:62.9%;">2</div>
+        <div class="dot dot-yellow" style="left:4.8%;top:87.6%;">5</div>
+        <div class="dot dot-red"    style="left:27.2%;top:74.4%;">4</div>
+        <div class="dot dot-yellow" style="left:91%;top:35.1%;">3</div>
+      </div>
+      <p class="img-caption">Client's version</p>
+    </div>
+
+    <p style="font-size:18px;line-height:28px;margin-bottom:32px;">Visually, it's a step forward: the screenshot is prominent, the layout breathes more, but when you look through a conversion lens, the strategic problems are still there — and two new ones were added.</p>
+
+    <div class="numbered-rows">
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">1</div>
+        <div class="numbered-row-text">
+          <p><strong>The headline: "Start Testing in a Release Ready Project."</strong></p>
+          <p>Product-speak. It describes the tool's state — not the user's problem. Nobody arrives thinking "I need a release-ready project", they arrive thinking "I need to know our next deployment is safe."</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">2</div>
+        <div class="numbered-row-text">
+          <p><strong>The CTA: "Try It Out — It's free."</strong></p>
+          <p>This creates a false expectation: Kualitee isn't free — it's a 14-day trial. Telling users "it's free" and then revealing the pricing later is a trust break. The user feels misled, not converted.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">3</div>
+        <div class="numbered-row-text">
+          <p><strong>The dashboard screenshot instead of a list of features.</strong></p>
+          <p>Genuinely good — showing the actual product reduces uncertainty.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-red">4</div>
+        <div class="numbered-row-text">
+          <p><strong>The marketing checkbox is now pre-checked. The Terms &amp; Conditions checkbox has been removed entirely.</strong></p>
+          <p>This matters more than it might seem. Pre-checked consent for marketing is a <em>dark pattern</em> — it manufactures agreement the user never actively gave. And removing the T&amp;C checkbox isn't a simplification. For a product operating across 76 countries, it's a <strong>GDPR violation.</strong> The EU's General Data Protection Regulation requires explicit, informed consent — a pre-ticked box doesn't qualify. This exposes the company to regulatory risk in every European market it operates in.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">5</div>
+        <div class="numbered-row-text">
+          <p><strong>G2 badges moved further down.</strong></p>
+          <p>In the original design they were at least near the form. Here they've drifted below it. A step in the wrong direction.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WARNING CALLOUT -->
+  <div class="callout">
+    <img class="callout-icon" src="images/lamp_icon_small.png" alt="" style="filter:hue-rotate(310deg) saturate(2);" />
+    <p class="callout-body">Design that doesn't change behavior isn't redesign — it's restyling, and design that introduces legal risk isn't an improvement at all.</p>
+  </div>
+
+  <!-- 3 QUESTIONS -->
+  <div class="questions-section">
+    <img class="questions-icon" src="images/lamp_icon_big.png" alt="" />
+    <p class="questions-title">3 questions before my redesign:</p>
+    <div class="questions-grid">
+      <div class="question-card">
+        <h3>Who is actually signing up?</h3>
+        <p>A QA Lead or Engineering Manager. Technical enough to evaluate the tool, senior enough to care about team workflow and release risk. Not impulsive. Cautious. They need permission to trust.</p>
+      </div>
+      <div class="question-card">
+        <h3>What is the moment of truth?</h3>
+        <p>It's not the button. It's the second before the button — when the user weighs "is this worth my time and my team's data?" Everything on the page either adds to that confidence or subtracts from it.</p>
+      </div>
+      <div class="question-card">
+        <h3>What is Kualitee's real value?</h3>
+        <p>Not unlimited tests. Not REST APIs. The actual value: you'll know your release is safe before it reaches production. That's a risk-reduction story, not a feature list.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERSION 3 -->
+  <div>
+    <p class="section-heading" style="margin-bottom:32px;">Version 3: My redesign</p>
+
+    <div style="margin-bottom:24px;">
+      <div class="annotated-img-wrap">
+        <img src="images/Olga.png" alt="Olga's redesign" />
+        <div class="dot dot-yellow" style="left:69%;top:4%;">1</div>
+        <div class="dot dot-yellow" style="left:27.3%;top:14.2%;">2</div>
+        <div class="dot dot-yellow" style="left:36.2%;top:29%;">3</div>
+        <div class="dot dot-yellow" style="left:4.8%;top:66.4%;">4</div>
+        <div class="dot dot-yellow" style="left:29.2%;top:77.6%;">5</div>
+        <div class="dot dot-yellow" style="left:8.2%;top:86.1%;">6</div>
+        <div class="dot dot-yellow" style="left:63.1%;top:61.5%;">7</div>
+      </div>
+      <p class="img-caption">Olga's version</p>
+    </div>
+
+    <div class="numbered-rows">
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">1</div>
+        <div class="numbered-row-text">
+          <p><strong>The page headline: "See your release risk before it reaches prod."</strong></p>
+          <p>This is the outcome language, not feature language. It speaks to the QA manager's real fear and positions Kualitee not as a testing tool, but as a risk-visibility system.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">2</div>
+        <div class="numbered-row-text">
+          <p><strong>The form title: "Start your free trial."</strong></p>
+          <p>Honest and accurate. The original said "Get started for free" — which blurs the line between a <em>free product and a free trial</em>. The client's version swung the other way entirely: "Start Testing in a Release Ready Project" is <em>product-speak</em> that describes an internal state, not an action the user is about to take. Neither title is oriented around the user's actual next step.</p>
+          <p><strong><em>"Start your free trial" sets the correct expectation clearly: this is a trial, it's free, and you're starting it now.</em></strong></p>
+          <p>But it isn't doing this alone: directly above it sits the badge: "14-day free trial · No credit card." The badge handles the objections — the form title confirms the action. Together they work as a system — neither would be as effective without the other.</p>
+          <p>This is the broader point about conversion design: no single element is the hero. What changes behaviour is alignment — every element saying the same thing, in the right order, at the right moment.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">3</div>
+        <div class="numbered-row-text">
+          <p><strong>The form with same 4 fields: Full Name, Email, Workspace Name, Password.</strong></p>
+          <p>The Workspace Name field stays, but with honest microcopy: "Your team logs in here · Changeable later." These words remove the permanence anxiety without removing the field.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">4</div>
+        <div class="numbered-row-text">
+          <p><strong>The CTA: "Start free trial."</strong></p>
+          <p>It's very common for SaaS &amp; simple to understand — it gives no urgency, no false promise. It's accurate and confident. And below it a Google sign-up option for one-click authentication (can be expanded — this is more about the client's capabilities).</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">5</div>
+        <div class="numbered-row-text">
+          <p><strong>Two checkboxes — Terms &amp; Conditions, and product tips — both unchecked.</strong></p>
+          <p>The "product tips" checkbox is straightforward — marketing and communication consent must always be opt-in under GDPR. Pre-checking it is a dark pattern, full stop.</p>
+          <p>T&amp;C is less obvious. Some argue pre-checking it is acceptable because it's a contract acknowledgment, not marketing consent. But in practice, the safest and most honest approach is to leave it unchecked too. The form won't submit without it — so the friction cost is effectively zero. The legal protection, however, is real. Most products users actually trust — Notion, Linear, Figma — don't pre-check T&amp;C either. There's no good reason to be the exception.</p>
+          <p>Both unchecked make the entire product look clean, legally sound, and consistent with what a cautious B2B buyer expects from a product they're about to trust with their team's data.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">6</div>
+        <div class="numbered-row-text">
+          <p><strong>Social proof: directly below the CTA.</strong></p>
+          <p>500+ teams, G2 rating, 76 countries, and security badges are now not at the bottom as decoration, but at the point of decision, where doubt actually lives.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <div class="num-badge num-badge-grey">7</div>
+        <div class="numbered-row-text">
+          <p><strong>The right side column: 3 outcome callouts, not 11 features.</strong></p>
+          <ul style="list-style:disc;padding-left:27px;margin:8px 0;">
+            <li>Running tests on day one. No config needed.</li>
+            <li>Defects sync to Jira automatically. Developers never leave their workflow.</li>
+            <li>Your test cases, imported free. TestRail, Zephyr, spreadsheets — before day one.</li>
+          </ul>
+          <p>Each one answers a specific adoption objection. And below them one real and trustworthy customer quote that does more conversion work than all 11 checkmarks combined.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALLOUT: BY THE NUMBERS 2 -->
+  <div class="callout">
+    <img class="callout-icon" src="images/lamp_icon_small.png" alt="" />
+    <div class="callout-body">
+      <p><strong>By the numbers</strong></p>
+      <p>Shortening sign-up forms boosts B2B conversions by 27% on average. When <strong>Imagescape</strong> reduced their form fields from 11 to 4, conversion rates increased by 120%. Adding trust elements like "No credit card required" directly adjacent to the CTA reduces drop-off at the moment of highest hesitation.</p>
+    </div>
+  </div>
+
+  <!-- MOBILE SECTION -->
+  <div class="mobile-section">
+    <div class="mobile-screen">
+      <img src="images/Mobile_screen 2.png" alt="Mobile version of the redesigned sign-up page" />
+    </div>
+    <div class="mobile-text">
+      <h3>A note on the right column's actual job.</h3>
+      <p>The sign-up page right column is often treated as a second landing page — a place to explain features, list benefits, convince. That's the wrong mental model.</p>
+      <p>By the time a user reaches the sign-up page, convincing is done — and this is actually the landing page's job. The user is already interested — they just need <strong>one last reason not to leave.</strong></p>
+      <p>The right column's real job is to give the buyer a final good impression of the product. Not to educate — to reassure.</p>
+      <p>This becomes even clearer on mobile. On mobile, the right column doesn't exist at all — it disappears entirely in 99% of cases. Which means anything placed there cannot be load-bearing information. If your sign-up page only works when the right column is visible, it doesn't really work.</p>
+      <p>In my mobile version, there's no right column. Just the form, the CTA, and the trust signals below it (not visible on the screenshot). Everything a user needs to decide, and nothing they don't.</p>
+    </div>
+  </div>
+
+  <!-- WHAT THIS REDESIGN IS ABOUT -->
+  <div class="about-section">
+    <img class="brain-icon" src="images/brain_icon 1.png" alt="" />
+    <h2>What this redesign is actually about</h2>
+    <div style="width:100%;">
+      <p style="font-size:18px;line-height:28px;margin-bottom:8px;">This isn't really a form optimisation, it's more a trust architecture. Every element either adds confidence or removes doubt. The decisions follow from that:</p>
+      <ul class="about-list">
+        <li>Outcome language over feature language</li>
+        <li>Honest microcopy over silent permanence</li>
+        <li>Social proof at the point of hesitation, not the footer</li>
+        <li>A CTA that's accurate, not just catchy</li>
+      </ul>
+    </div>
+    <div class="callout" style="width:100%;">
+      <img class="callout-icon" src="images/lamp_icon_small.png" alt="" />
+      <div class="callout-body">
+        <p><strong>The broader point:</strong></p>
+        <p>The gap between a 2% and an 11% sign-up conversion rate is rarely about design taste — it is how well the page understands the user's risk model, and how directly it addresses that risk. A sign-up page isn't a form, but a sequence of micro-decisions. Design it accordingly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THREE THINGS / CLOSING QUESTIONS -->
+  <div class="closing-questions">
+    <h2>Before redesigning any SaaS sign-up form, answer these questions:</h2>
+    <div>
+      <div class="q-block">
+        <p class="q-label">1. Who is actually filling this form?</p>
+        <p>Not the end user — the buyer. In B2B, these are often different people with different concerns. The person signing up for a QA tool isn't thinking about features — they're thinking about team risk, setup time, and whether this decision will hold up when their manager asks about it. Design for the person making the commitment, not the person who will eventually use the product daily.</p>
+      </div>
+      <div class="q-block" style="margin-top:32px;">
+        <p class="q-label">2. What does success look like for this specific form?</p>
+        <p>Not all sign-up forms have the same job. Some optimise for volume, some for quality, some for speed-to-activation. Knowing your target metric changes every decision — how many fields to include, where to place social proof, what the CTA says. Without a clear definition of success, you're just rearranging elements and hoping.</p>
+      </div>
+      <div class="q-block" style="margin-top:32px;">
+        <p class="q-label">3. Does every part of the form build trust — not just visually, but fully?</p>
+        <p>Trust on a sign-up page isn't just about looking credible. It's the headline setting honest expectations. It's microcopy that removes anxiety about permanent decisions. It's consent checkboxes that respect the user's autonomy and your legal obligations. One element that breaks trust — a misleading CTA, a pre-checked marketing box, a field with no explanation — can undo everything else on the page. Trust is the sum of all the small things done right.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources-block">
+    <p>Sources:</p>
+    <ul>
+      <li><a href="https://blog.hubspot.com/blog/tabid/6307/bid/6746/which-types-of-form-fields-lower-landing-page-conversions.aspx" target="_blank" rel="noopener">HubSpot — Which Types of Form Fields Lower Landing Page Conversions?</a> — analysis of 40,000+ landing pages</li>
+      <li><a href="https://www.heap.io/blog/good-conversion-rate-signup-flow" target="_blank" rel="noopener">Heap — What is a "good" conversion rate for your signup flow?</a> — data across 79 SaaS companies</li>
+      <li><a href="https://www.klipfolio.com/blog/value-of-saas-sign-up-rate-benchmarks" target="_blank" rel="noopener">Klipfolio — SaaS Sign-Up Rate Benchmarks</a> — industry benchmark data (2–5% avg, &gt;11% top performers)</li>
+      <li><a href="https://www.imagescape.com/media/filer_public/06/94/0694c7f4-8914-4598-8871-b857fbc12737/form_case_study.pdf" target="_blank" rel="noopener">Imagescape — Form Fields Case Study</a> — 11 fields → 4 fields, 120% conversion increase</li>
+    </ul>
+  </div>
+
+</div><!-- /content -->
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:center;">
+    <nav class="footer-nav">
+      <a href="about.html">About me</a>
+      <span class="footer-sep">·</span>
+      <a href="services.html">Services</a>
+      <span class="footer-sep">·</span>
+      <a href="case-studies.html">Case Studies</a>
+      <span class="footer-sep">·</span>
+      <a href="blog.html">Blog</a>
+      <span class="footer-sep">·</span>
+      <a href="contacts.html">Contacts</a>
+    </nav>
+    <div class="footer-social">
+      <img src="images/Logo.png" alt="LinkedIn" style="opacity:.7;" />
+      <img src="images/Logo.png" alt="Behance" style="opacity:.3;" />
+    </div>
+  </div>
+  <p class="footer-copy">© 2026 Olga Kalinina. All rights reserved</p>
+</footer>
+
+</body>
+</html>
