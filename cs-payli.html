@@ -215,6 +215,36 @@
       .highlight-title, .final-title { font-size: 24px; }
 
     }
+
+    /* ── CTA BLOCK ── */
+    .cta-block {
+      margin-top: 72px;
+      padding: 48px 0 120px;
+      border-top: 2px solid var(--border);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .cta-block h2 { font-size: 24px; font-weight: 600; color: var(--text); }
+    .cta-block p { font-size: 16px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+    .cta-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 9999px;
+      border: 1.5px solid var(--border); background: white;
+      font-size: 16px; font-weight: 500; color: var(--text);
+      cursor: pointer; transition: border-color .2s, transform .2s;
+      font-family: 'Inter', sans-serif; text-decoration: none;
+    }
+    .btn-outline:hover { border-color: var(--text); transform: translateY(-1px); }
+    .btn-outline img { width: 18px; height: 18px; object-fit: contain; }
+    @media (max-width: 768px) {
+      .cta-block h2 { font-size: 20px; }
+      .cta-buttons { flex-direction: column; align-items: stretch; }
+      .btn-outline { justify-content: center; }
+    }
   </style>
 </head>
 <body>
@@ -403,6 +433,22 @@
     </div>
   </div>
 
+  <!-- CTA BLOCK -->
+  <div class="cta-block">
+    <h2>Enjoyed this analysis?</h2>
+    <p>Share it with your network or subscribe for future insights.</p>
+    <div class="cta-buttons">
+      <button class="btn-outline" id="shareCtaBtn">
+        Share with your network
+        <img src="images/share-07.png" alt="" />
+      </button>
+      <a class="btn-outline" href="https://substack.com/@olinproduct/" target="_blank" rel="noopener">
+        Subscribe
+        <img src="images/substack.png" alt="Substack" />
+      </a>
+    </div>
+  </div>
+
 </div><!-- /page -->
 </div><!-- /container -->
 </main><!-- /page-content -->
@@ -439,6 +485,25 @@
     </footer>
 </div><!-- /page-wrapper -->
 
+  <script>
+    async function doShare() {
+      const url   = window.location.href;
+      const title = document.title;
+      if (navigator.share) {
+        try { await navigator.share({ title, url }); return; } catch (e) {}
+      }
+      try {
+        await navigator.clipboard.writeText(url);
+        const btn = document.getElementById('shareCtaBtn');
+        const orig = btn.innerHTML;
+        btn.textContent = 'Link copied ✓';
+        setTimeout(() => { btn.innerHTML = orig; }, 2000);
+      } catch (e) {
+        window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(url), '_blank');
+      }
+    }
+    document.getElementById('shareCtaBtn').addEventListener('click', doShare);
+  </script>
   <script>
     function toggleMenu() {
       document.getElementById('mobileMenu').classList.toggle('open');
