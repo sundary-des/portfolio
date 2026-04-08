@@ -53,14 +53,13 @@
     .page {
       max-width: var(--page-w);
       margin: 0 auto;
-      padding-top: 120px;
     }
 
     /* ── MAIN CONTENT ── */
     .content {
       max-width: var(--content-w);
       margin: 0 auto;
-      padding: 0 40px 120px;
+      padding: 0 0 120px;
       display: flex;
       flex-direction: column;
       gap: 56px;
@@ -126,6 +125,7 @@
       width: 100%; border-radius: 24px;
       box-shadow: 0 4px 12px rgba(112,115,121,0.1);
       display: block;
+      border: none;
     }
     .dot {
       position: absolute;
@@ -252,7 +252,7 @@
       .mobile-section { flex-direction: column; padding: 32px 24px; }
       .mobile-screen { width: 100%; }
 
-      .content { padding-top: 40px; }
+      /* padding-top handled by .page-content in style.css */
     }
     @media (max-width: 640px) {
       .title-block h1 { font-size: 26px; }
@@ -324,8 +324,10 @@
   </div>
 
 <div class="page-wrapper">
+<main class="page-content">
+<div class="container">
 <!-- ═══════════ MAIN ═══════════ -->
-<main class="page">
+<div class="page">
 <div class="content">
 
   <!-- LOGO + SHARE -->
@@ -608,7 +610,7 @@
 
   <!-- WHAT THIS REDESIGN IS ABOUT -->
   <div class="about-section">
-    <img class="brain-icon" src="images/brain icon 1.png" alt="" />
+    <img class="brain-icon" src="images/brain_icon 1.png" alt="" />
     <h2>What this redesign is actually about</h2>
     <div style="width:100%;">
       <p style="font-size:18px;line-height:28px;margin-bottom:8px;">This isn't really a form optimisation, it's more a trust architecture. Every element either adds confidence or removes doubt. The decisions follow from that:</p>
@@ -675,7 +677,9 @@
   </div>
 
 </div><!-- /content -->
-</main>
+</div><!-- /page -->
+</div><!-- /container -->
+</main><!-- /page-content -->
 
 <!-- ═══════════ FOOTER ═══════════ -->
     <footer class="footer">
