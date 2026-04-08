@@ -57,7 +57,7 @@
     .content {
       max-width: var(--content-w);
       margin: 0 auto;
-      padding: 96px 24px 120px;
+      padding: 120px 24px 120px;
       display: flex;
       flex-direction: column;
       gap: 56px;
@@ -75,15 +75,15 @@
     .share-btn svg { width: 24px; height: 24px; }
 
     /* ── TITLE BLOCK ── */
-    .title-block { display: flex; flex-direction: column; gap: 10px; }
+    .title-block { display: flex; flex-direction: column; gap: 16px; }
     .title-block h1 {
       font-size: 36px; font-weight: 600; line-height: 1.2; color: var(--ink);
     }
     .title-block .subtitle {
-      font-size: 16px; font-weight: 500; color: var(--muted);
+      font-size: 16px; font-weight: 500; color: var(--ink-muted); margin-top: 10px;
     }
     .title-block .description {
-      font-size: 22px; font-weight: 400; color: var(--ink); margin-top: 6px;
+      font-size: 22px; font-weight: 400; color: var(--ink);
       line-height: 1.45;
     }
 
@@ -135,7 +135,7 @@
     .dot-red    { background: var(--red);    color: #fff; }
 
     .img-caption {
-      font-size: 18px; font-style: italic; color: var(--muted);
+      font-size: 18px; font-style: italic; color: var(--ink-muted);
       text-align: center; margin-top: 4px;
     }
 
@@ -232,11 +232,11 @@
       padding-top: 32px;
     }
     .sources-block p, .sources-block li {
-      font-size: 14px; font-style: italic; color: var(--muted); line-height: 20px;
+      font-size: 14px; font-style: italic; color: var(--ink-muted); line-height: 20px;
     }
     .sources-block ul { list-style: disc; padding-left: 20px; margin-top: 8px; }
     .sources-block li { margin-bottom: 0; }
-    .sources-block a { color: var(--muted); text-decoration: underline; }
+    .sources-block a { color: var(--ink-muted); text-decoration: underline; }
     .sources-block a:hover { color: var(--ink); }
 
     /* ── FOOTER ── */
@@ -252,11 +252,11 @@
       font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none;
     }
     .footer-nav a:hover { opacity: .6; }
-    .footer-sep { color: var(--muted); font-size: 14px; user-select: none; }
+    .footer-sep { color: var(--ink-muted); font-size: 14px; user-select: none; }
     .footer-social { display: flex; align-items: center; gap: 14px; }
     .footer-social img { width: 32px; height: 32px; border-radius: 5px; object-fit: cover; }
     .footer-copy {
-      font-size: 14px; font-weight: 500; color: var(--muted); text-align: center;
+      font-size: 14px; font-weight: 500; color: var(--ink-muted); text-align: center;
     }
 
     /* ── INLINE ITALIC BOLD ── */
@@ -282,7 +282,7 @@
 <!-- ═══════════ NAV ═══════════ -->
 <nav class="nav">
   <div class="nav-avatar">
-    <img src="images/Logo.png" alt="Olga Kalinina" />
+    <img src="images/olga_kalinina.jpeg" alt="Olga Kalinina" />
   </div>
   <a href="services.html">Services</a>
   <a href="case-studies.html" class="active">Case Study</a>
@@ -297,13 +297,9 @@
 
   <!-- LOGO + SHARE -->
   <div class="logo-row">
-    <img class="logo" src="images/Logo.png" alt="Olga Kalinina" />
-    <button class="share-btn" aria-label="Share">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#292b2d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/>
-        <polyline points="16 6 12 2 8 6"/>
-        <line x1="12" y1="2" x2="12" y2="15"/>
-      </svg>
+    <img class="logo" src="images/Kualitee_logo.png" alt="Kualitee" />
+    <button class="share-btn" onclick="if(navigator.share){navigator.share({title:document.title,url:location.href})}else{navigator.clipboard.writeText(location.href)}" aria-label="Share">
+      <img src="images/share-07.png" alt="Share" style="width:24px;height:24px;opacity:.7;" />
     </button>
   </div>
 
