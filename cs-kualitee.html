@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="style.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,26 +27,7 @@
     body { min-height: 100vh; }
     a { color: inherit; }
 
-    /* ── NAV ── */
-    .nav {
-      position: fixed; top: 31px; left: 50%; transform: translateX(-50%);
-      display: flex; align-items: center; gap: 24px;
-      background: rgba(255,255,255,0.4); backdrop-filter: blur(5px);
-      border: 1px solid #f5f5f5; border-radius: 9999px;
-      padding: 12px 16px;
-      box-shadow: 0 4px 12.8px rgba(68,130,255,0.1);
-      z-index: 100; white-space: nowrap;
-    }
-    .nav-avatar {
-      width: 41px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
-    }
-    .nav-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .nav a {
-      font-size: 15px; font-weight: 500; color: var(--ink);
-      text-decoration: none; transition: opacity .15s;
-    }
-    .nav a:hover { opacity: .6; }
-    .nav a.active { font-weight: 700; }
+    
 
     /* ── PAGE WRAPPER ── */
     .page {
@@ -94,6 +74,7 @@
       width: 100%; border-radius: 32px;
       box-shadow: 0 4px 12px rgba(112,115,121,0.1);
       display: block; object-fit: cover;
+      border: none; outline: none;
     }
 
     /* ── SNAPSHOT CARDS ── */
@@ -120,12 +101,13 @@
     /* ── ANNOTATED IMAGE ── */
     .annotated-img-wrap {
       position: relative; display: block; width: 100%; line-height: 0;
+      overflow: hidden; border-radius: 24px;
     }
     .annotated-img-wrap img {
-      width: 100%; border-radius: 24px;
+      width: 100%;
       box-shadow: 0 4px 12px rgba(112,115,121,0.1);
       display: block;
-      border: none;
+      border: none; outline: none;
     }
     .dot {
       position: absolute;
@@ -139,7 +121,7 @@
 
     .img-caption {
       font-size: 18px; font-style: italic; color: var(--ink-muted);
-      text-align: center; margin-top: 4px;
+      text-align: center; margin-top: 12px; margin-bottom: 32px;
     }
 
     /* ── NUMBERED ROWS ── */
@@ -380,7 +362,7 @@
       <p class="img-caption">SignUp page of Kualitee.com</p>
     </div>
 
-    <p style="font-size:18px;line-height:28px;margin-bottom:32px;">It looks fine: two columns, form on the left, benefits on the right. Clean and... forgettable.</p>
+    <p style="font-size:18px;line-height:28px;margin-top:32px;margin-bottom:32px;">It looks fine: two columns, form on the left, benefits on the right. Clean and... forgettable.</p>
 
     <div class="numbered-rows">
       <div class="numbered-row">
@@ -443,7 +425,7 @@
       <p class="img-caption">Client's version</p>
     </div>
 
-    <p style="font-size:18px;line-height:28px;margin-bottom:32px;">Visually, it's a step forward: the screenshot is prominent, the layout breathes more, but when you look through a conversion lens, the strategic problems are still there — and two new ones were added.</p>
+    <p style="font-size:18px;line-height:28px;margin-top:32px;margin-bottom:32px;">Visually, it's a step forward: the screenshot is prominent, the layout breathes more, but when you look through a conversion lens, the strategic problems are still there — and two new ones were added.</p>
 
     <div class="numbered-rows">
       <div class="numbered-row">
