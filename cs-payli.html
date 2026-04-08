@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -29,42 +30,6 @@
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
-
-    /* ─── NAV ─── */
-    .nav-wrap {
-      position: sticky; top: 0; z-index: 100;
-      padding: 28px var(--pad);
-    }
-    .nav {
-      max-width: var(--content);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* pill nav exactly as Figma */
-    .nav-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 24px;
-      background: rgba(255,255,255,0.4);
-      border: 1px solid #f5f5f5;
-      border-radius: 9999px;
-      padding: 12px 16px;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 4px 12.8px 0 rgba(68,130,255,0.10);
-    }
-    .nav-pill img {
-      width: 41px; height: 40px;
-      border-radius: 50%; object-fit: cover; flex-shrink: 0;
-    }
-    .nav-pill a {
-      font-size: 15px; font-weight: 500;
-      color: var(--text); white-space: nowrap;
-      transition: opacity .15s;
-    }
-    .nav-pill a:hover { opacity: .6; }
-    .nav-pill a.active { font-weight: 700; }
 
     /* ─── PAGE ─── */
     .page {
@@ -242,61 +207,18 @@
     }
     .final-img img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* ─── FOOTER ─── */
-    footer {
-      margin-top: 96px;
-      background: var(--bg-card);
-      padding: 24px var(--pad) 40px;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 24px;
-    }
-    .footer-nav {
-      display: flex; align-items: center;
-      justify-content: center; gap: 8px;
-      flex-wrap: wrap; width: 100%;
-    }
-    .footer-nav a {
-      font-size: 16px; font-weight: 500;
-      color: var(--text);
-      transition: opacity .15s;
-    }
-    .footer-nav a:hover { opacity: .6; }
-    .footer-dot {
-      display: inline-block;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--text);
-      opacity: .25;
-    }
-    .footer-social { display: flex; gap: 14px; align-items: center; }
-    .footer-social img {
-      width: 32px; height: 32px;
-      border-radius: 5px; object-fit: cover;
-    }
-    .footer-nav-row {
-      display: flex; align-items: center;
-      justify-content: center; gap: 40px;
-      width: 100%;
-    }
-    .footer-copy {
-      font-size: 14px; font-weight: 500;
-      color: var(--muted); text-align: center;
-    }
-
     /* ─── RESPONSIVE ─── */
     @media (max-width: 860px) {
       :root { --pad: 20px; }
       .two-col, .img-pair { grid-template-columns: 1fr; }
       .hero-title { font-size: 26px; }
       .highlight-title, .final-title { font-size: 24px; }
-      .nav-wrap { padding: 16px 20px; }
+
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<div class="nav-wrap">
     <nav class="nav">
     <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
     <div class="nav-links">
@@ -326,6 +248,9 @@
     </div>
   </div>
 
+<div class="page-wrapper">
+<main class="page-content">
+<div class="container">
 <!-- PAGE CONTENT -->
 <div class="page">
 
@@ -479,6 +404,8 @@
   </div>
 
 </div><!-- /page -->
+</div><!-- /container -->
+</main><!-- /page-content -->
 
 <!-- FOOTER -->
     <footer class="footer">
@@ -510,6 +437,7 @@
         <p class="footer-copy">&#169; 2026 Olga Kalinina. All rights reserved</p>
       </div>
     </footer>
+</div><!-- /page-wrapper -->
 
   <script>
     function toggleMenu() {
