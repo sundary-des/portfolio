@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -22,15 +23,7 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
-    /* NAV */
-    .nav-wrap { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); padding: 28px var(--pad); border-bottom: 1px solid #f5f5f5; }
-    .nav { max-width: var(--content); margin: 0 auto; display: flex; justify-content: center; }
-    .nav-pill { display: inline-flex; align-items: center; gap: 24px; background: rgba(255,255,255,0.4); border: 1px solid #f5f5f5; border-radius: 9999px; padding: 12px 16px; backdrop-filter: blur(5px); box-shadow: 0 4px 12.8px 0 rgba(68,130,255,0.10); }
-    .nav-pill a { display: flex; align-items: center; }
-    .nav-pill img { width: 41px; height: 40px; border-radius: 50%; object-fit: cover; }
-    .nav-pill a.nav-link { font-size: 15px; font-weight: 500; color: var(--text); white-space: nowrap; transition: opacity .15s; }
-    .nav-pill a.nav-link:hover { opacity: .6; }
-    .nav-pill a.nav-link.active { font-weight: 700; }
+    
 
     /* PAGE */
     .page { max-width: var(--content); margin: 0 auto; padding: 80px var(--pad) 120px; display: flex; flex-direction: column; gap: 80px; }
@@ -77,16 +70,7 @@
     .cta-btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; background: var(--text); color: #fff; border-radius: 9999px; font-size: 18px; font-weight: 500; transition: opacity .15s; }
     .cta-btn:hover { opacity: .85; }
 
-    /* FOOTER */
-    footer { background: var(--bg-card); padding: 24px var(--pad) 40px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
-    .footer-nav-row { display: flex; align-items: center; justify-content: center; gap: 40px; width: 100%; }
-    .footer-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { font-size: 16px; font-weight: 500; color: var(--text); transition: opacity .15s; }
-    .footer-links a:hover { opacity: .6; }
-    .footer-dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--text); opacity: .25; }
-    .footer-socials { display: flex; gap: 14px; align-items: center; }
-    .footer-socials img { width: 32px; height: 32px; border-radius: 5px; object-fit: cover; }
-    .footer-copy { font-size: 14px; font-weight: 500; color: var(--muted); text-align: center; }
+    
 
     /* MODAL OVERLAY */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
@@ -124,8 +108,6 @@
 </head>
 <body>
 
-<!-- NAV -->
-<div class="nav-wrap">
     <nav class="nav">
     <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
     <div class="nav-links">
@@ -155,8 +137,10 @@
     </div>
   </div>
 
-<!-- PAGE -->
-<main class="page">
+<div class="page-wrapper">
+<main class="page-content" style="padding-top:120px">
+<div class="container">
+<div class="page">
 
   <!-- HEADER -->
   <div class="page-header">
@@ -290,8 +274,9 @@
     <a href="contacts.html" class="cta-btn">Contact me</a>
   </div>
 
+</div>
+</div>
 </main>
-
 <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-inner">
