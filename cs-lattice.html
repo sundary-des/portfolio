@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lattice Studio — Designing an AI Product Builder for Digital Creators</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #292b2d;
+      --ink-muted:  #707379;
+      --bg-card:    #fafafa;
+      --border:     #e9eaec;
+      --white:      #ffffff;
+      --font:       'Inter', sans-serif;
+      --content-w:  1187px;
+      --page-w:     1440px;
+    }
+
+    html { font-family: var(--font); color: var(--ink); background: var(--white); }
+    body { min-height: 100vh; }
+    a { color: inherit; }
+
+    /* ── PAGE WRAPPER ── */
+    .page {
+      max-width: var(--page-w);
+      margin: 0 auto;
+      padding-top: 80px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: var(--content-w);
+      margin: 0 auto;
+      padding: 0 0 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+
+    /* ── LOGO ROW ── */
+    .logo-row {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-row img.logo { height: 57px; width: auto; }
+    .share-btn {
+      width: 24px; height: 24px; cursor: pointer; opacity: .7;
+      background: none; border: none; padding: 0;
+    }
+    .share-btn svg { width: 24px; height: 24px; }
+
+    /* ── TITLE BLOCK ── */
+    .title-block { display: flex; flex-direction: column; gap: 16px; }
+    .title-block h1 {
+      font-size: 36px; font-weight: 600; line-height: 1.2; color: var(--ink);
+    }
+    .title-block .subtitle {
+      font-size: 16px; font-weight: 500; color: var(--ink-muted); margin-top: 10px;
+    }
+    .title-block .description {
+      font-size: 22px; font-weight: 400; color: var(--ink);
+      line-height: 1.45;
+    }
+
+    /* ── COVER IMAGE ── */
+    .cover-img {
+      width: 100%; border-radius: 32px;
+      box-shadow: 0 4px 12px rgba(112,115,121,0.1);
+      display: block; object-fit: cover;
+      border: none; outline: none;
+    }
+
+    /* ── SNAPSHOT CARDS ── */
+    .snapshot-cards { display: flex; flex-direction: column; gap: 24px; }
+    .card {
+      background: var(--bg-card); border-radius: 24px;
+      padding: 32px 24px; width: 100%;
+    }
+    .card h2 {
+      font-size: 24px; font-weight: 500; margin-bottom: 24px; line-height: 1.2;
+    }
+    .card p, .card li {
+      font-size: 18px; font-weight: 400; line-height: 28px; color: var(--ink);
+    }
+    .card p + p { margin-top: 8px; }
+    .card strong { font-weight: 700; }
+    .card em { font-style: italic; }
+    .card ul { list-style: disc; padding-left: 27px; margin-top: 8px; }
+    .card li { margin-bottom: 0; }
+
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      font-size: 32px; font-weight: 700; line-height: 1.2; color: var(--ink);
+    }
+
+    /* ── FULL-WIDTH BROWSER SCREENSHOT ── */
+    .browser-img {
+      width: 100%; display: block;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+    }
+    .img-caption {
+      font-size: 16px; font-style: italic; color: var(--ink-muted);
+      text-align: center; margin-top: 12px;
+    }
+
+    /* ── STEP BLOCK ── */
+    .step-block {
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .step-label {
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--ink); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; flex-shrink: 0;
+    }
+    .step-title {
+      font-size: 22px; font-weight: 600; line-height: 1.3; color: var(--ink);
+    }
+    .step-body {
+      font-size: 18px; font-weight: 400; line-height: 28px; color: var(--ink);
+    }
+    .step-body p + p { margin-top: 8px; }
+    .step-body strong { font-weight: 700; }
+
+    /* ── STEPS GRID (pairs) ── */
+    .steps-list { display: flex; flex-direction: column; gap: 56px; }
+    .step-row { display: flex; flex-direction: column; gap: 24px; }
+
+    /* ── CALLOUT BOX ── */
+    .callout {
+      background: var(--bg-card); border-radius: 24px;
+      padding: 24px; display: flex; gap: 24px; align-items: flex-start;
+      width: 100%;
+    }
+    .callout-icon { width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; }
+    .callout-body { flex: 1; font-size: 18px; font-style: italic; line-height: 28px; color: var(--ink); }
+    .callout-body strong { font-weight: 700; font-style: italic; }
+
+    /* ── CORE DECISIONS SECTION ── */
+    .decisions-section {
+      display: flex; flex-direction: column; gap: 32px; align-items: center;
+    }
+    .decisions-icon { width: 64px; height: 64px; object-fit: contain; }
+    .decisions-title {
+      font-size: 24px; font-weight: 700; text-align: center; color: var(--ink);
+    }
+    .decision-block {
+      display: flex; flex-direction: column; gap: 24px; width: 100%;
+    }
+    .decision-block p {
+      font-size: 18px; line-height: 28px; color: var(--ink);
+    }
+    .decision-block p + p { margin-top: 8px; }
+    .decision-block strong { font-weight: 700; }
+
+    /* ── CTA BLOCK ── */
+    .cta-block {
+      margin-top: 0;
+      padding: 48px 0;
+      border-top: 2px solid var(--border);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .cta-block h2 { font-size: 24px; font-weight: 600; color: var(--ink); }
+    .cta-block p { font-size: 16px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px; }
+    .cta-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 9999px;
+      border: 1.5px solid var(--border); background: white;
+      font-size: 16px; font-weight: 500; color: var(--ink);
+      cursor: pointer; transition: border-color .2s, transform .2s;
+      font-family: var(--font); text-decoration: none;
+    }
+    .btn-outline:hover { border-color: var(--ink); transform: translateY(-1px); }
+    .btn-outline img { width: 18px; height: 18px; object-fit: contain; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .content { padding: 0 20px 80px; }
+    }
+    @media (max-width: 640px) {
+      .title-block h1 { font-size: 26px; }
+      .section-heading { font-size: 24px; }
+      .card h2 { font-size: 20px; }
+      .step-title { font-size: 18px; }
+      .cta-block h2 { font-size: 20px; }
+      .cta-buttons { flex-direction: column; align-items: stretch; }
+      .btn-outline { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+  <nav class="nav">
+    <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" class="nav-avatar" /></a>
+    <div class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="case-studies.html" class="active">Case Studies</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About me</a>
+      <a href="contacts.html">Contacts</a>
+    </div>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-top">
+      <a href="index.html"><img src="images/olga_kalinina.jpg" alt="Olga Kalinina" /></a>
+      <button class="mobile-menu-close" onclick="toggleMenu()">&#x2715;</button>
+    </div>
+    <div class="mobile-menu-links">
+      <a href="services.html">Services</a>
+      <a href="case-studies.html" class="active">Case Studies</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About me</a>
+      <a href="contacts.html">Contacts</a>
+    </div>
+  </div>
+
+<div class="page-wrapper">
+  <main class="page-content">
+    <div class="container">
+      <div class="page">
+        <div class="content">
+
+          <!-- ── LOGO + SHARE ── -->
+          <div class="logo-row">
+            <img class="logo" src="images/Logo_lattice.png" alt="Lattice Studio" />
+            <button class="share-btn" id="shareTopBtn" aria-label="Share">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" stroke="#292b2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- ── TITLE ── -->
+          <div class="title-block">
+            <div>
+              <h1>Lattice Studio — designing an AI product builder for digital creators</h1>
+              <p class="subtitle">Product Design · AI Platform · 2025</p>
+            </div>
+            <p class="description">Lattice Studio needed a guided creation flow that made AI feel like a collaborator, not a black box — so creators could go from idea to a published, storefront-ready digital product in less than a minute.</p>
+          </div>
+
+          <!-- ── COVER ── -->
+          <img class="cover-img" src="images/Cover_lattice.png" alt="Lattice Studio case study cover" />
+
+          <!-- ── PROJECT SNAPSHOT ── -->
+          <div class="snapshot-cards">
+            <div class="card">
+              <h2>Project snapshot</h2>
+              <p><strong>Product:</strong> Lattice Studio — an AI Product Builder within the Lattice AI Tools Suite</p>
+              <p><strong>My role:</strong> Product Owner + UX/UI Designer. Discovery, requirements, end-to-end UX, UI execution, design system, and QA.</p>
+              <p><strong>The brief:</strong> Build the core creation experience for a tool that lets digital creators (Etsy sellers, Gumroad authors, Teachable instructors) generate complete, sellable digital products — course, pack, podcast, challenge — and publish them directly into their existing storefronts via link or embed code.</p>
+              <p><strong>The project reached full production-ready delivery. The decision not to ship was the client's.</strong></p>
+            </div>
+
+            <div class="card">
+              <h2>The Problem</h2>
+              <p>Digital creators who already run storefronts face a specific friction point: building a new digital product — even a simple mini-course or resource pack — typically takes several days and requires coordinating at least four separate tools: writing, design, file packaging, listing copy. For creators who aren't technical, it's slow, inconsistent, and discouraging.</p>
+              <p>User conversations revealed three consistent blockers:</p>
+              <ul>
+                <li><strong>Blank page paralysis.</strong> Creators knew what they wanted to teach but couldn't structure it into a sellable format on their own. They stall before they start.</li>
+                <li><strong>Toolchain fragmentation.</strong> Content, cover image, listing copy, and pricing each lived in a different tool. Any change cascaded across all of them.</li>
+                <li><strong>Pre-publish anxiety.</strong> Creators couldn't see what buyers would actually see until the product was already live — so many drafts never shipped.</li>
+              </ul>
+              <p>The design goal wasn't to build a powerful builder. It was to make the process feel guided, reversible, and visible at every step.</p>
+            </div>
+          </div>
+
+          <!-- ── BY THE NUMBERS callout ── -->
+          <div class="callout">
+            <img class="callout-icon" src="images/lamp_icon_small.png" alt="" />
+            <div class="callout-body">
+              <p><strong>By the numbers</strong></p>
+              <p>Digital creators using disconnected tool stacks spend an estimated <strong>40–60% of their working time on non-revenue tasks</strong> — formatting, file preparation, and listing creation. Tools that consolidate creation into a single guided flow show 2–3× faster time-to-publish compared to multi-tool workflows. The <strong>blank page problem is the #1 self-reported abandonment trigger</strong> in creation flows — cited by the majority of creators who start a product draft but never complete it.</p>
+            </div>
+          </div>
+
+          <!-- ── WHAT I DESIGNED ── -->
+          <h2 class="section-heading">What I designed</h2>
+
+          <!-- What I designed — full browser screenshot -->
+          <div>
+            <img class="browser-img" src="images/What_I_designed_section.png" alt="Lattice Studio — full product UI overview" />
+            <p class="img-caption">The complete Lattice Studio creation interface, showing all three tools in the suite and the 5-step guided wizard.</p>
+          </div>
+
+          <!-- ── THE 5-STEP WIZARD intro ── -->
+          <div class="decision-block">
+            <p><strong>The 5-step wizard</strong></p>
+            <p>The core of Lattice Studio is a split-screen, step-by-step creation flow. The left panel is always the active editing step. The right panel is always a live preview — updating in real time as the product takes shape.</p>
+            <p>Each step resolves one question at a time: what type of product, what content goes in it, what bonuses to include, how it's priced, and finally a pre-publish review before it goes live. The sequence is linear but reversible — creators can step back at any point without losing their work.</p>
+          </div>
+
+          <!-- ── STEPS 1–8 ── -->
+          <div class="steps-list">
+
+            <div class="step-row">
+              <div class="step-label">
+                <span class="step-num">1</span>
+                <span class="step-title">Product type selection</span>
+              </div>
+              <img class="browser-img" src="images/Step 1.png" alt="Step 1 — Product type selection" />
+              <div class="step-body">
+                <p>The first step asks one question: what kind of product do you want to create? Mini-course, resource pack, challenge, or podcast. Keeping this choice visible and named — rather than hidden behind a dropdown — reduces decision fatigue and anchors the creator's mental model for every step that follows.</p>
+                <p>Each type opens a slightly different path through the wizard. The product type defines the default content structure AI generates in Step 2 — so the choice here has downstream consequences that the creator never has to manually manage.</p>
+              </div>
+            </div>
+
+            <div class="step-row">
+              <div class="step-label">
+                <span class="step-num">2</span>
+                <span class="step-title">AI-generated content structure</span>
+              </div>
+              <img class="browser-img" src="images/Step 2.png" alt="Step 2 — AI-generated content structure" />
+              <div class="step-body">
+                <p>The blank page problem is solved here. After entering a topic and audience, the AI generates a full product outline — modules, lesson names, estimated time, and file counts — instantly. The creator reviews, edits, and reorders rather than writes from scratch.</p>
+                <p>This is the most trust-critical step in the flow. The AI output had to feel specific and useful, not generic and discardable. Prompting and output formatting were iterated extensively based on session feedback — creators needed to feel like the AI understood their niche, not just the category.</p>
+              </div>
+            </div>
+
+            <div class="step-row">
+              <div class="step-label">
+                <span class="step-num">3</span>
+                <span class="step-title">Bonus materials</span>
+              </div>
+              <img class="browser-img" src="images/Step 3.png" alt="Step 3 — Bonus materials" />
+              <div class="step-body">
+                <p>Bonuses are a standard conversion lever in digital product storefronts — they increase perceived value without increasing production complexity. Step 3 lets creators add pre-built bonus types (cheat sheet, printable, template) with AI-generated content for each.</p>
+                <p>Each bonus shows an estimated value, visible in the live preview panel. This isn't cosmetic — it directly informs the pricing decision in Step 4 and gives creators a concrete way to anchor their product's perceived worth before they've set a price.</p>
+              </div>
+            </div>
+
+            <div class="step-row">
+              <div class="step-label">
+                <span class="step-num">4</span>
+                <span class="step-title">Pricing configuration</span>
+              </div>
+              <img class="browser-img" src="images/Step 4.png" alt="Step 4 — Pricing" />
+              <div class="step-body">
+                <p>Pricing is where creators most often second-guess themselves. Step 4 surfaces the total perceived value (sum of content + bonuses) alongside the price input, so creators have a concrete reference point rather than guessing in isolation.</p>
+                <p>The interface also supports a launch discount — a time-limited reduced price shown in the live preview as a strikethrough original price and discount badge. This isn't a feature added for completeness; it's the specific pricing pattern that drives first-sale conversion in digital storefronts.</p>
+              </div>
+            </div>
+
+            <div class="step-row">
+              <div class="step-label">
+                <span class="step-num">5</span>
+                <span class="step-title">Cover image & listing copy</span>
+              </div>
+              <img class="browser-img" src="images/Step 5.png" alt="Step 5 — Cover and listing copy" />
+              <div class="step-body">
+                <p>Before review, the AI generates the storefront-facing assets: a product title, subtitle, short description, and cover image — all pulled from the product structure defined in Steps 1–3. The creator edits rather than writes.</p>
+                <p>Cover image generation was the most technically constrained step. The output needed to look credible on Etsy, Gumroad, and Teachable thumbnails simultaneously — different aspect ratios, different visual conventions. The design resolved this with a square-first approach that crops gracefully across all platforms.</p>
+              </div>
+            </div>
+
+            <div class="step-row">
+              <div class="step-label">
+                <span class="step-num">6</span>
+                <span class="step-title">Review & publish</span>
+              </div>
+              <img class="browser-img" src="images/Step 6.png" alt="Step 6 — Review and publish" />
+              <div class="step-body">
+                <p>The final creation step before publish is a structured review: a product summary card (type, modules, bonuses, price), a module-by-module product details panel, and a pre-publish checklist showing completion status for each section.</p>
+                <p>The checklist isn't a gate — it's a confidence mechanism. Every item checked signals to the creator that they haven't missed anything, and gives them permission to publish without second-guessing. The "Publish product" CTA is only visible once all checklist items pass, removing ambiguity about when the product is truly ready.</p>
+              </div>
+            </div>
+
+            <div class="step-row">
+              <div class="step-label">
+                <span class="step-num">7</span>
+                <span class="step-title">Customer view mode</span>
+              </div>
+              <img class="browser-img" src="images/Step 7.png" alt="Step 7 — Customer view mode" />
+              <div class="step-body">
+                <p>At any point during the creation flow, a "View as customer" toggle switches the right panel from the live build preview into a buyer-facing storefront simulation — showing exactly what a buyer on Gumroad or Etsy would see.</p>
+                <p>This feature directly addresses pre-publish anxiety. Creators who can see the buyer's view before going live are more likely to commit to publishing. The toggle is always one click away, never a separate mode — so the cost of checking is near zero.</p>
+              </div>
+            </div>
+
+            <div class="step-row">
+              <div class="step-label">
+                <span class="step-num">8</span>
+                <span class="step-title">Storefront embed & publish</span>
+              </div>
+              <img class="browser-img" src="images/Step 8.png" alt="Step 8 — Storefront embed and publish" />
+              <div class="step-body">
+                <p>After publishing, Lattice generates a direct link and an embed code the creator pastes into their existing storefront. There's no Lattice-hosted store — the product lives where the creator's audience already is.</p>
+                <p>This was a deliberate product constraint that shaped several design decisions upstream. Because the output had to work in multiple storefronts, every generated asset — cover image, listing copy, pricing display — was designed against the lowest common denominator of all supported platforms.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ── CORE DESIGN DECISIONS ── -->
+          <div class="decisions-section">
+            <img class="decisions-icon" src="images/brain_icon 1.png" alt="" />
+            <h2 class="decisions-title">Core Design Decisions</h2>
+
+            <!-- Decision 1 -->
+            <div class="decision-block">
+              <p><strong>1. Live preview as a trust mechanism, not a feature</strong></p>
+              <p>The right-panel live preview isn't decorative. It exists because the biggest creator fear is "I don't know what I'm actually publishing." Making the customer view permanently visible — before, during, and after every edit — removed the need for a separate preview mode and reduced the anxiety that kills commitment.</p>
+              <p>This isn't a UX convenience. It's the primary confidence lever in the entire flow.</p>
+            </div>
+
+            <div class="callout">
+              <img class="callout-icon" src="images/lamp_icon_small.png" alt="" />
+              <div class="callout-body">
+                <p><strong>By the numbers</strong></p>
+                <p>In usability studies of multi-step creation tools, real-time output preview reduces task abandonment by 20–30% compared to flows where users only see results after completion. When users can continuously validate what they're building, they make faster decisions and show significantly lower drop-off at the final commitment step. Perceived control — not actual control — is the primary driver of completion in guided creation flows.</p>
+              </div>
+            </div>
+
+            <!-- Decision 2 -->
+            <div class="decision-block">
+              <p><strong>2. One question per step, no exceptions</strong></p>
+              <p>Every step in the wizard resolves exactly one decision: product type, content structure, bonuses, pricing, or review. Combining any two steps — even ones that seem related — consistently caused creators to pause, re-read, and second-guess.</p>
+              <p>The split-screen layout reinforces this. The left panel changes with each step; the right panel never does. Spatial consistency gives creators a mental anchor: "I'm always editing on the left, always seeing the result on the right." This reduced instruction-reading and support questions in every usability round.</p>
+            </div>
+
+            <!-- Decision 3 -->
+            <div class="decision-block">
+              <p><strong>3. The pre-publish checklist as a commitment device</strong></p>
+              <p>The final step includes a pre-publish checklist — four items that mirror the four previous creation steps. Each item shows a green check once the corresponding step is complete. The "Publish" button is visible throughout, but the checklist gives creators the psychological permission to use it.</p>
+              <p>The checklist isn't about completeness verification — the system already knows whether each section is filled. It's about making the creator feel seen: "You did the work. You're ready." That shift from doubt to confidence is what turns a draft into a published product.</p>
+            </div>
+
+            <!-- Decision 4 -->
+            <div class="decision-block">
+              <p><strong>4. AI as a starting point, not a black box</strong></p>
+              <p>Every AI-generated output in Lattice Studio is immediately editable. The content structure, bonus descriptions, listing copy, and cover image can all be regenerated, replaced, or manually overwritten — in the same view where they appear, without a separate editing mode.</p>
+              <p>This matters because creators have strong opinions about their content. An AI output that feels imposed will be rejected or worked around. An AI output that feels like a draft to improve will be adopted. The interaction model — generate, then edit in place — was the mechanism that made AI feel like a collaborator rather than a decision-maker.</p>
+            </div>
+
+          </div>
+
+          <!-- ── CTA ── -->
+          <div class="cta-block">
+            <h2>Enjoyed this case study?</h2>
+            <p>Share it with your network or get in touch to talk product design.</p>
+            <div class="cta-buttons">
+              <button class="btn-outline" id="shareCtaBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" stroke="#292b2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Share this case study
+              </button>
+              <a class="btn-outline" href="contacts.html">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z" stroke="#292b2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="22,6 12,13 2,6" stroke="#292b2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Get in touch
+              </a>
+              <a class="btn-outline" href="case-studies.html">
+                ← All case studies
+              </a>
+            </div>
+          </div>
+
+        </div><!-- /content -->
+      </div><!-- /page -->
+    </div><!-- /container -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-social-row">
+        <nav class="footer-links">
+          <a href="about.html">About me</a>
+          <span class="footer-dot"></span>
+          <a href="services.html">Services</a>
+          <span class="footer-dot"></span>
+          <a href="case-studies.html">Case Studies</a>
+          <span class="footer-dot"></span>
+          <a href="blog.html">Blog</a>
+          <span class="footer-dot"></span>
+          <a href="contacts.html">Contacts</a>
+        </nav>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/olga-kalinina-sundary/" target="_blank" rel="noopener">
+            <img src="images/Linkedin_logo.png" alt="LinkedIn" />
+          </a>
+          <a href="https://www.behance.net/kalininaolga" target="_blank" rel="noopener">
+            <img src="images/Behance_logo.png" alt="Behance" />
+          </a>
+          <a href="https://substack.com/@olinproduct/" target="_blank" rel="noopener">
+            <img src="images/Substack_logo_footer.png" alt="Substack" />
+          </a>
+        </div>
+      </div>
+      <p class="footer-copy">&#169; 2026 Olga Kalinina. All rights reserved</p>
+    </div>
+  </footer>
+</div><!-- /page-wrapper -->
+
+  <script>
+    async function doShare() {
+      const url   = window.location.href;
+      const title = document.title;
+      if (navigator.share) {
+        try { await navigator.share({ title, url }); return; } catch (e) {}
+      }
+      try {
+        await navigator.clipboard.writeText(url);
+        const btn = document.getElementById('shareCtaBtn');
+        const orig = btn.innerHTML;
+        btn.textContent = 'Link copied ✓';
+        setTimeout(() => { btn.innerHTML = orig; }, 2000);
+      } catch (e) {
+        window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(url), '_blank');
+      }
+    }
+    document.getElementById('shareCtaBtn').addEventListener('click', doShare);
+    document.getElementById('shareTopBtn').addEventListener('click', doShare);
+  </script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+      document.getElementById('menuBackdrop').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
