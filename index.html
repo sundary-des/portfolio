@@ -176,8 +176,17 @@
             <div class="carousel-wrap">
               <div class="carousel-slides" id="csSlides">
 
-                <!-- Slide 1: Kualitee + Payli -->
+                <!-- Slide 1: UPDF + Kualitee -->
                 <div class="carousel-slide">
+                  <a class="cs-card" href="cs-updf.html">
+                    <div class="cs-card-header">
+                      <div>
+                        <div class="cs-card-title">UPDF: how a pricing page breaks trust before the user pays</div>
+                        <div class="cs-card-desc">AI-powered PDF editor · SaaS · Product Design</div>
+                      </div>
+                    </div>
+                    <div class="cs-card-img-contained"><img src="images/cover_updf.png" alt="UPDF pricing page analysis" /></div>
+                  </a>
                   <a class="cs-card" href="cs-kualitee.html">
                     <div class="cs-card-header">
                       <div>
@@ -187,6 +196,10 @@
                     </div>
                     <div class="cs-card-img-contained"><img src="images/Cover_image_card.png" alt="Kualitee B2B SaaS Sign-Up Redesign" /></div>
                   </a>
+                </div>
+
+                <!-- Slide 2: Payli + Lattice -->
+                <div class="carousel-slide">
                   <a class="cs-card" href="cs-payli.html">
                     <div class="cs-card-header">
                       <div>
@@ -196,10 +209,6 @@
                     </div>
                     <div class="cs-card-img"><img src="images/Payli_image.png" alt="Payli Budget App" /></div>
                   </a>
-                </div>
-
-                <!-- Slide 2: Lattice + Ghibli -->
-                <div class="carousel-slide">
                   <a class="cs-card" href="cs-lattice.html">
                     <div class="cs-card-header">
                       <div>
@@ -209,6 +218,10 @@
                     </div>
                     <div class="cs-card-img-contained"><img src="images/Cover_lattice_small.png" alt="Lattice Studio AI Product Builder" /></div>
                   </a>
+                </div>
+
+                <!-- Slide 3: Ghibli + B2C Fitness -->
+                <div class="carousel-slide">
                   <a class="cs-card" href="cs-ghibli.html">
                     <div class="cs-card-header">
                       <div>
@@ -218,10 +231,6 @@
                     </div>
                     <div class="cs-card-img"><img src="images/Ghibli_image.png" alt="Maserati Ghibli" /></div>
                   </a>
-                </div>
-
-                <!-- Slide 3: NDA cards -->
-                <div class="carousel-slide">
                   <div class="cs-card" onclick="openNdaModal()">
                     <div class="cs-card-header">
                       <div>
@@ -232,6 +241,10 @@
                     </div>
                     <div class="cs-card-img"><img src="images/B2C_fitness_platform_image.png" alt="B2C FitnessTech" /></div>
                   </div>
+                </div>
+
+                <!-- Slide 4: UN ESCAP + DAM -->
+                <div class="carousel-slide">
                   <div class="cs-card" onclick="openNdaModal()">
                     <div class="cs-card-header">
                       <div>
@@ -242,10 +255,6 @@
                     </div>
                     <div class="cs-card-img"><img src="images/UN_case_study_image.png" alt="UN ESCAP" /></div>
                   </div>
-                </div>
-
-                <!-- Slide 4: DAM + spare -->
-                <div class="carousel-slide">
                   <div class="cs-card" onclick="openNdaModal()">
                     <div class="cs-card-header">
                       <div>
@@ -265,6 +274,7 @@
               <div class="carousel-progress">
                 <span class="active"></span><span></span><span></span><span></span>
               </div>
+              <!-- 4 slides: UPDF+Kualitee, Payli+Lattice, Ghibli+B2C, UN+DAM -->
               <div class="carousel-btns">
                 <button class="carousel-btn" onclick="slideCS(-1)" aria-label="Previous">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
@@ -411,7 +421,7 @@
   <script>
     // Carousel
     let csIndex = 0;
-    const totalSlides = 3;
+    const totalSlides = 4;
     function slideCS(dir) {
       csIndex = (csIndex + dir + totalSlides) % totalSlides;
       document.getElementById('csSlides').style.transform = `translateX(-${csIndex * 100}%)`;
