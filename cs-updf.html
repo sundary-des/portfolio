@@ -6,46 +6,121 @@
   <title>UPDF: How a Pricing Page Breaks Trust Before the User Pays — Olga Kalinina</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700;1,800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
     /* ── CASE STUDY LAYOUT ── */
     .cs-wrap {
-      max-width: 900px;
+      max-width: 1187px;
       margin: 0 auto;
-      padding: 60px 0 0;
+      padding: 80px 0 0;
       display: flex;
       flex-direction: column;
       gap: 56px;
     }
+
+    /* Logo row */
     .cs-logo-row { display: flex; align-items: center; justify-content: space-between; }
-    .cs-logo { height: 40px; width: auto; }
+    .cs-logo-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: #fafafa; border-radius: 9999px;
+      padding: 8px 16px;
+    }
+    .cs-logo-pill img { width: 42px; height: 42px; object-fit: contain; }
+    .cs-logo-name {
+      font-size: 26px; font-weight: 800; color: #0a0a0a;
+      letter-spacing: -0.26px;
+    }
     .cs-share-btn {
       background: none; border: none; cursor: pointer; padding: 4px;
       opacity: 0.7; display: flex; align-items: center; transition: opacity 0.2s;
     }
     .cs-share-btn:hover { opacity: 1; }
     .cs-share-btn img { width: 24px; height: 24px; }
-    .cs-title-block { display: flex; flex-direction: column; gap: 12px; }
+
+    /* Title block */
+    .cs-title-block { display: flex; flex-direction: column; gap: 10px; }
     .cs-title-block h1 { font-size: 36px; font-weight: 600; line-height: 1.2; color: #292b2d; }
     .cs-subtitle { font-size: 16px; font-weight: 500; color: #707379; }
-    .cs-cover-wrap { border-radius: 24px; overflow: hidden; box-shadow: 0 4px 12px rgba(112,115,121,0.1); }
-    .cs-cover-wrap img { width: 100%; display: block; border: none; }
-    .cs-section { display: flex; flex-direction: column; gap: 24px; }
-    .cs-section-heading { font-size: 28px; font-weight: 700; line-height: 1.2; color: #292b2d; }
-    .cs-section p { font-size: 18px; line-height: 1.75; color: #292b2d; }
-    .cs-section p strong { font-weight: 700; }
-    .cs-img-wrap-inner { border-radius: 24px; overflow: hidden; box-shadow: 0 4px 12px rgba(112,115,121,0.1); }
-    .cs-img-wrap-inner img { width: 100%; display: block; border: none; }
-    .cs-callout {
-      background: #fafafa; border-radius: 24px;
-      padding: 24px 28px; display: flex; gap: 20px; align-items: flex-start;
-    }
-    .cs-callout-icon { width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; }
-    .cs-callout-body { flex: 1; font-size: 18px; line-height: 1.7; color: #292b2d; }
-    .cs-callout-body strong { font-weight: 700; }
 
-    /* ── WIREFRAME BLOCK — scoped under .wf-root to isolate from portfolio CSS ── */
+    /* Intro description */
+    .cs-intro { font-size: 22px; line-height: 1.5; color: #292b2d; font-weight: 400; }
+
+    /* Disclaimer card */
+    .cs-disclaimer {
+      background: #fafafa; border-radius: 24px;
+      padding: 16px 22px; font-style: italic;
+      color: #292b2d; font-size: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .cs-disclaimer-label { font-weight: 500; font-style: italic; line-height: 1; }
+    .cs-disclaimer p { font-weight: 400; line-height: 1; font-style: italic; }
+
+    /* Cover image */
+    .cs-cover-wrap { border-radius: 32px; overflow: hidden; border: 1px solid #e5e5e5; background: white; }
+    .cs-cover-wrap img { width: 100%; display: block; border: none; }
+
+    /* "The one job" section — grey card */
+    .cs-snapshot-card {
+      background: #fafafa; border-radius: 24px;
+      padding: 32px 24px; display: flex; flex-direction: column; gap: 24px;
+    }
+    .cs-snapshot-card h2 { font-size: 24px; font-weight: 500; color: #292b2d; line-height: 28px; }
+    .cs-snapshot-card p { font-size: 18px; line-height: 28px; color: #292b2d; }
+
+    /* Sections */
+    .cs-section { display: flex; flex-direction: column; gap: 56px; }
+    .cs-section-inner { display: flex; flex-direction: column; gap: 32px; }
+    .cs-issue-heading { font-size: 24px; font-weight: 700; line-height: 28px; color: #292b2d; }
+
+    /* Body text */
+    .cs-body { font-size: 18px; line-height: 28px; color: #292b2d; }
+    .cs-body p { margin-bottom: 8px; }
+    .cs-body p:last-child { margin-bottom: 0; }
+    .cs-body strong { font-weight: 700; }
+    .cs-body em { font-style: italic; }
+
+    /* Image wrappers */
+    .cs-img-wrap { border-radius: 32px; overflow: hidden; }
+    .cs-img-wrap img { width: 100%; display: block; border: none; }
+
+    /* Issue 3: side-by-side layout */
+    .cs-issue-split { display: flex; gap: 32px; align-items: center; }
+    .cs-issue-split-img { flex-shrink: 0; width: 375px; border-radius: 32px; overflow: hidden; }
+    .cs-issue-split-img img { width: 100%; display: block; border: none; }
+    .cs-issue-split-text { flex: 1; font-size: 18px; line-height: 28px; color: #292b2d; }
+    .cs-issue-split-text p { margin-bottom: 8px; }
+    .cs-issue-split-text p:last-child { margin-bottom: 0; }
+    .cs-issue-split-text strong { font-weight: 700; }
+
+    /* Callout types */
+    .cs-callout-group { display: flex; flex-direction: column; gap: 24px; }
+
+    /* Light callout */
+    .cs-callout-light {
+      background: #fafafa; border-radius: 24px;
+      padding: 24px; display: flex; gap: 24px; align-items: flex-start;
+    }
+    .cs-callout-light-icon { width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; }
+    .cs-callout-light-body { flex: 1; font-size: 18px; line-height: 28px; color: #292b2d; font-style: italic; }
+    .cs-callout-light-body strong { font-weight: 700; display: block; margin-bottom: 8px; }
+
+    /* Dark callout */
+    .cs-callout-dark {
+      background: #3d3d3d; border-radius: 24px;
+      padding: 24px; display: flex; gap: 24px; align-items: flex-start;
+    }
+    .cs-callout-dark-icon { width: 56px; height: 56px; flex-shrink: 0; object-fit: contain; border-radius: 50%; }
+    .cs-callout-dark-body { flex: 1; font-size: 18px; line-height: 28px; color: white; font-style: italic; }
+    .cs-callout-dark-body strong { font-weight: 700; display: block; margin-bottom: 8px; }
+
+    /* Redesign section — centered */
+    .cs-redesign-center { display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center; }
+    .cs-redesign-char { width: 100px; height: 100px; object-fit: contain; }
+    .cs-redesign-heading { font-size: 24px; font-weight: 700; color: #292b2d; line-height: 28px; }
+    .cs-redesign-sub { font-size: 18px; line-height: 28px; color: #292b2d; max-width: 858px; }
+
+    /* Wireframe block — scoped under .wf-root */
     .wf-root {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 14px; line-height: 1.5; color: #1a1a1a;
@@ -59,35 +134,19 @@
     .wf-root .wf-text-line.short { width: 40%; }
     .wf-root .wf-text-line.medium { width: 65%; }
     .wf-root .wf-text-line.long { width: 90%; }
-    .wf-root .wf-btn {
-      display: inline-block; border: 2px solid #1a1a1a; padding: 8px 20px;
-      border-radius: 4px; font-size: 12px; font-weight: 600; text-align: center; background: #fff;
-    }
+    .wf-root .wf-btn { display: inline-block; border: 2px solid #1a1a1a; padding: 8px 20px; border-radius: 4px; font-size: 12px; font-weight: 600; text-align: center; background: #fff; }
     .wf-root .wf-btn.primary { background: #1a1a1a; color: #fff; }
     .wf-root .wf-btn.ghost { background: transparent; color: #1a1a1a; border-style: dashed; }
     .wf-root .pg-section { padding: 32px 48px; border-bottom: 1.5px solid #e0e0e0; position: relative; }
-    .wf-root .billing-selector {
-      display: flex; border: 2px solid #1a1a1a; border-radius: 6px;
-      overflow: hidden; width: fit-content; margin: 0 auto;
-    }
-    .wf-root .billing-option {
-      padding: 10px 32px; font-size: 13px; font-weight: 500;
-      border-right: 1.5px solid #1a1a1a; cursor: pointer; background: #fff;
-    }
+    .wf-root .billing-selector { display: flex; border: 2px solid #1a1a1a; border-radius: 6px; overflow: hidden; width: fit-content; margin: 0 auto; }
+    .wf-root .billing-option { padding: 10px 32px; font-size: 13px; font-weight: 500; border-right: 1.5px solid #1a1a1a; cursor: pointer; background: #fff; }
     .wf-root .billing-option:last-child { border-right: none; }
     .wf-root .billing-option.active { background: #1a1a1a; color: #fff; }
-    .wf-root .billing-option .save-badge {
-      display: inline-block; font-size: 9px; background: #e8f5e9; color: #2e7d32;
-      border-radius: 3px; padding: 1px 5px; margin-left: 6px; font-weight: 600;
-    }
+    .wf-root .billing-option .save-badge { display: inline-block; font-size: 9px; background: #e8f5e9; color: #2e7d32; border-radius: 3px; padding: 1px 5px; margin-left: 6px; font-weight: 600; }
     .wf-root .plans-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 24px; }
     .wf-root .plan-card { border: 2px solid #ddd; border-radius: 8px; padding: 24px; background: #fff; position: relative; }
     .wf-root .plan-card.highlighted { border-color: #1a1a1a; border-width: 2.5px; }
-    .wf-root .plan-badge {
-      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      background: #1a1a1a; color: #fff; font-size: 10px;
-      padding: 3px 12px; border-radius: 20px; white-space: nowrap;
-    }
+    .wf-root .plan-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #1a1a1a; color: #fff; font-size: 10px; padding: 3px 12px; border-radius: 20px; white-space: nowrap; }
     .wf-root .plan-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
     .wf-root .plan-tagline { font-size: 11px; color: #777; margin-bottom: 16px; }
     .wf-root .plan-price { font-size: 28px; font-weight: 800; margin-bottom: 2px; }
@@ -95,10 +154,7 @@
     .wf-root .plan-price-note { font-size: 11px; color: #999; margin-bottom: 16px; }
     .wf-root .plan-divider { border: none; border-top: 1.5px solid #eee; margin: 16px 0; }
     .wf-root .plan-feature { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 12px; color: #444; }
-    .wf-root .plan-feature .check {
-      width: 14px; height: 14px; border: 1.5px solid #bbb; border-radius: 50%;
-      flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 8px;
-    }
+    .wf-root .plan-feature .check { width: 14px; height: 14px; border: 1.5px solid #bbb; border-radius: 50%; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 8px; }
     .wf-root .plan-feature .check.filled { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
     .wf-root .plan-ai-box { background: #f5f5f5; border: 1.5px dashed #bbb; border-radius: 4px; padding: 10px 12px; font-size: 11px; color: #555; margin: 12px 0; }
     .wf-root .plan-ai-box .ai-label { font-weight: 700; font-size: 12px; color: #1a1a1a; margin-bottom: 4px; }
@@ -141,7 +197,10 @@
     .wf-root .separator-label::before, .wf-root .separator-label::after { content: ''; flex: 1; height: 1px; background: #ddd; }
     .wf-root .separator-label span { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #aaa; white-space: nowrap; }
 
-    /* ── CTA ── */
+    /* Closing paragraph */
+    .cs-closing { font-size: 18px; line-height: 28px; color: #292b2d; }
+
+    /* CTA */
     .cta-block { margin-top: 72px; padding: 48px 0 120px; border-top: 2px solid #ebebeb; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
     .cta-block h2 { font-size: 24px; font-weight: 600; color: #292b2d; }
     .cta-block p { font-size: 16px; color: #707379; line-height: 1.6; margin-bottom: 12px; }
@@ -150,12 +209,16 @@
     .btn-outline:hover { border-color: #292b2d; transform: translateY(-1px); }
     .btn-outline img { width: 18px; height: 18px; object-fit: contain; }
 
-    @media (max-width: 768px) {
-      .cs-title-block h1 { font-size: 28px; }
-      .cs-section-heading { font-size: 22px; }
-      .cs-section p { font-size: 16px; }
+    @media (max-width: 900px) {
+      .cs-issue-split { flex-direction: column; }
+      .cs-issue-split-img { width: 100%; }
       .wf-root .plans-grid { grid-template-columns: 1fr; }
       .wf-root .pg-section { padding: 24px 20px; }
+    }
+    @media (max-width: 768px) {
+      .cs-title-block h1 { font-size: 28px; }
+      .cs-issue-heading { font-size: 20px; }
+      .cs-intro { font-size: 18px; }
       .cta-block h2 { font-size: 20px; }
       .cta-buttons { flex-direction: column; align-items: stretch; }
       .btn-outline { justify-content: center; }
@@ -198,107 +261,201 @@
       <div class="container">
         <div class="cs-wrap">
 
-          <!-- Logo + share -->
+          <!-- Logo row -->
           <div class="cs-logo-row">
-            <img src="images/Logo_UPDF.png" alt="UPDF" class="cs-logo" />
+            <div class="cs-logo-pill">
+              <img src="images/updf_logo.png" alt="UPDF logo" />
+              <span class="cs-logo-name">UPDF</span>
+            </div>
             <button class="cs-share-btn" id="shareTopBtn" aria-label="Share">
               <img src="images/share-07.png" alt="Share" />
             </button>
           </div>
 
-          <!-- Title -->
+          <!-- Title block -->
           <div class="cs-title-block">
-            <div class="cs-subtitle">AI-powered PDF editor · SaaS · Product Design</div>
             <h1>UPDF: how a pricing page breaks trust before the user pays</h1>
+            <div class="cs-subtitle">Product Design · SaaS · 2025</div>
           </div>
 
-          <!-- Cover -->
+          <!-- Intro description -->
+          <p class="cs-intro">UPDF is an AI-powered PDF editor for different platforms. It competes directly with Adobe Acrobat — and positions itself as the affordable, smarter alternative. The pricing page is where that promise either holds or breaks. I opened it as a new user trying to buy. I couldn't figure out what I was buying. This is what I found — and what I'd do differently.</p>
+
+          <!-- Disclaimer -->
+          <div class="cs-disclaimer">
+            <div class="cs-disclaimer-label">Disclaimer</div>
+            <p>This redesign is based on publicly available information and UX best practices. It does not reflect UPDF's internal business decisions.</p>
+          </div>
+
+          <!-- Cover image -->
           <div class="cs-cover-wrap">
-            <img src="images/cover_updf.png" alt="UPDF pricing page analysis" />
+            <img src="images/Case_study_UPDF.png" alt="UPDF pricing page analysis" />
           </div>
 
-          <!-- The one job -->
-          <div class="cs-section">
-            <h2 class="cs-section-heading">The one job of a pricing page</h2>
-            <p>UPDF is an AI-powered PDF editor available on Mac, Windows, iOS, and Android. The pricing page is where users decide whether to pay. That's not a UX consideration — it's a conversion moment. The pricing page has one job: help the user understand what they're buying and feel confident enough to pay.</p>
-            <p>This page doesn't do that job. It adds friction, creates confusion, and buries the information users need to make a decision. They don't know what they're actually paying for.</p>
-          </div>
-
-          <!-- What I found -->
-          <div class="cs-section">
-            <h2 class="cs-section-heading">What I found</h2>
-          </div>
-
-          <!-- Issue 1 -->
-          <div class="cs-section">
-            <h2 class="cs-section-heading" style="font-size:22px;">Issue 1: The page doesn't know what it's selling</h2>
-            <p>The page shows the same name — UPDF Pro — on two completely different cards. One is a yearly plan at $49.99, the other is a lifetime deal at $79.99. The only difference is the price and billing model. The name is identical.</p>
-            <p>Users can't compare two things that share a name. They skip one, misread the other, or assume it's a display error. The naming problem alone creates enough confusion to stall a decision.</p>
-            <div class="cs-img-wrap-inner">
-              <img src="images/issue_1.png" alt="Issue 1: duplicate plan names" />
-            </div>
-            <div class="cs-callout">
-              <img src="images/lamp_icon_small.png" alt="" class="cs-callout-icon" />
-              <div class="cs-callout-body"><strong>The fix</strong><br>Rename the plans by what they include, not by tier label. "UPDF" for PDF tools only, "UPDF + AI" for the bundle. Users immediately understand what they're buying.</div>
+          <!-- The one job of a pricing page -->
+          <div class="cs-snapshot-card">
+            <h2>The one job of a pricing page</h2>
+            <div>
+              <p style="font-size:18px;line-height:28px;color:#292b2d;margin-bottom:8px;">A user arrives at a pricing page already interested. They've read about the product. They've compared alternatives. They came here for one thing: to understand what to buy and why.</p>
+              <p style="font-size:18px;line-height:28px;color:#292b2d;margin-bottom:8px;">The page has 30 seconds to answer that.</p>
+              <p style="font-size:18px;line-height:28px;color:#292b2d;">This one doesn't.</p>
             </div>
           </div>
 
-          <!-- Issue 2 -->
+          <!-- WHAT I FOUND + Issues -->
           <div class="cs-section">
-            <h2 class="cs-section-heading" style="font-size:22px;">Issue 2: AI is presented as four different things on the same page</h2>
-            <p>The AI Assistant appears as: a pre-checked checkbox on the Pro card, a 7-day free trial label, a separate $79 standalone card, and a line item in the comparison table at a different price. Four formats, four price points, no clear relationship between them.</p>
-            <p>A user reading the page can't answer a basic question: does the plan I'm looking at include AI or not? The answer changes depending on which element they're reading.</p>
-            <div class="cs-img-wrap-inner">
-              <img src="images/issue_3.png" alt="Issue 2: AI presented inconsistently" />
-            </div>
-            <div class="cs-callout">
-              <img src="images/lamp_icon_small.png" alt="" class="cs-callout-icon" />
-              <div class="cs-callout-body"><strong>The fix</strong><br>AI becomes a separate plan tier — not a checkbox, not a card within a card, not a footnote. Users choose between UPDF or UPDF + AI. One decision, one moment.</div>
-            </div>
-          </div>
 
-          <!-- Issue 3 -->
-          <div class="cs-section">
-            <h2 class="cs-section-heading" style="font-size:22px;">Issue 3: "Pay once, forever" — except for the part that renews yearly</h2>
-            <p>The Lifetime plan's headline is "Pay once, use forever." The AI Assistant is presented as included. What the page doesn't say — until users reach the subscription agreement — is that the AI component renews yearly at $69, even on the Lifetime plan. The total cost of "paying once" is actually $79.99 + $69/year recurring.</p>
-            <p>This is the most damaging pattern on the page. It's not a missing label — it's a structural mismatch between what the headline promises and what the user actually pays. Trust broken here doesn't come back.</p>
-            <div class="cs-callout">
-              <img src="images/lamp_icon_small.png" alt="" class="cs-callout-icon" />
-              <div class="cs-callout-body"><strong>The fix</strong><br>Show the AI yearly billing directly on the card — not in a checkbox, not in fine print. A price breakdown row: UPDF Lifetime ($79.99) + AI yearly ($69/yr) = shown clearly before the user clicks Buy.</div>
+            <!-- Issue 1 -->
+            <div class="cs-section-inner">
+              <p style="font-size:32px;font-weight:700;line-height:32px;color:#292b2d;">What I found</p>
+              <p class="cs-issue-heading">Issue 1: The page doesn't know what it's selling</p>
+              <div class="cs-img-wrap">
+                <img src="images/issue_1.png" alt="Issue 1: duplicate plan names" />
+              </div>
             </div>
-          </div>
-
-          <!-- Issue 4 -->
-          <div class="cs-section">
-            <h2 class="cs-section-heading" style="font-size:22px;">Issue 4: The prices shown aren't real</h2>
-            <p>Every card shows a crossed-out original price ($69.99, $99.99, $139.00). These reference prices don't appear anywhere else on the page — there's no monthly plan, no higher tier, nothing to compare against. The "savings" are calculated against prices that don't exist in any purchasable form.</p>
-            <p>Phantom pricing is a dark pattern. It creates urgency through numbers that can't be verified. Users who notice this lose trust in every other number on the page.</p>
-            <div class="cs-img-wrap-inner">
-              <img src="images/issue_4.png" alt="Issue 4: phantom crossed-out prices" />
+            <div class="cs-body">
+              <p><strong>Two plans share the same name: UPDF Pro.</strong> One costs $49.99/year, the other $79.99 — billed once, for life. The only visible difference is a small grey label below the price. The feature lists look identical at first glance.</p>
+              <p><em>I spent several minutes trying to figure out why do I see one plan twice.</em></p>
+              <p>A user scanning three cards side by side sees: Pro, Pro, AI Assistant. Two identical names, one unfamiliar one. Before they can choose a plan, they have to figure out why the same product has two different prices. That question shouldn't exist.</p>
+              <p>There is also a fourth plan — <strong>UPDF Sign</strong> — positioned below the main three with no clear relationship to them. And a fifth plan, <strong>"UPDF with AI"</strong> priced at $148.99, which appears only in the comparison table at the bottom. It has no card. No CTA. No explanation. It exists in the table as if the user already knows what it is.</p>
+              <p><strong>Five pricing options. Four cards. One ghost plan. No hierarchy at all.</strong></p>
             </div>
-            <div class="cs-callout">
-              <img src="images/lamp_icon_small.png" alt="" class="cs-callout-icon" />
-              <div class="cs-callout-body"><strong>The fix</strong><br>Remove crossed-out prices entirely. Show real savings as percentage vs the monthly plan — a number users can verify themselves. Honesty converts better than manufactured urgency.</div>
+            <div class="cs-callout-light">
+              <img src="images/lamp_icon_small.png" alt="" class="cs-callout-light-icon" />
+              <div class="cs-callout-light-body">
+                <strong>By the numbers</strong>
+                SaaS companies with more than 4 pricing tiers see on average a 30% lower conversion rate than those offering 3 or fewer options.
+              </div>
             </div>
-          </div>
 
-          <!-- Issue 5 -->
-          <div class="cs-section">
-            <h2 class="cs-section-heading" style="font-size:22px;">Issue 5: The surprise is never shown</h2>
-            <p>The pre-checked AI checkbox makes $49.99 look like the total cost for everything. The actual cost — $49.99 + $68.99 AI = $118.98 — is never shown on the page. Users who miss the fine print discover the real price at checkout. By then, the trust problem isn't recoverable.</p>
-          </div>
+            <!-- Issue 2 -->
+            <div class="cs-section-inner">
+              <p class="cs-issue-heading">Issue 2: AI is presented as four different things on the same page</p>
+              <div class="cs-img-wrap">
+                <img src="images/issue_3.png" alt="Issue 2: AI presented as four different things" />
+              </div>
+            </div>
+            <div class="cs-body">
+              <p>This is the most damaging issue on the page.</p>
+              <p>The AI Assistant appears as: a <strong>checkbox inside the Pro plan</strong> cards, a <strong>standalone plan card</strong>, a <strong>row in the comparison table</strong>, and a concept explained in the FAQ. Each time, it behaves differently.</p>
+              <p>On the <strong>Pro cards</strong>, the AI checkbox is checked by default. The feature list shows AI capabilities. The price shows $49.99. A user reading this card believes AI is included because - honestly - the checkbox doesn't look like a functional element. It's a nice Ui element that visually tells the user - this feature is included. When you uncheck the box, the feature list changes: storage drops from 110GB to 10GB. But the price stays at $49.99! <strong>The card was never showing what $49.99 actually buys.</strong></p>
+              <p><strong>Scroll to the comparison table.</strong> AI is marked as not included in the Pro $49.99 plan — which is the correct information. But it contradicts what the card showed by default.</p>
+              <p><strong>Read the FAQ.</strong> It describes AI storage as part of the plan totals. Which again contradicts the checkbox mechanic.</p>
+              <p>There is also a free tier with limited AI access — 5 PDFs, 100 questions per month. <strong>This is mentioned only in the FAQ.</strong> It doesn't appear anywhere near the pricing cards. A user who isn't ready to commit has no visible path. <strong>So they leave.</strong></p>
+              <p>The <strong>AI Assistant standalone card</strong> has no explanation of who it's for. It's positioned alongside complete plans — PDF tools included — with no signal that it's designed for existing UPDF users who want to add AI. A new user sees it and wonders why they'd pay $79 for AI alone when the Pro card appears to include it for $49.99.</p>
+            </div>
+            <div class="cs-callout-group">
+              <div class="cs-callout-light">
+                <img src="images/lamp_icon_small.png" alt="" class="cs-callout-light-icon" />
+                <div class="cs-callout-light-body">
+                  <strong>By the numbers</strong>
+                  <strong>95% of users</strong> never scroll to the bottom of a page. Information buried in a comparison table — like the accurate AI inclusion status — is effectively invisible to most visitors.
+                </div>
+              </div>
+              <div class="cs-callout-dark">
+                <img src="images/Hercuile-dark-pattern.png" alt="" class="cs-callout-dark-icon" />
+                <div class="cs-callout-dark-body">
+                  <strong>Dark pattern detected</strong>
+                  The AI checkbox defaults to checked. The card shows AI features and higher storage as if included in the plan. The price stays at $49.99. The user is shown a version of the product that costs more than what they're about to buy. This is a roach motel variant — easy to enter a state that implies more value, with no clear signal that unchecking changes what you're getting.
+                </div>
+              </div>
+            </div>
 
-          <!-- Issue 6 -->
-          <div class="cs-section">
-            <h2 class="cs-section-heading" style="font-size:22px;">Issue 6: The page hasn't set one clear moment</h2>
-            <p>There's no free tier visible near the pricing cards. No path for users who want to try before buying. The only options shown are paid plans — so users not ready to commit have no visible next step. They leave. A free tier strip placed directly below the plan cards gives undecided users somewhere to go instead of nowhere.</p>
-          </div>
+            <!-- Issue 3 -->
+            <div class="cs-section-inner">
+              <p class="cs-issue-heading">Issue 3: "Pay once, use forever" — except for the part that renews every year</p>
+              <div class="cs-issue-split">
+                <div class="cs-issue-split-img">
+                  <img src="images/issue_3.png" alt="Issue 3: pay once but AI renews yearly" />
+                </div>
+                <div class="cs-issue-split-text">
+                  <p><strong>The lifetime Pro card carries a clear headline: "Pay once, use forever."</strong></p>
+                  <p>The AI checkbox on the same card — checked by default — adds a subscription: <strong>"auto renew at US$69.00/year. Cancel anytime."</strong></p>
+                  <p>There is no lifetime AI option: AI is always billed yearly, regardless of which plan the user chooses. This is confirmed in UPDF's own subscription agreement, but the user will only see this info when they go in documentation that is hidden on the page. It is never stated on the pricing page.</p>
+                  <p>A user who chooses the lifetime plan specifically because they want to avoid recurring payments checks the AI box because it looks like a feature. They have now enrolled in a permanent annual subscription attached to a product they bought as a one-time purchase. They find out when the first renewal charge appears.</p>
+                  <p>The card's own headline makes a promise, but the checkbox breaks it. Nothing on the page resolves that contradiction.</p>
+                </div>
+              </div>
+            </div>
+            <div class="cs-callout-group">
+              <div class="cs-callout-light">
+                <img src="images/lamp_icon_small.png" alt="" class="cs-callout-light-icon" />
+                <div class="cs-callout-light-body">
+                  <strong>By the numbers</strong>
+                  72% of consumers say unexpected charges after purchase are the top reason they lose trust in a brand and consider cancelling.
+                </div>
+              </div>
+              <div class="cs-callout-dark">
+                <img src="images/Hercuile-dark-pattern.png" alt="" class="cs-callout-dark-icon" />
+                <div class="cs-callout-dark-body">
+                  <strong>Dark pattern detected</strong>
+                  This is a hidden subscription pattern. The lifetime card promises a one-time payment. The AI checkbox — checked by default — silently enrolls the user in a $69/year auto-renewing subscription. The word "subscription" does not appear on the card. The contradiction between "pay once" and "auto renew yearly" is never resolved anywhere on the page.
+                </div>
+              </div>
+            </div>
 
-          <!-- Redesign proposal -->
-          <div class="cs-section">
-            <h2 class="cs-section-heading">My redesign proposal</h2>
-            <p>The wireframe below addresses each issue with a structural fix — not a cosmetic one. Renamed plans. Transparent AI pricing on the card. Real savings math. Free tier visible. Comparison table with the AI billing model shown explicitly.</p>
-            <p>These aren't design preferences. Each fix traces directly to a trust or decision problem on the current page.</p>
+            <!-- Issue 4 -->
+            <div class="cs-section-inner">
+              <p class="cs-issue-heading">Issue 4: The real price is never shown</p>
+              <div class="cs-img-wrap">
+                <img src="images/issue_4.png" alt="Issue 4: phantom prices and hidden real cost" />
+              </div>
+            </div>
+            <div class="cs-body">
+              <p>When the AI checkbox is checked on the annual Pro card, the price displayed is $49.99. The checkbox fine print says AI renews at $69/year. The actual cost — $118.99/year — is never shown anywhere on the page.</p>
+              <p><strong>The checkbox defaults to checked. The user sees $49.99. They click Buy Now. The real price appears at checkout.</strong></p>
+              <p>This is the same pattern across every card. Crossed-out original prices — $69.99, $99.99, $139.00 — appear as if there's a standard price being discounted. There is no undiscounted version of any plan available on the page. The "original" prices exist only to create a discount impression.</p>
+              <p>The discount percentages are calculated against different baselines across cards. 43% off on the AI Assistant yearly. 26% off on the quarterly. These numbers reference different anchors that never appear anywhere on the page. The user cannot verify a single claimed saving.</p>
+              <p>The <strong>UPDF Sign card</strong> claims 50% off from <em>$139</em>. But the monthly plan costs $9 — <em>$108 annualised</em>. The "original" $139 annual price has no basis in any plan shown on the page.</p>
+              <p>The same combination of PDF tools and AI appears at three different prices depending on where you look: $118.99 if you use the Pro card checkbox, $148.99 in the comparison table, $79 for the AI-only card. These represent different configurations — but that's never explained.</p>
+            </div>
+            <div class="cs-callout-group">
+              <div class="cs-callout-light">
+                <img src="images/lamp_icon_small.png" alt="" class="cs-callout-light-icon" />
+                <div class="cs-callout-light-body">
+                  <strong>By the numbers</strong>
+                  A 1% improvement in pricing clarity can yield an 11.1% increase in operating profit. The inverse is also true — pricing confusion directly reduces conversion and increases refund rates.
+                </div>
+              </div>
+              <div class="cs-callout-dark">
+                <img src="images/Hercuile-dark-pattern.png" alt="" class="cs-callout-dark-icon" />
+                <div class="cs-callout-dark-body">
+                  <strong>Dark pattern detected</strong>
+                  Three patterns active simultaneously. <strong><em>Phantom pricing</em></strong> — crossed-out original prices with no verifiable reference. <strong><em>Hidden costs</em></strong> — the real total ($118.99) is never displayed, only the base price ($49.99). <strong><em>Drip pricing</em></strong> — the full cost is revealed incrementally across the card headline, a checkbox, and fine print inside that checkbox. Each element alone might be defensible. Together they form a system that delays the user's understanding of what they will actually pay.
+                </div>
+              </div>
+            </div>
+
+            <!-- Issue 5 -->
+            <div class="cs-section-inner">
+              <p class="cs-issue-heading">Issue 5: The page wasn't built as one document</p>
+              <div class="cs-body">
+                <ul style="list-style:disc;padding-left:27px;display:flex;flex-direction:column;gap:8px;">
+                  <li>The FAQ references "<strong>premium</strong> individual account." No plan on the page uses the word <strong>Premium</strong>.</li>
+                  <li>The FAQ describes <strong>AI storage as included</strong> in plan totals. The cards treat <strong>AI as an optional add-on</strong>.</li>
+                  <li>The subscription agreement lists <strong>monthly, quarterly, half-year, and yearly plans</strong>. The pricing page shows only <strong>yearly &amp; lifetime for Pro</strong>. The <strong>quarterly</strong> option exists only on the <strong>AI Assistant</strong> card. <strong>Monthly</strong> exists only on the <strong>Sign card</strong>.</li>
+                  <li>Different sections of this page were written or updated at different times. Nobody reconciled them into a single, coherent user experience. The result is a page the user cannot trust even when they read it carefully.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="cs-callout-light">
+              <img src="images/lamp_icon_small.png" alt="" class="cs-callout-light-icon" />
+              <div class="cs-callout-light-body">
+                <strong>By the numbers</strong>
+                Users who encounter contradictory information on a website are 2.5× more likely to abandon the page than users who encounter information that is simply incomplete.
+              </div>
+            </div>
+
+          </div><!-- /cs-section -->
+
+          <!-- Redesign proposal — centered -->
+          <div class="cs-redesign-center">
+            <img src="images/Hercuile_main.png" alt="" class="cs-redesign-char" />
+            <p class="cs-redesign-heading">My redesign proposal (wireframes only - I focused on the IA restructure only)</p>
+            <div class="cs-redesign-sub">
+              <p style="margin-bottom:8px;">The goal isn't to make this page look better. It's to make it answer one question clearly:</p>
+              <p><strong>What should I buy?</strong></p>
+            </div>
           </div>
 
           <!-- ═══════════════════════════════════════════════════════
@@ -307,13 +464,10 @@
           ════════════════════════════════════════════════════════════ -->
           <div class="wf-root">
             <div class="page">
-
               <div class="wf-title-bar">
                 <h1>UPDF Pricing Page — Wireframe Redesign Proposal</h1>
                 <span>Annotated · Structural fixes only</span>
               </div>
-
-              <!-- AUDIENCE TABS -->
               <div class="pg-section" style="padding-top:0;padding-bottom:0;">
                 <div class="audience-tabs">
                   <div class="audience-tab active">Individuals</div>
@@ -321,8 +475,6 @@
                   <div class="audience-tab">Education</div>
                 </div>
               </div>
-
-              <!-- BILLING SELECTOR -->
               <div class="pg-section" style="padding-top:28px;padding-bottom:0;">
                 <div style="text-align:center;margin-bottom:8px;">
                   <div class="wf-label" style="text-align:center;">How would you like to pay?</div>
@@ -334,18 +486,15 @@
                 </div>
                 <div class="inline-note green-note" style="margin-top:16px;">
                   <strong>Fix: billing selector above cards</strong>
-                  Current page: billing model is buried inside each card (yearly vs lifetime labels in grey text, quarterly toggle only on AI card, monthly only on Sign card). Now: one decision made once, before seeing plans. Savings shown as real math against monthly baseline — not against phantom original prices.
+                  Current page: billing model is buried inside each card. Now: one decision made once, before seeing plans. Savings shown as real math against monthly baseline — not against phantom original prices.
                 </div>
                 <div class="inline-note" style="margin-top:8px;">
                   <strong>Yearly selected state shown below</strong>
-                  When user selects Monthly or Lifetime, all card prices update. Sign card greys out on Lifetime with a note. No page reload required.
+                  When user selects Monthly or Lifetime, all card prices update. Sign card greys out on Lifetime with a note.
                 </div>
               </div>
-
-              <!-- PLAN CARDS -->
               <div class="pg-section" style="padding-top:28px;">
                 <div class="plans-grid">
-
                   <div class="plan-card">
                     <div class="plan-name">UPDF</div>
                     <div class="plan-tagline">For anyone who works with PDFs</div>
@@ -367,7 +516,6 @@
                       <div class="wf-btn ghost" style="text-align:center;">Start free</div>
                     </div>
                   </div>
-
                   <div class="plan-card highlighted">
                     <div class="plan-badge">Most popular</div>
                     <div class="plan-name">UPDF + AI</div>
@@ -377,9 +525,7 @@
                       <div class="breakdown-row"><span>AI Assistant (yearly)</span><span>$69.00/yr</span></div>
                       <div class="breakdown-total"><span>Total</span><span>$118.99/yr</span></div>
                     </div>
-                    <div class="plan-price-note" style="font-size:10px;color:#e53935;margin-top:4px;">
-                      ⚠ AI renews yearly at $69 — even on the Lifetime plan
-                    </div>
+                    <div class="plan-price-note" style="font-size:10px;color:#e53935;margin-top:4px;">⚠ AI renews yearly at $69 — even on the Lifetime plan</div>
                     <hr class="plan-divider">
                     <div class="plan-feature"><div class="check filled">✓</div> Everything in UPDF</div>
                     <div class="plan-feature"><div class="check filled">✓</div> Unlimited AI — summarise, translate, chat</div>
@@ -392,7 +538,6 @@
                       <div class="wf-btn ghost" style="text-align:center;">Try AI free for 7 days</div>
                     </div>
                   </div>
-
                   <div class="plan-card">
                     <div class="plan-name">UPDF Sign</div>
                     <div class="plan-tagline">For legally binding digital signatures</div>
@@ -411,43 +556,17 @@
                     </div>
                     <div class="inline-note" style="margin-top:12px;font-size:10px;">
                       <strong>On Lifetime selection</strong>
-                      This card greys out with note: "UPDF Sign is not available as a lifetime license. Yearly and monthly only."
+                      This card greys out: "UPDF Sign is not available as a lifetime license."
                     </div>
                   </div>
-
-                </div><!-- /plans-grid -->
-
-                <div class="inline-note green-note" style="margin-top:20px;">
-                  <strong>Fix: no duplicate plan names</strong>
-                  Current page has two cards both named "UPDF Pro" — one yearly, one lifetime. Renamed: UPDF (PDF tools) and UPDF + AI (PDF + unlimited AI). Names describe what the user gets, not an internal tier label.
                 </div>
-                <div class="inline-note green-note" style="margin-top:8px;">
-                  <strong>Fix: real total price shown</strong>
-                  Current page shows $49.99 on the Pro card with AI checkbox checked. Real cost ($118.99) never appears. In this redesign: UPDF + AI card shows a price breakdown — UPDF cost + AI cost + total. No surprises at checkout.
-                </div>
-                <div class="inline-note green-note" style="margin-top:8px;">
-                  <strong>Fix: AI yearly billing stated clearly</strong>
-                  "AI renews yearly at $69 — even on the Lifetime plan" shown directly on the UPDF + AI card. Not in fine print. Not in a checkbox. Not in the subscription agreement. On the card, before the user clicks Buy.
-                </div>
-                <div class="inline-note green-note" style="margin-top:8px;">
-                  <strong>Fix: Sign plan signature limits explained</strong>
-                  Current page shows 300/year on yearly toggle and 20/month on monthly toggle — different limits never compared side by side. In this redesign: both limits shown simultaneously so user can make an informed choice.
-                </div>
-                <div class="inline-note red-note" style="margin-top:8px;">
-                  <strong>Removed: phantom original prices</strong>
-                  Crossed-out prices ($69.99, $99.99, $139.00) removed entirely. Savings shown as real math: "Save 29% vs monthly" calculated against the actual monthly price shown on the page. No unverifiable reference prices.
-                </div>
-                <div class="inline-note red-note" style="margin-top:8px;">
-                  <strong>Removed: pre-checked AI checkbox</strong>
-                  The checkbox that defaulted to checked — showing AI features as if included at $49.99 — is removed. AI is now a separate plan tier. The user chooses UPDF or UPDF + AI. No hidden feature list changes.
-                </div>
-                <div class="inline-note red-note" style="margin-top:8px;">
-                  <strong>Removed: ghost plan</strong>
-                  "UPDF with AI" at $148.99 existed only in the comparison table with no card and no CTA. In this redesign, UPDF + AI at $118.99 is the primary plan card. The table-only ghost plan is eliminated.
-                </div>
+                <div class="inline-note green-note" style="margin-top:20px;"><strong>Fix: no duplicate plan names</strong>Current page has two cards both named "UPDF Pro". Renamed: UPDF and UPDF + AI. Names describe what the user gets.</div>
+                <div class="inline-note green-note" style="margin-top:8px;"><strong>Fix: real total price shown</strong>UPDF + AI card shows a price breakdown — UPDF cost + AI cost + total. No surprises at checkout.</div>
+                <div class="inline-note green-note" style="margin-top:8px;"><strong>Fix: AI yearly billing stated clearly</strong>"AI renews yearly at $69 — even on the Lifetime plan" shown directly on the card, before the user clicks Buy.</div>
+                <div class="inline-note red-note" style="margin-top:8px;"><strong>Removed: phantom original prices</strong>Crossed-out prices removed. Savings shown as real math: "Save 29% vs monthly".</div>
+                <div class="inline-note red-note" style="margin-top:8px;"><strong>Removed: pre-checked AI checkbox</strong>AI is now a separate plan tier. The user chooses UPDF or UPDF + AI.</div>
+                <div class="inline-note red-note" style="margin-top:8px;"><strong>Removed: ghost plan</strong>"UPDF with AI" at $148.99 that existed only in the comparison table with no card is eliminated.</div>
               </div>
-
-              <!-- FREE TIER -->
               <div class="pg-section" style="padding-top:0;">
                 <div class="free-strip">
                   <div>
@@ -456,13 +575,8 @@
                   </div>
                   <div class="wf-btn" style="white-space:nowrap;">Download free</div>
                 </div>
-                <div class="inline-note green-note" style="margin-top:12px;">
-                  <strong>Fix: free tier visible</strong>
-                  Current page: free tier described only in FAQ. No CTA near pricing cards. Users not ready to pay have no visible path — so they leave. In this redesign: free tier is a strip directly below the plan cards, with limitations stated in one line so users know exactly what they're starting with.
-                </div>
+                <div class="inline-note green-note" style="margin-top:12px;"><strong>Fix: free tier visible</strong>Free tier strip directly below plan cards. Users not ready to pay have a visible path — they don't leave.</div>
               </div>
-
-              <!-- EXISTING USERS -->
               <div class="pg-section" style="background:#fafafa;">
                 <div class="separator-label"><span>Already have UPDF? Add AI only</span></div>
                 <div class="plan-card" style="max-width:500px;margin:0 auto;">
@@ -479,20 +593,12 @@
                     <div class="wf-btn primary" style="text-align:center;">Add AI to my UPDF — $79/year</div>
                   </div>
                 </div>
-                <div class="inline-note green-note" style="margin-top:16px;">
-                  <strong>Fix: AI Assistant card audience defined</strong>
-                  Current page: AI Assistant card ($79) sits alongside complete plans with no explanation of who it's for. New users see it and wonder why they'd pay $79 for AI alone when the Pro card appears to include it. In this redesign: the AI-only option is separated into its own section — clearly labelled "for existing UPDF owners." New users never see it as a primary option.
-                </div>
+                <div class="inline-note green-note" style="margin-top:16px;"><strong>Fix: AI Assistant card audience defined</strong>AI-only option separated into its own section — clearly labelled "for existing UPDF owners." New users never see it as a primary option.</div>
               </div>
-
-              <!-- COMPARISON TABLE -->
               <div class="pg-section">
                 <h2 class="section-title">Compare all features</h2>
                 <p class="section-subtitle">Expand any section to see the full details.</p>
-                <div class="inline-note green-note" style="margin-bottom:16px;">
-                  <strong>Fix: progressive disclosure</strong>
-                  Current page: 40+ row comparison table fully visible by default. In this redesign: table sections are collapsed by default. User expands only what they need. The default view shows only the most important differentiators.
-                </div>
+                <div class="inline-note green-note" style="margin-bottom:16px;"><strong>Fix: progressive disclosure</strong>Table sections collapsed by default. User expands only what they need.</div>
                 <table class="comparison-table">
                   <thead>
                     <tr>
@@ -514,17 +620,9 @@
                     <tr><td>AI billing model</td><td class="center"><span class="check-no">—</span></td><td class="center"><span class="check-no">—</span></td><td class="center"><span class="check-limited">+$69/yr, always yearly</span></td></tr>
                   </tbody>
                 </table>
-                <div class="inline-note green-note" style="margin-top:16px;">
-                  <strong>Fix: AI billing shown in table</strong>
-                  Current table never mentions that AI costs extra or that it's always billed yearly. Added as a row so users comparing plans see the billing model difference directly — not buried in card fine print.
-                </div>
-                <div class="inline-note green-note" style="margin-top:8px;">
-                  <strong>Fix: free AI limits shown clearly</strong>
-                  Current page never communicates that Free and UPDF plans both include limited AI. Users assume they get zero AI on the base plan. Showing it in the table removes that misconception and makes the UPDF + AI upgrade feel earned rather than mandatory.
-                </div>
+                <div class="inline-note green-note" style="margin-top:16px;"><strong>Fix: AI billing shown in table</strong>AI billing model row added so users comparing plans see it directly — not buried in fine print.</div>
+                <div class="inline-note green-note" style="margin-top:8px;"><strong>Fix: free AI limits shown clearly</strong>Free and UPDF plans both include limited AI — shown in the table so users understand the upgrade value.</div>
               </div>
-
-              <!-- FAQ -->
               <div class="pg-section">
                 <h2 class="section-title">Frequently asked questions</h2>
                 <div class="faq-item">
@@ -539,28 +637,15 @@
                 <div class="faq-item"><div class="faq-q">How many devices can I use?</div></div>
                 <div class="faq-item"><div class="faq-q">What does the 30-day money back guarantee cover?</div></div>
                 <div class="faq-item"><div class="faq-q">Can I cancel my subscription?</div></div>
-                <div class="inline-note green-note" style="margin-top:16px;">
-                  <strong>Fix: FAQ aligned with plan names</strong>
-                  Current FAQ refers to "premium individual account" — a plan name that doesn't exist on the page. All FAQ references updated to use actual plan names: UPDF, UPDF + AI, UPDF Sign.
-                </div>
-                <div class="inline-note green-note" style="margin-top:8px;">
-                  <strong>Fix: AI lifetime question added explicitly</strong>
-                  The most confusing aspect of the current page — that AI is always yearly even on the lifetime plan — is now addressed directly in the FAQ as the second question. Users who missed the note on the card will find the answer here without needing to read the subscription agreement.
-                </div>
+                <div class="inline-note green-note" style="margin-top:16px;"><strong>Fix: FAQ aligned with plan names</strong>All FAQ references updated to use actual plan names: UPDF, UPDF + AI, UPDF Sign.</div>
+                <div class="inline-note green-note" style="margin-top:8px;"><strong>Fix: AI lifetime question added explicitly</strong>AI is always yearly even on the lifetime plan — addressed directly as the second FAQ question.</div>
               </div>
-
-            </div><!-- /page -->
-          </div><!-- /wf-root -->
+            </div>
+          </div>
           <!-- ═══════════════════════ END WIREFRAME ═══════════════════════ -->
 
-          <!-- Three questions -->
-          <div class="cs-section">
-            <h2 class="cs-section-heading">Three questions to ask before designing any pricing page</h2>
-            <p>Working through UPDF's pricing page clarified a set of questions that apply to any SaaS pricing page before a single pixel gets designed:</p>
-            <p><strong>1. Can a user state the total price before clicking Buy?</strong> If they can't, the page hasn't done its job. Every hidden cost, every fee revealed at checkout, every number that changes based on checkbox state — these are failures of communication, not edge cases.</p>
-            <p><strong>2. Does the page show the same thing the user will see at checkout?</strong> The pricing page and the checkout screen need to agree. If the plan name changes, the price changes, or the billing model appears for the first time at payment — that's a broken handoff. Users who feel surprised at checkout abandon. Many don't return.</p>
-            <p><strong>3. What does a user who's not ready to pay do next?</strong> A pricing page that shows only paid plans gives undecided users nowhere to go. A visible free tier — even a limited one — keeps those users in the product. It's not charity: users who start free convert at measurable rates. Users who leave don't.</p>
-          </div>
+          <!-- Closing paragraph -->
+          <p class="cs-closing">This redesign doesn't change what UPDF sells or how they price AI. Charging for AI separately is a legitimate business decision — AI has real variable costs. Making that decision invisible to the user at the moment of purchase is not legitimate. The redesign changes the communication, not the business model.</p>
 
           <!-- CTA -->
           <div class="cta-block">
@@ -611,7 +696,7 @@
         <p class="footer-copy">&#169; 2026 Olga Kalinina. All rights reserved</p>
       </div>
     </footer>
-  </div><!-- /page-wrapper -->
+  </div>
 
   <script>
     function toggleMenu() {
