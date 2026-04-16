@@ -103,7 +103,8 @@
     }
     .cs-callout-light-icon { width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; }
     .cs-callout-light-body { flex: 1; font-size: 18px; line-height: 28px; color: #292b2d; font-style: italic; }
-    .cs-callout-light-body strong { font-weight: 700; display: block; margin-bottom: 8px; }
+    .cs-callout-light-body > strong:first-child { font-weight: 700; display: block; margin-bottom: 8px; }
+    .cs-callout-light-body strong { font-weight: 700; }
 
     /* Dark callout */
     .cs-callout-dark {
@@ -112,7 +113,8 @@
     }
     .cs-callout-dark-icon { width: 56px; height: 56px; flex-shrink: 0; object-fit: contain; border-radius: 50%; }
     .cs-callout-dark-body { flex: 1; font-size: 18px; line-height: 28px; color: white; font-style: italic; }
-    .cs-callout-dark-body strong { font-weight: 700; display: block; margin-bottom: 8px; }
+    .cs-callout-dark-body > strong:first-child { font-weight: 700; display: block; margin-bottom: 8px; }
+    .cs-callout-dark-body strong { font-weight: 700; }
 
     /* Redesign section — centered */
     .cs-redesign-center { display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center; }
@@ -201,7 +203,7 @@
     .cs-closing { font-size: 18px; line-height: 28px; color: #292b2d; }
 
     /* CTA */
-    .cta-block { margin-top: 72px; padding: 48px 0 120px; border-top: 2px solid #ebebeb; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .cta-block { margin-top: 0; padding: 48px 0 120px; border-top: 2px solid #ebebeb; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
     .cta-block h2 { font-size: 24px; font-weight: 600; color: #292b2d; }
     .cta-block p { font-size: 16px; color: #707379; line-height: 1.6; margin-bottom: 12px; }
     .cta-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
@@ -333,7 +335,7 @@
               <p class="cs-issue-heading">Issue 2: AI is presented as four different things on the same page</p>
               <div class="cs-issue-split">
                 <div class="cs-issue-split-img">
-                  <img src="images/issue_3.png" alt="Issue 2: AI presented as four different things" />
+                  <img src="images/issue_2.png" alt="Issue 2: AI presented as four different things" />
                 </div>
                 <div class="cs-issue-split-text">
                   <p>This is the most damaging issue on the page.</p>
@@ -423,7 +425,13 @@
                 <img src="images/Hercuile-dark-pattern.png" alt="" class="cs-callout-dark-icon" />
                 <div class="cs-callout-dark-body">
                   <strong>Dark pattern detected</strong>
-                  Three patterns active simultaneously. <strong><em>Phantom pricing</em></strong> — crossed-out original prices with no verifiable reference. <strong><em>Hidden costs</em></strong> — the real total ($118.99) is never displayed, only the base price ($49.99). <strong><em>Drip pricing</em></strong> — the full cost is revealed incrementally across the card headline, a checkbox, and fine print inside that checkbox. Each element alone might be defensible. Together they form a system that delays the user's understanding of what they will actually pay.
+                  Three patterns active simultaneously.<br>
+                  <strong>Phantom pricing</strong><br>
+                  — crossed-out original prices with no verifiable reference.<br>
+                  <strong>Hidden costs</strong><br>
+                  — the real total ($118.99) is never displayed, only the base price ($49.99).<br>
+                  <strong>Drip pricing</strong><br>
+                  — the full cost is revealed incrementally across the card headline, a checkbox, and fine print inside that checkbox. Each element alone might be defensible. Together they form a system that delays the user's understanding of what they will actually pay.
                 </div>
               </div>
             </div>
@@ -453,7 +461,7 @@
           <!-- Redesign proposal — centered -->
           <div class="cs-redesign-center">
             <img src="images/Hercuile_main.png" alt="" class="cs-redesign-char" />
-            <p class="cs-redesign-heading">My redesign proposal (wireframes only - I focused on the IA restructure only)</p>
+            <p class="cs-redesign-heading">UX redesign proposal: information architecture &amp; decision logic</p>
             <div class="cs-redesign-sub">
               <p style="margin-bottom:8px;">The goal isn't to make this page look better. It's to make it answer one question clearly:</p>
               <p><strong>What should I buy?</strong></p>
@@ -654,17 +662,17 @@
             <p style="font-size:24px;font-weight:700;line-height:28px;color:#292b2d;">Three questions I'd ask before designing any pricing page</p>
             <div style="font-size:18px;line-height:28px;color:#292b2d;">
               <ol style="padding-left:27px;margin-bottom:8px;">
-                <li style="margin-bottom:8px;">Can a new user name all the plans and explain the difference between them in 30 seconds?</li>
+                <li style="margin-bottom:8px;"><strong>Can a new user name all the plans and explain the difference between them in 30 seconds?</strong></li>
               </ol>
               <p style="margin-bottom:8px;">If not, the problem is architecture — not copy, not color, not button placement. Redesigning the surface without fixing the structure produces a cleaner version of the same confusion.</p>
               <p style="margin-bottom:8px;">For UPDF: two plans share a name, one plan exists only in a table, and AI behaves differently in every section of the page. A user can't answer this question. That has to be resolved before anything else.</p>
               <ol style="padding-left:27px;margin-bottom:8px;" start="2">
-                <li style="margin-bottom:8px;">Does the page show the real price — the number that will appear on the user's billing statement?</li>
+                <li style="margin-bottom:8px;"><strong>Does the page show the real price — the number that will appear on the user's billing statement?</strong></li>
               </ol>
               <p style="margin-bottom:8px;">Not the headline price. Not the price before an add-on checkbox is enabled. Not a price calculated against an original that doesn't exist anywhere. The number the user will actually pay.</p>
               <p style="margin-bottom:8px;">Trust is built or lost at the moment of purchase. A user who discovers the real price at checkout — or in their email after the fact — doesn't just feel surprised. They feel deceived. That feeling doesn't convert to loyalty.</p>
               <ol style="padding-left:27px;margin-bottom:8px;" start="3">
-                <li style="margin-bottom:8px;">Does the page make the same promise in every section?</li>
+                <li style="margin-bottom:8px;"><strong>Does the page make the same promise in every section?</strong></li>
               </ol>
               <p style="margin-bottom:8px;">Cards, comparison table, FAQ, subscription agreement — do they all describe the same product, the same inclusions, the same billing model?</p>
               <p style="margin-bottom:8px;">For UPDF, the answer is no in every section. AI is included in some places and optional in others. "Lifetime" means different things depending on whether you're reading the card or the checkbox. "Premium" appears in the FAQ for a plan that doesn't exist on the page.</p>
@@ -673,7 +681,7 @@
           </div>
 
           <!-- Sources -->
-          <div style="display:flex;flex-direction:column;gap:32px;padding:32px 0;">
+          <div style="display:flex;flex-direction:column;gap:32px;padding:32px 0 0;">
             <hr style="border:none;border-top:1px solid #e9eaec;margin:0;" />
             <div style="font-size:14px;font-style:italic;color:#7e808e;line-height:20px;">
               <p style="margin-bottom:8px;">Sources:</p>
