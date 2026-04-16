@@ -275,7 +275,7 @@
           <!-- Title block -->
           <div class="cs-title-block">
             <h1>UPDF: how a pricing page breaks trust before the user pays</h1>
-            <div class="cs-subtitle">Product Design · SaaS · 2025</div>
+            <div class="cs-subtitle">Product Design · SaaS · 2026</div>
           </div>
 
           <!-- Intro description -->
@@ -289,7 +289,7 @@
 
           <!-- Cover image -->
           <div class="cs-cover-wrap">
-            <img src="images/Case_study_UPDF.png" alt="UPDF pricing page analysis" />
+            <img src="images/cover_updf.png" alt="UPDF pricing page analysis" />
           </div>
 
           <!-- The one job of a pricing page -->
@@ -331,18 +331,20 @@
             <!-- Issue 2 -->
             <div class="cs-section-inner">
               <p class="cs-issue-heading">Issue 2: AI is presented as four different things on the same page</p>
-              <div class="cs-img-wrap">
-                <img src="images/issue_3.png" alt="Issue 2: AI presented as four different things" />
+              <div class="cs-issue-split">
+                <div class="cs-issue-split-img">
+                  <img src="images/issue_3.png" alt="Issue 2: AI presented as four different things" />
+                </div>
+                <div class="cs-issue-split-text">
+                  <p>This is the most damaging issue on the page.</p>
+                  <p>The AI Assistant appears as: a <strong>checkbox inside the Pro plan</strong> cards, a <strong>standalone plan card</strong>, a <strong>row in the comparison table</strong>, and a concept explained in the FAQ. Each time, it behaves differently.</p>
+                  <p>On the <strong>Pro cards</strong>, the AI checkbox is checked by default. The feature list shows AI capabilities. The price shows $49.99. A user reading this card believes AI is included because - honestly - the checkbox doesn't look like a functional element. It's a nice Ui element that visually tells the user - this feature is included. When you uncheck the box, the feature list changes: storage drops from 110GB to 10GB. But the price stays at $49.99! <strong>The card was never showing what $49.99 actually buys.</strong></p>
+                  <p><strong>Scroll to the comparison table.</strong> AI is marked as not included in the Pro $49.99 plan — which is the correct information. But it contradicts what the card showed by default.</p>
+                  <p><strong>Read the FAQ.</strong> It describes AI storage as part of the plan totals. Which again contradicts the checkbox mechanic.</p>
+                  <p>There is also a free tier with limited AI access — 5 PDFs, 100 questions per month. <strong>This is mentioned only in the FAQ.</strong> It doesn't appear anywhere near the pricing cards. A user who isn't ready to commit has no visible path. <strong>So they leave.</strong></p>
+                  <p>The <strong>AI Assistant standalone card</strong> has no explanation of who it's for. It's positioned alongside complete plans — PDF tools included — with no signal that it's designed for existing UPDF users who want to add AI. A new user sees it and wonders why they'd pay $79 for AI alone when the Pro card appears to include it for $49.99.</p>
+                </div>
               </div>
-            </div>
-            <div class="cs-body">
-              <p>This is the most damaging issue on the page.</p>
-              <p>The AI Assistant appears as: a <strong>checkbox inside the Pro plan</strong> cards, a <strong>standalone plan card</strong>, a <strong>row in the comparison table</strong>, and a concept explained in the FAQ. Each time, it behaves differently.</p>
-              <p>On the <strong>Pro cards</strong>, the AI checkbox is checked by default. The feature list shows AI capabilities. The price shows $49.99. A user reading this card believes AI is included because - honestly - the checkbox doesn't look like a functional element. It's a nice Ui element that visually tells the user - this feature is included. When you uncheck the box, the feature list changes: storage drops from 110GB to 10GB. But the price stays at $49.99! <strong>The card was never showing what $49.99 actually buys.</strong></p>
-              <p><strong>Scroll to the comparison table.</strong> AI is marked as not included in the Pro $49.99 plan — which is the correct information. But it contradicts what the card showed by default.</p>
-              <p><strong>Read the FAQ.</strong> It describes AI storage as part of the plan totals. Which again contradicts the checkbox mechanic.</p>
-              <p>There is also a free tier with limited AI access — 5 PDFs, 100 questions per month. <strong>This is mentioned only in the FAQ.</strong> It doesn't appear anywhere near the pricing cards. A user who isn't ready to commit has no visible path. <strong>So they leave.</strong></p>
-              <p>The <strong>AI Assistant standalone card</strong> has no explanation of who it's for. It's positioned alongside complete plans — PDF tools included — with no signal that it's designed for existing UPDF users who want to add AI. A new user sees it and wonders why they'd pay $79 for AI alone when the Pro card appears to include it for $49.99.</p>
             </div>
             <div class="cs-callout-group">
               <div class="cs-callout-light">
@@ -647,9 +649,50 @@
           <!-- Closing paragraph -->
           <p class="cs-closing">This redesign doesn't change what UPDF sells or how they price AI. Charging for AI separately is a legitimate business decision — AI has real variable costs. Making that decision invisible to the user at the moment of purchase is not legitimate. The redesign changes the communication, not the business model.</p>
 
+          <!-- Three questions -->
+          <div style="display:flex;flex-direction:column;gap:32px;">
+            <p style="font-size:24px;font-weight:700;line-height:28px;color:#292b2d;">Three questions I'd ask before designing any pricing page</p>
+            <div style="font-size:18px;line-height:28px;color:#292b2d;">
+              <ol style="padding-left:27px;margin-bottom:8px;">
+                <li style="margin-bottom:8px;">Can a new user name all the plans and explain the difference between them in 30 seconds?</li>
+              </ol>
+              <p style="margin-bottom:8px;">If not, the problem is architecture — not copy, not color, not button placement. Redesigning the surface without fixing the structure produces a cleaner version of the same confusion.</p>
+              <p style="margin-bottom:8px;">For UPDF: two plans share a name, one plan exists only in a table, and AI behaves differently in every section of the page. A user can't answer this question. That has to be resolved before anything else.</p>
+              <ol style="padding-left:27px;margin-bottom:8px;" start="2">
+                <li style="margin-bottom:8px;">Does the page show the real price — the number that will appear on the user's billing statement?</li>
+              </ol>
+              <p style="margin-bottom:8px;">Not the headline price. Not the price before an add-on checkbox is enabled. Not a price calculated against an original that doesn't exist anywhere. The number the user will actually pay.</p>
+              <p style="margin-bottom:8px;">Trust is built or lost at the moment of purchase. A user who discovers the real price at checkout — or in their email after the fact — doesn't just feel surprised. They feel deceived. That feeling doesn't convert to loyalty.</p>
+              <ol style="padding-left:27px;margin-bottom:8px;" start="3">
+                <li style="margin-bottom:8px;">Does the page make the same promise in every section?</li>
+              </ol>
+              <p style="margin-bottom:8px;">Cards, comparison table, FAQ, subscription agreement — do they all describe the same product, the same inclusions, the same billing model?</p>
+              <p style="margin-bottom:8px;">For UPDF, the answer is no in every section. AI is included in some places and optional in others. "Lifetime" means different things depending on whether you're reading the card or the checkbox. "Premium" appears in the FAQ for a plan that doesn't exist on the page.</p>
+              <p>A pricing page that contradicts itself isn't just confusing. It signals that the company hasn't thought carefully about what they're selling — or to whom.</p>
+            </div>
+          </div>
+
+          <!-- Sources -->
+          <div style="display:flex;flex-direction:column;gap:32px;padding:32px 0;">
+            <hr style="border:none;border-top:1px solid #e9eaec;margin:0;" />
+            <div style="font-size:14px;font-style:italic;color:#7e808e;line-height:20px;">
+              <p style="margin-bottom:8px;">Sources:</p>
+              <ul style="list-style:disc;padding-left:21px;">
+                <li style="margin-bottom:0;">Patrick Campbell, ProfitWell — 30-second pricing page decision benchmark</li>
+                <li style="margin-bottom:0;">Price Intelligently — conversion rate research on pricing tier count</li>
+                <li style="margin-bottom:0;">Iyengar &amp; Lepper (2000) — "When Choice is Demotivating" — Columbia University jam study. Journal of Personality and Social Psychology</li>
+                <li style="margin-bottom:0;">HubSpot — internal pricing page consolidation experiment, conversion results</li>
+                <li style="margin-bottom:0;">UPDF Software Subscription Agreement — updf.com/software-subscription-agreement</li>
+                <li style="margin-bottom:0;">UPDF Pricing Page — updf.com/pricing-individuals</li>
+                <li>UPDF FAQ — pricing page FAQ section</li>
+              </ul>
+            </div>
+            <hr style="border:none;border-top:1px solid #e9eaec;margin:0;" />
+          </div>
+
           <!-- CTA -->
           <div class="cta-block">
-            <h2>Enjoyed this analysis?</h2>
+            <h2>Enjoyed this case study?</h2>
             <p>Share it with your network or subscribe for future insights.</p>
             <div class="cta-buttons">
               <button class="btn-outline" id="shareCtaBtn">
